@@ -7,8 +7,10 @@ export default function Admin() {
   return (
     <div>
       <Row>
-        <Col span={6}>
+        <Col span={4}>
           <SidebarAdmin />
+        </Col>
+        <Col span={1}>
         </Col>
         <Col span={18}>
           <Outlet />
