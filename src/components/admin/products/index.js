@@ -80,11 +80,15 @@ function AdminProducts() {
 
   const showDeleteConfirm = (record) => {
     confirm({
-      title: 'Bạn có chắc chắn muốn xóa sản phẩm này không?',
-      content: `Sản phẩm: ${record.title}`,
+      title: 'Bạn có chắc chắn muốn xóa sản phẩm này?',
       okText: 'Xác nhận',
-      okType: 'danger',
       cancelText: 'Hủy',
+      okButtonProps: {
+        style: {
+          background: 'linear-gradient(135deg, #6253e1, #04befe)',
+          color: '#fff',               // Màu chữ trắng
+        },
+      },
       onOk() {
         handleDelete(record);
       },
