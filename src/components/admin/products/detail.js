@@ -47,7 +47,6 @@ const AdminDetailProduct = () => {
           <p><b>Giá:</b> {productDetail.price}đ</p>
           <p><b>Giảm:</b> {productDetail.discountPercentage}%</p>
           <img src={productDetail.thumbnail} />
-
         </div>)
 
         : "Không tồn tại sản phẩm này"}
