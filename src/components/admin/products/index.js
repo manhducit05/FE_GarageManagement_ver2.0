@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { Button, Space, Input, Table } from 'antd';
+import { Button, Space, Input, Table, Modal } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import './index.css';
+
+const { confirm } = Modal;
 
 function AdminProducts() {
   const API = process.env.REACT_APP_API_URL;
@@ -47,18 +49,49 @@ function AdminProducts() {
 
   const handleDelete = (record) => {
     console.log('Delete product:', record);
-    // Add your delete logic here
+
     const fetchProducts = async () => {
+      setLoading(true); // Start loading when initiating the delete request
       try {
-        const res = await fetch(`${API}/products/delete/${record.slug}`);
+        const res = await fetch(`${API}/products/delete/${record.slug}`, {
+          method: 'PATCH', // Specify DELETE method
+        });
+
+        if (!res.ok) {
+          throw new Error('Failed to delete the product'); // Handle non-200 status
+        }
+
         const json = await res.json();
-        setProducts(json.products);
+        console.log('Deleted product:', json);
+        setProducts((prevProducts) =>
+          prevProducts.filter((product) => product.slug !== record.slug)
+        ); // Update the product list after successful deletion
+
       } catch (error) {
-        setError(error.message);
+        setError(error.message); // Set error if something goes wrong
+        console.error("Delete error:", error);
       } finally {
-        setLoading(false);
+        setLoading(false); // End loading after the delete operation
       }
     };
+
+    fetchProducts(); // Call the function to initiate the delete request
+  };
+
+  const showDeleteConfirm = (record) => {
+    confirm({
+      title: 'Bạn có chắc chắn muốn xóa sản phẩm này không?',
+      content: `Sản phẩm: ${record.title}`,
+      okText: 'Xác nhận',
+      okType: 'danger',
+      cancelText: 'Hủy',
+      onOk() {
+        handleDelete(record);
+      },
+      onCancel() {
+        console.log('Hủy thao tác xóa');
+      },
+    });
   };
 
   const rowSelection = {
@@ -107,7 +140,7 @@ function AdminProducts() {
         <Space size="middle">
           <Button type="primary" onClick={() => handleDetail(record)} style={{ background: 'linear-gradient(135deg, #6253e1, #04befe)' }}><b>Chi tiết</b></Button>
           <Button type="primary" onClick={() => handleEdit(record)} style={{ backgroundColor: '#FFC107', borderColor: '#FFC107' }}><b>Sửa</b></Button>
-          <Button type="primary" danger onClick={() => handleDelete(record)}><b>Xóa</b></Button>
+          <Button type="primary" danger onClick={() => showDeleteConfirm(record)}><b>Xóa</b></Button>
         </Space>
       ),
     },
