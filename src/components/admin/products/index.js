@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Badge, Divider, Radio, Table } from 'antd';
+import { Badge, Divider, Input, Table } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import './index.css';
 
@@ -30,6 +30,10 @@ function AdminProducts() {
   const handleProductName = (item) => {
     navigate(`/admin/products/detail/${item.slug}`);
   };
+
+  const handlePositionChange = (item) => {
+
+  }
 
   const rowSelection = {
     onChange: (selectedRowKeys, selectedRows) => {
@@ -64,7 +68,12 @@ function AdminProducts() {
       title: 'Vị trí',
       dataIndex: 'position',
       key: 'position',
-      render: (position) => `${position}`,
+      render: (position) => (
+        <Input
+          defaultValue={position}
+          onChange={(e) => handlePositionChange(e, position.key)}
+        />
+      ),
     }
   ];
 
