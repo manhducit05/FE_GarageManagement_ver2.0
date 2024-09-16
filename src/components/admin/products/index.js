@@ -1,81 +1,93 @@
-import React, { useEffect, useState, useContext } from 'react';
-import { Badge } from 'antd'
+import React, { useEffect, useState } from 'react';
+import { Badge, Divider, Radio, Table } from 'antd';
 import { useNavigate } from 'react-router-dom';
-import "./index.css"
+import './index.css';
 
 function AdminProducts() {
-  const API = process.env.REACT_APP_API_URL
+  const API = process.env.REACT_APP_API_URL;
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const navigate = useNavigate()
+  const [selectionType, setSelectionType] = useState('checkbox');
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        await fetch(`${API}/products`)
-          .then(res => res.json())
-          .then(json => {
-            console.log(json)
-            console.log(API + '/products')
-            setProducts(json.products)
-          })
+        const res = await fetch(`${API}/products`);
+        const json = await res.json();
+        setProducts(json.products);
       } catch (error) {
-        console.error("Fetch error:", error); // Hiển thị lỗi fetch
-        console.error("Fetch error:", error.message); // Hiển thị lỗi fetch
-        setError(error.message); // Cập nhật lỗi
+        setError(error.message);
       } finally {
-        setLoading(false); // Đặt trạng thái tải xong
+        setLoading(false);
       }
     };
 
     fetchProducts();
-  }, []);
-
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
-  if (error) {
-    return <div>Error: {error}</div>;
-  }
-
-  // const handleShowProductDetail = (item) => {
-  //   const slug = item.slug
-  //   navigate(`/admin/products/detail/${slug}`);
-  // }
-
-
+  }, [API]);
 
   const handleProductName = (item) => {
-    console.log(item)
-    var formatted_string = item.slug
-    navigate(`/admin/products/detail/${formatted_string}`);
-  }
+    navigate(`/admin/products/detail/${item.slug}`);
+  };
+
+  const rowSelection = {
+    onChange: (selectedRowKeys, selectedRows) => {
+      console.log(`Selected Row Keys: ${selectedRowKeys}`, 'Selected Rows: ', selectedRows);
+    },
+  };
+
+  const columns = [
+    {
+      title: 'Tiêu đề',
+      dataIndex: 'title',
+      key: 'title',
+      render: (text, record) => (
+        <span onClick={() => handleProductName(record)} style={{ cursor: 'pointer' }}>
+          {text}
+        </span>
+      ),
+    },
+    {
+      title: 'Giá',
+      dataIndex: 'price',
+      key: 'price',
+      render: (price) => `${price}đ`,
+    },
+    {
+      title: 'Giảm',
+      dataIndex: 'discountPercentage',
+      key: 'discountPercentage',
+      render: (discount) => `${discount}%`,
+    },
+    {
+      title: 'Vị trí',
+      dataIndex: 'position',
+      key: 'position',
+      render: (position) => `${position}`,
+    }
+  ];
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error}</div>;
 
   return (
     <div>
       <h1>Danh sách sản phẩm</h1>
       <div className='product'>
         <div className='container'>
-          {products.map((item) => (
-            <div className='product_item' onClick={() => handleProductName(item)}>
-              <Badge.Ribbon className='badge'
-                text={`Giảm ${item.discountPercentage}%`}
-                color="red"
-              >
-                <img className='image__product' src={item.thumbnail} /> <br />
-                <h3>{item.title}</h3>
-                <div className='price'>
-                  <span className='priceOrigin'><strong>{(item.price)}đ</strong></span>
-                </div>
-              </Badge.Ribbon>
-            </div >
-          ))}
+          <Table
+            rowSelection={{
+              type: selectionType,
+              ...rowSelection,
+            }}
+            columns={columns}
+            dataSource={products.map((product) => ({ ...product, key: product.id }))}
+          />
         </div>
       </div>
     </div>
   );
-};
+}
 
 export default AdminProducts;
