@@ -2,32 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { Button, Space, Input, Table } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import './index.css';
-import { createStyles } from 'antd-style';
-const useStyle = createStyles(({ prefixCls, css }) => ({
-  linearGradientButton: css`
-    &.${prefixCls}-btn-primary:not([disabled]):not(.${prefixCls}-btn-dangerous) {
-      border-width: 0;
-
-      > span {
-        position: relative;
-      }
-
-      &::before {
-        content: '';
-        background: linear-gradient(135deg, #6253e1, #04befe);
-        position: absolute;
-        inset: 0;
-        opacity: 1;
-        transition: all 0.3s;
-        border-radius: inherit;
-      }
-
-      &:hover::before {
-        opacity: 0;
-      }
-    }
-  `,
-}));
 
 function AdminProducts() {
   const API = process.env.REACT_APP_API_URL;
@@ -74,6 +48,17 @@ function AdminProducts() {
   const handleDelete = (record) => {
     console.log('Delete product:', record);
     // Add your delete logic here
+    const fetchProducts = async () => {
+      try {
+        const res = await fetch(`${API}/products/delete/${record.slug}`);
+        const json = await res.json();
+        setProducts(json.products);
+      } catch (error) {
+        setError(error.message);
+      } finally {
+        setLoading(false);
+      }
+    };
   };
 
   const rowSelection = {
@@ -120,9 +105,9 @@ function AdminProducts() {
       key: 'action',
       render: (text, record) => (
         <Space size="middle">
-          <Button className='styles.linearGradientButton' onClick={() => handleDetail(record)} ><b>Chi tiết</b></Button>
-          <Button type="primary" onClick={() => handleEdit(record)} style={{ backgroundColor: '#FFC107', borderColor: '#FFC107' }}>Sửa</Button>
-          <Button type="primary" danger onClick={() => handleDelete(record)}>Xóa</Button>
+          <Button type="primary" onClick={() => handleDetail(record)} style={{ background: 'linear-gradient(135deg, #6253e1, #04befe)' }}><b>Chi tiết</b></Button>
+          <Button type="primary" onClick={() => handleEdit(record)} style={{ backgroundColor: '#FFC107', borderColor: '#FFC107' }}><b>Sửa</b></Button>
+          <Button type="primary" danger onClick={() => handleDelete(record)}><b>Xóa</b></Button>
         </Space>
       ),
     },
