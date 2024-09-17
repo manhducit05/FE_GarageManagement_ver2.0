@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route, useParams } from 'react-router-dom';
 import Admin from './components/admin';
 import AdminProducts from './components/admin/products'
 import AdminDetailProduct from './components/admin/products/detail';
+import Error404 from './components/admin/page/error404/error404';
 
 function App() {
   return (
@@ -13,6 +14,8 @@ function App() {
           <Route path="products" element={<AdminProducts />} />
           <Route path={`products/detail/:slug`} element={<AdminDetailProduct />} />
         </Route>
+        <Route path={`/error404`} element={<Error404 />} />
+        <Route path={`*`} element={<Error404 />} />
       </Routes>
     </BrowserRouter>
   );

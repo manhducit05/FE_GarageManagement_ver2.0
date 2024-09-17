@@ -160,8 +160,10 @@ function AdminProducts() {
     <div>
       {products ? (
         <div className='product'>
-          <div className='container'>
+          <div>
             <h1>Danh sách sản phẩm</h1>
+          </div>
+          <div>
             <Table
               rowSelection={{
                 type: selectionType,

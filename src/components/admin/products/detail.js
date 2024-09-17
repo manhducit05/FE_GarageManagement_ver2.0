@@ -6,6 +6,7 @@ const AdminDetailProduct = () => {
   const [productDetail, setProductDetail] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [isError404, setIsError404] = useState(false);
   const { slug } = useParams();
   const navigate = useNavigate();
 
@@ -20,7 +21,7 @@ const AdminDetailProduct = () => {
               console.log(json)
               setProductDetail(json.data)
             } else if (json.code == 404) {
-              navigate(`/admin/products`)
+              setIsError404(true);
             }
 
           })
@@ -36,6 +37,9 @@ const AdminDetailProduct = () => {
     fetchDetailProducts();
   }, []);
 
+  if (isError404) {
+    return <Error404Page />; // Render Error 404 page without navigating
+  }
 
   return (
     <div>
