@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { Row, Col, Space } from 'antd';
+import { useNavigate } from 'react-router-dom';
 import './error404.css'
 
 function Error404() {
   const [data, setData] = useState({})
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
   const API = process.env.REACT_APP_API_URL;
 
   useEffect(() => {
@@ -29,21 +31,21 @@ function Error404() {
     fetchData();
   }, [API]);
 
+  const handleBack = () => {
+    navigate(-1);
+  }
+
   return (
     <>
       {data ? (
 
         <Row justify="center" align="middle" style={{ height: '100vh' }}>
           <Col>
-            <div className="space-align-container">
-              <div className="space-align-block">
-                <Space align="center">
-                  <div>
-                    <img src={data.thumbnail} />
-                    <p>{data.description}</p>
-                  </div>
-                </Space>
-              </div>
+            <div class="content">
+              <img src={data.thumbnail} />
+              <h3>{data.description}</h3>
+
+              <button class="primary" onClick={handleBack()}>Quay về trang trước</button>
             </div>
           </Col>
         </Row>

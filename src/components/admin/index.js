@@ -1,21 +1,21 @@
 import React from 'react';
 import { Row, Col } from 'antd';
-import { Outlet, useLocation } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 import SidebarAdmin from './sidebar/sidebar';
-export default function Admin({ isError404 }) {
+
+export default function Admin() {
   return (
     <div>
       <Row>
-        {!isError404 && (
-          <Col span={4}>
-            <SidebarAdmin />
-          </Col>
-        )}
-        <Col span={isError404 ? 24 : 18}>
+        <Col span={4}>
+          <SidebarAdmin />
+        </Col>
+        <Col span={1}>
+        </Col>
+        <Col span={18}>
           <Outlet />
         </Col>
       </Row>
     </div>
   );
 }
-

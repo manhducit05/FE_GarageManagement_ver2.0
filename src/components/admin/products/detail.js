@@ -44,23 +44,21 @@ const AdminDetailProduct = () => {
   }
 
   return (
-    <Admin isError404={isError404}>
-      <div>
-        <h1>Thông tin sản phẩm: </h1>
-        {productDetail ? (
-          <div>
-            <p><b>Tiêu đề:</b> {productDetail.title}</p>
-            <p><b>Mô tả:</b> {productDetail.description}</p>
-            <p><b>Số lượng:</b> {productDetail.stock}</p>
-            <p><b>Giá:</b> {productDetail.price}đ</p>
-            <p><b>Giảm:</b> {productDetail.discountPercentage}%</p>
-            <img src={productDetail.thumbnail} />
-          </div>)
+    <div>
+      <h1>Thông tin sản phẩm: </h1>
+      {productDetail ? (
+        <div>
+          <p><b>Tiêu đề:</b> {productDetail.title}</p>
+          <p><b>Mô tả:</b> {productDetail.description}</p>
+          <p><b>Số lượng:</b> {productDetail.stock}</p>
+          <p><b>Giá:</b> {productDetail.price}đ</p>
+          <p><b>Giảm:</b> {productDetail.discountPercentage}%</p>
+          <img src={productDetail.thumbnail} />
+        </div>)
 
-          : "Không tồn tại sản phẩm này"}
+        : "Không tồn tại sản phẩm này"}
 
-      </div>
-    </Admin>
+    </div>
   );
 };
 
