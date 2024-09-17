@@ -18,7 +18,10 @@ function AdminProducts() {
       try {
         const res = await fetch(`${API}/products`);
         const json = await res.json();
-        setProducts(json.products);
+        console.log(json)
+        if (json.products != []) {
+          setProducts(json.products);
+        }
       } catch (error) {
         setError(error.message);
       } finally {
@@ -155,19 +158,21 @@ function AdminProducts() {
 
   return (
     <div>
-      <h1>Danh sách sản phẩm</h1>
-      <div className='product'>
-        <div className='container'>
-          <Table
-            rowSelection={{
-              type: selectionType,
-              ...rowSelection,
-            }}
-            columns={columns}
-            dataSource={products.map((product) => ({ ...product, key: product.id }))}
-          />
-        </div>
-      </div>
+      {products ? (
+        <div className='product'>
+          <div className='container'>
+            <h1>Danh sách sản phẩm</h1>
+            <Table
+              rowSelection={{
+                type: selectionType,
+                ...rowSelection,
+              }}
+              columns={columns}
+              dataSource={products.map((product) => ({ ...product, key: product.id }))}
+            />
+          </div>
+        </div>)
+        : <div>Không có sản phẩm nào để hiển thị</div>}
     </div>
   );
 }

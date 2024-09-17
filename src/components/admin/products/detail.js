@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 
 const AdminDetailProduct = () => {
   const API = process.env.REACT_APP_API_URL
@@ -7,6 +7,7 @@ const AdminDetailProduct = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const { slug } = useParams();
+  const navigate = useNavigate();
 
   console.log(slug)
   useEffect(() => {
@@ -18,8 +19,8 @@ const AdminDetailProduct = () => {
             if (json.code == 200) {
               console.log(json)
               setProductDetail(json.data)
-            } else if (json.code == 400) {
-              setProductDetail([])
+            } else if (json.code == 404) {
+              navigate(`/admin/products`)
             }
 
           })
