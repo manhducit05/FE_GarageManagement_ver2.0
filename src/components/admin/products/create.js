@@ -43,6 +43,7 @@ const AdminCreateProduct = () => {
         >
           <Input.TextArea rows={4} placeholder="Nhập mô tả sản phẩm" />
         </Form.Item>
+
         <Form.Item
           label="Giá"
           name="price"
