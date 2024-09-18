@@ -40,6 +40,10 @@ function AdminProducts() {
 
   }
 
+  const handleAddProduct = () => {
+    navigate(`/admin/products/create`)
+  }
+
   const handleDetail = (record) => {
     console.log('View details:', record);
     navigate(`/admin/products/detail/${record.slug}`);
@@ -164,7 +168,7 @@ function AdminProducts() {
           <div>
             <h1>Danh sách sản phẩm</h1>
           </div>
-          <Button type="primary">Thêm sản phẩm</Button>
+          <Button type="primary" onClick={() => handleAddProduct()}>Thêm sản phẩm</Button>
           <div>
             <Table
               rowSelection={{
