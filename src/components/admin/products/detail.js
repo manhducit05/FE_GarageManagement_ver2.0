@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import Error404 from '../page/error404/error404';
-import Admin from '../sidebar/sidebar';
 
 const AdminDetailProduct = () => {
   const API = process.env.REACT_APP_API_URL
