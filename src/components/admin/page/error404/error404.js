@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Row, Col, Space } from 'antd';
+import { Row, Col, Button } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import './error404.css'
 
@@ -44,8 +44,7 @@ function Error404() {
             <div class="content">
               <img src={data.thumbnail} />
               <h3>{data.description}</h3>
-
-              <button class="primary" onClick={handleBack()}>Quay về trang trước</button>
+              <Button class="primary btnBackError404" onClick={() => handleBack()} style={{ background: 'linear-gradient(135deg, #6253e1, #04befe)' }}>Quay về trang trước</Button>
             </div>
           </Col>
         </Row>
