@@ -164,6 +164,7 @@ function AdminProducts() {
           <div>
             <h1>Danh sách sản phẩm</h1>
           </div>
+          <Button type="primary">Thêm sản phẩm</Button>
           <div>
             <Table
               rowSelection={{
