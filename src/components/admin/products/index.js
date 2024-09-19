@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Button, Space, Input, Table, Modal } from 'antd';
+import { Button, Row, Col, Input, Table, Modal } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import './index.css';
 
@@ -168,7 +168,11 @@ function AdminProducts() {
           <div>
             <h1>Danh sách sản phẩm</h1>
           </div>
-          <Button type="primary" onClick={() => handleAddProduct()}>Thêm sản phẩm</Button>
+          <Row>
+            <Col class="col-8">
+              <Button type="primary" onClick={() => handleAddProduct()}>Thêm sản phẩm</Button>
+            </Col>
+          </Row>
           <div>
             <Table
               rowSelection={{

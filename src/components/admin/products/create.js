@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Input, Button, Form } from 'antd';
 
+const API = process.env.REACT_APP_API_URL;
 const AdminCreateProduct = () => {
   const [form] = Form.useForm();
   const [loading, setLoading] = useState(false);
@@ -9,10 +10,24 @@ const AdminCreateProduct = () => {
     setLoading(true);
     console.log('Form values:', values);
 
-    // Gửi request tạo sản phẩm (sử dụng fetch hoặc axios)
-    // Example: fetch(`${API}/products/create`, {...})
-
-    setLoading(false);
+    // Sending a POST request to create a new product
+    fetch(`${API}/products/create`, {
+      method: 'POST', // Specify the HTTP method
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(values), // Pass form data as the request body
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log('Success:', data);
+        setLoading(false);
+        form.resetFields(); // Reset form after successful creation
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+        setLoading(false); // Stop loading in case of an error
+      });
   };
 
   return (
@@ -108,4 +123,3 @@ const AdminCreateProduct = () => {
 };
 
 export default AdminCreateProduct;
-
