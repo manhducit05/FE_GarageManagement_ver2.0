@@ -151,7 +151,7 @@ function AdminProducts() {
       render: (text, record) => (
         <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
           <Button className='' type="primary" onClick={() => handleDetail(record)} style={{ background: 'linear-gradient(135deg, #6253e1, #04befe)' }}><b>Chi tiết</b></Button>
-          <Button type="primary" onClick={() => handleEdit(record)} style={{ backgroundColor: '#FFC107', borderColor: '#FFC107' }}><b>Sửa</b></Button>
+          <Button className='btn-warn' type="primary" onClick={() => handleEdit(record)} ><b>Sửa</b></Button>
           <Button type="primary" danger onClick={() => showDeleteConfirm(record)}><b>Xóa</b></Button>
         </div>
       ),

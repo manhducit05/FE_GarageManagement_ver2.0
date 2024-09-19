@@ -112,7 +112,7 @@ function AdminRoles() {
 
   const columns = [
     {
-      title: 'Tiêu đề',
+      title: 'Nhóm quyền',
       dataIndex: 'title',
       key: 'title',
       render: (text, record) => (
@@ -122,16 +122,16 @@ function AdminRoles() {
       ),
     },
     {
-      title: 'Giá',
-      dataIndex: 'price',
-      key: 'price',
-      render: (price) => `${price}đ`,
+      title: 'Mô tả',
+      dataIndex: 'description',
+      key: 'description',
+      render: (description) => (<span>{description}</span>),
     },
     {
-      title: 'Giảm',
-      dataIndex: 'discountPercentage',
-      key: 'discountPercentage',
-      render: (discount) => `${discount}%`,
+      title: 'Trạng thái',
+      dataIndex: 'status',
+      key: 'status',
+      render: (status) => (<Button type='primary'>{status === "active" ? "Hoạt động" : "Dừng hoạt động"}</Button>),
     },
     {
       title: 'Vị trí',
@@ -150,7 +150,7 @@ function AdminRoles() {
       render: (text, record) => (
         <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
           <Button className='' type="primary" onClick={() => handleDetail(record)} style={{ background: 'linear-gradient(135deg, #6253e1, #04befe)' }}><b>Chi tiết</b></Button>
-          <Button type="primary" onClick={() => handleEdit(record)} style={{ backgroundColor: '#FFC107', borderColor: '#FFC107' }}><b>Sửa</b></Button>
+          <Button className='btn-warn' type="primary" onClick={() => handleEdit(record)}><b>Sửa</b></Button>
           <Button type="primary" danger onClick={() => showDeleteConfirm(record)}><b>Xóa</b></Button>
         </div>
       ),
