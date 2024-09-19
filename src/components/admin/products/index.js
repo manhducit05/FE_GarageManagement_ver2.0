@@ -169,11 +169,11 @@ function AdminProducts() {
             <h1>Danh sách sản phẩm</h1>
           </div>
           <Row>
-            <Col class="col-8">
-              <Button type="primary" onClick={() => handleAddProduct()}>Thêm sản phẩm</Button>
+            <Col span={16}>
             </Col>
+            <Button type="primary" onClick={() => handleAddProduct()}>Thêm sản phẩm</Button>
           </Row>
-          <div>
+          <div className="mt-3">
             <Table
               rowSelection={{
                 type: selectionType,
