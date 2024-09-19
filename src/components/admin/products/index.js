@@ -173,7 +173,7 @@ function AdminProducts() {
             </Col>
             <Button type="primary" onClick={() => handleAddProduct()}>Thêm sản phẩm</Button>
           </Row>
-          <div className="mt-3">
+          <div className="mt-2">
             <Table
               rowSelection={{
                 type: selectionType,

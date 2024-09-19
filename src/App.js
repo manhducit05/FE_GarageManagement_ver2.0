@@ -6,6 +6,7 @@ import AdminProducts from './components/admin/products'
 import AdminDetailProduct from './components/admin/products/detail';
 import AdminCreateProduct from './components/admin/products/create';
 import Error404 from './components/admin/page/error404/error404';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (
