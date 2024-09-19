@@ -21,7 +21,6 @@ function App() {
           <Route path="roles" element={<AdminRoles />} />
 
         </Route>
-
         <Route path={`/error404`} element={<Error404 />} />
         <Route path={`*`} element={<Error404 />} />
       </Routes>
