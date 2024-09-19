@@ -17,10 +17,11 @@ function App() {
           <Route path="products" element={<AdminProducts />} />
           <Route path={`products/create`} element={<AdminCreateProduct />} />
           <Route path={`products/detail/:slug`} element={<AdminDetailProduct />} />
+          {/* end route products */}
+          <Route path="roles" element={<AdminRoles />} />
+
         </Route>
-        <Route path="roles" element={<AdminRoles />} >
-          
-        </Route>
+
         <Route path={`/error404`} element={<Error404 />} />
         <Route path={`*`} element={<Error404 />} />
       </Routes>
