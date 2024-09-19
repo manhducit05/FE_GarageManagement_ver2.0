@@ -37,9 +37,9 @@ export default function SidebarAdmin() {
       key: "/admin/products"
 
     }, {
-      label: <Link to="/admin/">Lịch trình công việc</Link>,
+      label: <Link to="/admin/roles">Nhóm quyền</Link>,
       icon: <InsertRowAboveOutlined />,
-      key: "/admin/",
+      key: "/admin/roles",
     },
 
   ];
