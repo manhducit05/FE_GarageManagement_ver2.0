@@ -131,7 +131,7 @@ function AdminRoles() {
       title: 'Trạng thái',
       dataIndex: 'status',
       key: 'status',
-      render: (status) => (<Button  type='primary'>{status === "active" ? "Hoạt động" : "Dừng hoạt động"}</Button>),
+      render: (status) => (<Button className='btn-warn' type='primary'>{status === "active" ? "Hoạt động" : "Dừng hoạt động"}</Button>),
     },
     {
       title: 'Vị trí',
