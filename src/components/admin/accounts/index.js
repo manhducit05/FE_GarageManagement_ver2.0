@@ -42,12 +42,12 @@ function AdminAccounts() {
 
   const handleDetail = (record) => {
     console.log('View details:', record);
-    navigate(`/admin/products/detail/${record.slug}`);
+    navigate(`/admin/accounts`);
   };
 
   const handleEdit = (record) => {
     console.log('Edit product:', record);
-    navigate(`/admin/products/edit/${record.slug}`);
+    navigate(`/admin/accounts`);
   };
 
   const handleDelete = (record) => {
@@ -56,7 +56,7 @@ function AdminAccounts() {
     const fetchAccounts = async () => {
       setLoading(true); // Start loading when initiating the delete request
       try {
-        const res = await fetch(`${API}/products/delete/${record.slug}`, {
+        const res = await fetch(`${API}/accounts`, {
           method: 'PATCH', // Specify DELETE method
         });
 
@@ -169,7 +169,7 @@ function AdminAccounts() {
           <Row>
             <Col span={16}>
             </Col>
-            <Button type="primary" onClick={() => handleAddProduct()}>Thêm sản phẩm</Button>
+            <Button type="primary" onClick={() => handleAddProduct()}>Thêm tài khoản</Button>
           </Row>
           <div className="mt-2">
             <Table
