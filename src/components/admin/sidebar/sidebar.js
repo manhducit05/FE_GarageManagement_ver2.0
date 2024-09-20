@@ -40,6 +40,10 @@ export default function SidebarAdmin() {
       label: <Link to="/admin/roles">Nhóm quyền</Link>,
       icon: <InsertRowAboveOutlined />,
       key: "/admin/roles",
+    }, {
+      label: <Link to="/admin/accounts">Tài khoản</Link>,
+      icon: <InsertRowAboveOutlined />,
+      key: "/admin/accounts",
     },
 
   ];
