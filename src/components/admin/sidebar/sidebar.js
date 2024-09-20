@@ -45,10 +45,7 @@ export default function SidebarAdmin() {
       icon: <InsertRowAboveOutlined />,
       key: "/admin/accounts",
     },
-
   ];
-
-
 
   return (
     <div >
