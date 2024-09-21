@@ -8,10 +8,8 @@ const checkToken = () => {
   return token ? true : false;
 };
 
-
-
 const PrivateRoute = () => {
-  return checkToken() ? <Outlet /> : <Navigate to="/login" />;
+  return checkToken() ? <Outlet /> : <Navigate to="/admin/login" />;
 };
 
 export default PrivateRoute;
