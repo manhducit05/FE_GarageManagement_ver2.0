@@ -17,11 +17,9 @@ function AdminProducts() {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const res = await axiosInstance.get(`/products`);
-        const json = await res.json();
-        console.log(json)
-        if (json.products != []) {
-          setProducts(json.products);
+        const res = await axiosToken.get(`${API}/products`);
+        if (res.data.products != []) {
+          setProducts(res.data.products);
         }
       } catch (error) {
         setError(error.message);
