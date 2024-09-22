@@ -59,16 +59,8 @@ function AdminProducts() {
     const fetchProducts = async () => {
       setLoading(true); // Start loading when initiating the delete request
       try {
-        const res = await fetch(`${API}/products/delete/${record.slug}`, {
-          method: 'PATCH', // Specify DELETE method
-        });
-
-        if (!res.ok) {
-          throw new Error('Failed to delete the product'); // Handle non-200 status
-        }
-
-        const json = await res.json();
-        console.log('Deleted product:', json);
+        const res = await axiosToken.patch(`${API}/products/delete/${record.slug}`)
+        
         setProducts((prevProducts) =>
           prevProducts.filter((product) => product.slug !== record.slug)
         ); // Update the product list after successful deletion

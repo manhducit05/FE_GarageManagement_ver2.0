@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Input, Button, Form } from 'antd';
+import axiosToken from '../../context/axiosToken';
 
 const API = process.env.REACT_APP_API_URL;
 const AdminCreateProduct = () => {
@@ -11,24 +12,17 @@ const AdminCreateProduct = () => {
     console.log('Form values:', values);
 
     // Sending a POST request to create a new product
-    fetch(`${API}/products/create`, {
-      method: 'POST', // Specify the HTTP method
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(values), // Pass form data as the request body
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log('Success:', data);
+    axiosToken.post(`${API}/products/create`, values) // axios tự động stringify body
+      .then((response) => {
+        console.log('Success:', response.data); // Dữ liệu trả về từ server
         setLoading(false);
-        form.resetFields(); // Reset form after successful creation
+        form.resetFields(); // Reset form sau khi tạo thành công
       })
       .catch((error) => {
         console.error('Error:', error);
-        setLoading(false); // Stop loading in case of an error
+        setLoading(false); // Dừng loading khi có lỗi
       });
-  };
+  }
 
   return (
     <div style={{ padding: '20px' }}>

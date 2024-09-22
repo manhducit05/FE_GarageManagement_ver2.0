@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import Error404 from '../page/error404/error404';
+import axiosToken from '../../context/axiosToken';
 
 const AdminDetailProduct = () => {
   const API = process.env.REACT_APP_API_URL
@@ -15,18 +16,14 @@ const AdminDetailProduct = () => {
   useEffect(() => {
     const fetchDetailProducts = async () => {
       try {
-        await fetch(`${API}/products/detail/${slug}`)
-          .then(res => res.json())
-          .then(json => {
-            if (json.code == 200) {
-              console.log(json)
-              setProductDetail(json.data)
-            } else if (json.code == 404) {
-              setIsError404(true);
-            }
-
-          })
-      } catch (error) {
+        const res = await axiosToken.get(`${API}/products/detail/${slug}`);
+        console.log("res: ", res)
+        if (res.data.product != []) {
+          const product = res.data.product
+          setProductDetail(product);
+        }
+      }
+      catch (error) {
         console.error("Fetch error:", error); // Hiển thị lỗi fetch
         console.error("Fetch error:", error.message); // Hiển thị lỗi fetch
         setError(error.message); // Cập nhật lỗi
