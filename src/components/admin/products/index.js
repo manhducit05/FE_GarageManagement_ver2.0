@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Button, Row, Col, Input, Table, Modal } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import './index.css';
+import axiosToken from '../../context/axiosToken';
 
 const { confirm } = Modal;
 
@@ -16,7 +17,7 @@ function AdminProducts() {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const res = await fetch(`${API}/products`);
+        const res = await axiosInstance.get(`/products`);
         const json = await res.json();
         console.log(json)
         if (json.products != []) {

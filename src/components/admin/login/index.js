@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie'; // Thư viện để lưu token vào cookies
 
+
 const LoginAdmin = () => {
+  const API = process.env.REACT_APP_API_URL;
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -24,7 +26,7 @@ const LoginAdmin = () => {
 
     try {
       // Gửi yêu cầu đăng nhập
-      const response = await fetch('http://localhost:8080/api/v1/accounts/login', {
+      const response = await fetch(`${API}/accounts/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

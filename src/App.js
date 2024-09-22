@@ -11,6 +11,7 @@ import AdminAccounts from './components/admin/accounts/index'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import PrivateRoute from './components/admin/middleware/auth.middleware';
 import LoginAdmin from './components/admin/login/index'
+import DashboardAdmin from './components/admin/dashboard';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="admin/login" element={<LoginAdmin />} />
         <Route path="admin" element={<Admin />} >
           <Route element={<PrivateRoute />}>
+            <Route path="dashboard" element={<DashboardAdmin />} />
             <Route path="products" element={<AdminProducts />} />
             <Route path={`products/create`} element={<AdminCreateProduct />} />
             <Route path={`products/detail/:slug`} element={<AdminDetailProduct />} />
