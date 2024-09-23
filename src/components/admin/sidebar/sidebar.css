@@ -1,0 +1,168 @@
+.ant-menu-title-content a {
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+.textMenu {
+  line-height: 46px;
+  height: 46px;
+  color: #333333;
+  text-align: center;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.custom-icon {
+  font-size: 24px !important;
+  display: inline-block;
+  vertical-align: middle;
+  /* align icon with text */
+}
+
+.ant-menu-item {
+  display: flex;
+  align-items: center;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  /* ensure both icon and text are centered vertically */
+  padding: 10px;
+  /* add some padding for better spacing */
+}
+
+.ant-menu-item:hover {
+  background-color: #ddd;
+  /* optional hover effect */
+  cursor: pointer;
+  /* change to pointer on hover */
+}
+
+.ant-menu-item:hover .textMenu {
+  color: #FF7F00;
+}
+
+.textMenu.active {
+  color: #FF7F00;
+}
+
+.ant-menu-item .custom-icon.active {
+  color: #0d6efd;
+  /* Icon active color */
+}
+
+.menuHome {
+  position: relative;
+  height: 100vh;
+  /* Full viewport height */
+  display: flex;
+  flex-direction: column;
+  /* Stack items vertically */
+  justify-content: flex-start;
+  /* Align items to the top */
+  /* Set background to match the menu theme */
+  padding: 16px;
+  /* Adjust padding as needed */
+}
+
+.menuHome.dark {
+  border-right: 1px solid #f0f2f5;
+  background-color: #001529;
+  /* Ant Design dark theme color */
+  color: #fff;
+}
+
+
+
+/* Light theme styles */
+.menuHome.light {
+  border-right: 1px solid #001529;
+  background-color: #f0f2f5;
+  /* Light background color */
+  color: #000;
+}
+
+.menuHome.dark .textMenu {
+  color: white;
+  /* Màu chữ cho chế độ tối */
+}
+
+.menuHome.light .textMenu {
+  color: black;
+  /* Màu chữ cho chế độ sáng */
+}
+
+.menuHome.collapsed {
+  width: 80px;
+  /* Hoặc bất kỳ chiều rộng nào bạn muốn khi thu gọn */
+}
+
+.menuHome.collapsed .ant-menu {
+  margin-top: 80px;
+  margin-left: -20px;
+}
+
+.menuHome.collapsed .textMenu {
+  display: none;
+  /* Ẩn text menu khi thu gọn */
+}
+
+.menuHome.collapsed .custom-icon {
+  margin: 0 auto;
+  /* Canh giữa icon */
+}
+
+.menuHome.collapsed .btnDarkLight {
+  position: absolute;
+  top: 80px;
+  left: 5px;
+}
+
+.menuHome.collapsed .btn-collapse {
+  position: absolute;
+  top: 120px;
+}
+
+/* Avatar container to align properly in the sidebar */
+.menuHome .avatarContainer {
+  position: absolute;
+  top: 0;
+  margin-bottom: 20px;
+  text-align: center;
+  /* Center the avatar horizontally */
+}
+
+/* Adjust the avatar size if needed */
+.avatar-container img {
+  width: 50px;
+  /* Điều chỉnh kích thước theo yêu cầu */
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+
+/* Ensure the menu takes the remaining space below the avatar */
+.menuHome .ant-menu {
+  flex-grow: 1;
+  /* Allow the menu to grow and take up remaining space */
+}
+
+/* Make sure the collapse button is positioned correctly */
+.menuHome .ant-btn {
+  margin-bottom: 16px;
+  /* Space below the collapse button */
+}
+
+/* Optional: adjust the collapse button's position */
+.menuHome .ant-btn-primary {
+  margin-left: auto;
+  /* Align the button to the right */
+}
+
+.btnDarkLight {
+  width: 65px;
+  position: absolute;
+  right: 17px;
+  top: 25px;
+}

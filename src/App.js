@@ -12,6 +12,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import PrivateRoute from './components/admin/middleware/auth.middleware';
 import LoginAdmin from './components/admin/login/index'
 import DashboardAdmin from './components/admin/dashboard';
+import PermissionMiddleware from './components/admin/middleware/permission.middleware';
 
 function App() {
   return (
@@ -21,13 +22,29 @@ function App() {
         <Route path="admin" element={<Admin />} >
           <Route element={<PrivateRoute />}>
             <Route path="dashboard" element={<DashboardAdmin />} />
-            <Route path="products" element={<AdminProducts />} />
-            <Route path={`products/create`} element={<AdminCreateProduct />} />
+            <Route path="products" element={
+              <PermissionMiddleware permission="products_view">
+                <AdminProducts />
+              </PermissionMiddleware>
+            } />
+            <Route path={`products/create`} element={
+              <PermissionMiddleware permission="products_create">
+                <AdminCreateProduct />
+              </PermissionMiddleware>
+            } />
             <Route path={`products/detail/:slug`} element={<AdminDetailProduct />} />
             {/* end route products */}
-            <Route path="roles" element={<AdminRoles />} />
+            <Route path="roles" element={
+              <PermissionMiddleware permission="roles_view">
+                <AdminRoles />
+              </PermissionMiddleware>
+            } />
             {/* end roles products */}
-            <Route path="accounts" element={<AdminAccounts />} />
+            < Route path="accounts" element={
+              <PermissionMiddleware permission="accounts_view">
+                <AdminAccounts />
+              </PermissionMiddleware>
+            } />
             {/* end accounts products */}
           </Route >
         </Route >

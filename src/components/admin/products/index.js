@@ -6,13 +6,16 @@ import axiosToken from '../../context/axiosToken';
 
 const { confirm } = Modal;
 
-function AdminProducts() {
+function AdminProducts({ permissions, permission }) {
   const API = process.env.REACT_APP_API_URL;
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [selectionType, setSelectionType] = useState('checkbox');
   const navigate = useNavigate();
+
+  console.log("Per: ", permissions)
+  console.log("per: ", permission)
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -60,7 +63,7 @@ function AdminProducts() {
       setLoading(true); // Start loading when initiating the delete request
       try {
         const res = await axiosToken.patch(`${API}/products/delete/${record.slug}`)
-        
+
         setProducts((prevProducts) =>
           prevProducts.filter((product) => product.slug !== record.slug)
         ); // Update the product list after successful deletion
@@ -141,10 +144,21 @@ function AdminProducts() {
       key: 'action',
       render: (text, record) => (
         <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
-          <Button className='' type="primary" onClick={() => handleDetail(record)} style={{ background: 'linear-gradient(135deg, #6253e1, #04befe)' }}><b>Chi tiết</b></Button>
-          <Button className='btn-warn' type="primary" onClick={() => handleEdit(record)} ><b>Sửa</b></Button>
-          <Button type="primary" danger onClick={() => showDeleteConfirm(record)}><b>Xóa</b></Button>
-        </div>
+
+          {(permissions.includes("products_view")) ?
+            < Button className='' type="primary" onClick={() => handleDetail(record)} style={{ background: 'linear-gradient(135deg, #6253e1, #04befe)' }}><b>Chi tiết</b></Button>
+            : ""
+          }
+          {(permissions.includes("products_edit")) ?
+            < Button className='btn-warn' type="primary" onClick={() => handleEdit(record)
+            } > <b>Sửa</b></Button >
+            : ""
+          }
+          {(permissions.includes("products_delete")) ?
+            <Button type="primary" danger onClick={() => showDeleteConfirm(record)}><b>Xóa</b></Button>
+            : ""
+          }
+        </div >
       ),
     },
   ];
@@ -160,9 +174,10 @@ function AdminProducts() {
             <h1>Danh sách sản phẩm</h1>
           </div>
           <Row>
-            <Col span={16}>
-            </Col>
-            <Button type="primary" onClick={() => handleAddProduct()}>Thêm sản phẩm</Button>
+            {(permissions.includes("products_create")) ?
+              <Button type="primary" onClick={() => handleAddProduct()}>Thêm sản phẩm</Button>
+              : ""
+            }
           </Row>
           <div className="mt-2">
             <Table

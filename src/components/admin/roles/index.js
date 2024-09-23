@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Row, Col, Input, Table, Modal } from 'antd';
 import { useNavigate } from 'react-router-dom';
+import axiosToken from '../../context/axiosToken';
 
 const { confirm } = Modal;
 
@@ -15,11 +16,9 @@ function AdminRoles() {
   useEffect(() => {
     const fetchRoles = async () => {
       try {
-        const res = await fetch(`${API}/roles`);
-        const json = await res.json();
-        console.log(json)
-        if (json.roles != []) {
-          setRoles(json.roles);
+        const res = await axiosToken.get(`${API}/roles`);
+        if (res.data.roles != []) {
+          setRoles(res.data.roles);
         }
       } catch (error) {
         setError(error.message);
@@ -86,7 +85,7 @@ function AdminRoles() {
 
   const showDeleteConfirm = (record) => {
     confirm({
-      title: 'Bạn có chắc chắn muốn xóa sản phẩm này?',
+      title: 'Bạn có chắc chắn muốn xóa nhóm quyền này?',
       okText: 'Xác nhận',
       cancelText: 'Hủy',
       okButtonProps: {
@@ -165,12 +164,12 @@ function AdminRoles() {
       {roles ? (
         <div className='product'>
           <div>
-            <h1>Danh sách sản phẩm</h1>
+            <h1>Danh sách nhóm quyền</h1>
           </div>
           <Row>
             <Col span={16}>
             </Col>
-            <Button type="primary" onClick={() => handleAddProduct()}>Thêm sản phẩm</Button>
+            <Button type="primary" onClick={() => handleAddProduct()}>Thêm nhóm quyền</Button>
           </Row>
           <div className="mt-2">
             <Table
@@ -183,7 +182,7 @@ function AdminRoles() {
             />
           </div>
         </div>)
-        : <div>Không có sản phẩm nào để hiển thị</div>}
+        : <div>Không có nhóm quyền nào để hiển thị</div>}
     </div>
   );
 }

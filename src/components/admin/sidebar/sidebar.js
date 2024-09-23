@@ -1,13 +1,66 @@
 import React, { useEffect, useState } from 'react';
-import { Avatar, Menu, Dropdown } from 'antd';
-import { Link, useNavigate } from "react-router-dom";
+import { Avatar, Menu, Dropdown, Button, Switch, } from 'antd';
+
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import {
-  UnorderedListOutlined,
+  UsergroupAddOutlined,
   InsertRowBelowOutlined,
-  InsertRowAboveOutlined
+  UserSwitchOutlined,
+  MenuFoldOutlined,
+  MenuUnfoldOutlined,
 } from "@ant-design/icons"
 
-export default function SidebarAdmin() {
+import axiosToken from '../../context/axiosToken';
+import "./sidebar.css"
+
+export default function SidebarAdmin({ toggleTheme }) {
+  const location = useLocation();
+  const API = process.env.REACT_APP_API_URL;
+  const [account, setAccount] = useState([]);
+  const [permissions, setPermissions] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [theme, setTheme] = useState('dark');
+  const [collapsed, setCollapsed] = useState(false);
+
+  localStorage.setItem('mode', theme)
+
+  const changeTheme = (checked) => {
+    setTheme(checked ? 'dark' : 'light')
+    toggleTheme(checked ? 'dark' : 'light');
+  };
+
+  const toggleCollapsed = () => {
+    setCollapsed(!collapsed);
+    console.log("collapsed", collapsed)
+  };
+
+
+  useEffect(() => {
+    const fetchAccount = async () => {
+      try {
+        const res = await axiosToken.get(`${API}/accounts/verify`);
+        console.log(res)
+
+        if (res.data.account.permissions != []) {
+          setPermissions(res.data.account.permissions);
+          console.log(res.data.account.permissions)
+          localStorage.setItem('permissions', JSON.stringify(res.data.account.permissions));
+        }
+
+        if (res.data.account != []) {
+          setAccount(res.data.account);
+        }
+      } catch (error) {
+        setError(error.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchAccount();
+  }, [API]);
+
   const navigate = useNavigate([])
 
   const handleMenuClick = (e) => {
@@ -25,40 +78,112 @@ export default function SidebarAdmin() {
     </Menu>
   );
 
-  const items = [
-    {
-      label: <Link to="/admin/"></Link>,
-      icon: <InsertRowAboveOutlined />,
-      key: "/admin/",
-    },
-    {
-      label: <Link to="/admin/products">Sản phẩm</Link>,
-      icon: <InsertRowBelowOutlined />,
-      key: "/admin/products"
+  const items = [];
 
-    }, {
-      label: <Link to="/admin/roles">Nhóm quyền</Link>,
-      icon: <InsertRowAboveOutlined />,
+  // Check permissions and add items to array
+  if (permissions.includes("products_view")) {
+    items.push({
+      label: (
+        <Link to="/admin/products">
+          <span className={`textMenu ${location.pathname === '/admin/products' ? 'active' : ''}`}>
+            Sản phẩm
+          </span>
+        </Link>
+      ),
+      icon: (
+        <InsertRowBelowOutlined
+          className={`custom-icon ${location.pathname === '/admin/products' ? 'active' : ''}`}
+        />
+      ),
+      key: "/admin/products",
+    });
+  }
+
+  // Other items
+  if (permissions.includes("roles_view")) {
+    items.push({
+      label: (
+        <Link to="/admin/roles">
+          <span className={`textMenu ${location.pathname === '/admin/roles' ? 'active' : ''}`}>
+            Nhóm quyền
+          </span>
+        </Link>
+      ),
+      icon: (
+        <UserSwitchOutlined
+          className={`custom-icon ${location.pathname === '/admin/roles' ? 'active' : ''}`}
+        />
+      ),
       key: "/admin/roles",
-    }, {
-      label: <Link to="/admin/accounts">Tài khoản</Link>,
-      icon: <InsertRowAboveOutlined />,
+    });
+  }
+
+  if (permissions.includes("accounts_view")) {
+    items.push({
+      label: (
+        <Link to="/admin/accounts">
+          <span className={`textMenu ${location.pathname === '/admin/accounts' ? 'active' : ''}`}>
+            Tài khoản
+          </span>
+        </Link>
+      ),
+      icon: (
+        <UsergroupAddOutlined
+          className={`custom-icon ${location.pathname === '/admin/accounts' ? 'active' : ''}`}
+        />
+      ),
       key: "/admin/accounts",
-    },
-  ];
+    });
+  }
 
   return (
     <div >
-      <div className='accountAdmin__info'>
-        <Dropdown overlay={menu} trigger={['click']}>
-          <Avatar>
+      <div >
 
-          </Avatar>
-        </Dropdown>
       </div>
-      <div className='menuHome'>
-        <Menu theme="light" mode="inline" items={items} defaultSelectedKeys={["/"]} defaultOpenKeys={["menu-1"]} />
+      <div className={`menuHome ${(theme === "dark") ? "dark" : "light"} ${(collapsed ? "collapsed" : "")}`}>
+        {/* Avatar Section */}
+        <div className="avatar-container">
+          <Dropdown overlay={menu} trigger={['click']}>
+            <span>
+              <Avatar
+                size={50}
+                src={account.avatar ? account.avatar : null}
+              >
+                {!account.avatar && account.name?.charAt(0).toUpperCase()}
+              </Avatar>
+            </span>
+          </Dropdown>
+        </div>
+
+        {/* Collapse Button */}
+        <Button
+          className='btn-collapse'
+          type="primary"
+          onClick={toggleCollapsed}
+          style={{ marginBottom: 16 }}
+        >
+          {collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+        </Button>
+
+        {/* Menu Items */}
+        <Switch
+          checked={theme === 'dark'}
+          onChange={changeTheme}
+          checkedChildren="Dark"
+          unCheckedChildren="Light"
+          className='btnDarkLight'
+        />
+        <Menu
+          theme={theme}
+          inlineCollapsed={collapsed}
+          mode="inline"
+          items={items}
+          defaultSelectedKeys={["1"]}
+          defaultOpenKeys={["menu-1"]}
+        />
       </div>
+
     </div >
   );
 }

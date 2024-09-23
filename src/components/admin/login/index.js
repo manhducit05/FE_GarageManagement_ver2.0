@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie'; // Thư viện để lưu token vào cookies
-
+import "./login.css"
 
 const LoginAdmin = () => {
   const API = process.env.REACT_APP_API_URL;
@@ -64,31 +64,34 @@ const LoginAdmin = () => {
   };
 
   return (
-    <div className="login-container">
-      <h2>Login</h2>
-      <form onSubmit={handleLogin}>
-        <div>
-          <label>Email:</label>
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </div>
-        <div>
-          <label>Password:</label>
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </div>
-        {error && <p style={{ color: 'red' }}>{error}</p>}
-        <button type="submit">Login</button>
-      </form>
+    <div className="login-background">
+      <div className="login-box">
+        <h3>Đăng nhập quản trị</h3>
+        <form onSubmit={handleLogin}>
+          <div>
+            <input
+              placeholder='Tài khoản'
+              type="text"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </div>
+          <div className='mt-3'>
+            <input
+              placeholder='Mật khẩu'
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </div>
+          {error && <p style={{ color: 'red' }}>{error}</p>}
+          <button className='btn-loginAdmin mt-3' type="submit">Đăng nhập</button>
+        </form>
+      </div>
     </div>
+
   );
 };
 

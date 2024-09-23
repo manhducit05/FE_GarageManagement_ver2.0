@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Button, Row, Col, Input, Table, Modal } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import "./index.css"
+import axiosToken from '../../context/axiosToken';
 
 const { confirm } = Modal;
 
@@ -16,11 +17,9 @@ function AdminAccounts() {
   useEffect(() => {
     const fetchAccounts = async () => {
       try {
-        const res = await fetch(`${API}/accounts`);
-        const json = await res.json();
-        console.log(json)
-        if (json.accounts != []) {
-          setAccounts(json.accounts);
+        const res = await axiosToken.get(`${API}/accounts`);
+        if (res.data.accounts != []) {
+          setAccounts(res.data.accounts);
         }
       } catch (error) {
         setError(error.message);
@@ -182,7 +181,7 @@ function AdminAccounts() {
             />
           </div>
         </div>)
-        : <div>Không có sản phẩm nào để hiển thị</div>}
+        : <div>Không có tài khoản nào để hiển thị</div>}
     </div>
   );
 }

@@ -32,7 +32,7 @@ function Error404() {
   }, [API]);
 
   const handleBack = () => {
-    navigate(-1);
+    navigate("/admin");
   }
 
   return (
@@ -44,7 +44,9 @@ function Error404() {
             <div class="content">
               <img src={data.thumbnail} />
               <h3>{data.description}</h3>
-              <Button class="primary btnBackError404" onClick={() => handleBack()} style={{ background: 'linear-gradient(135deg, #6253e1, #04befe)' }}>Quay về trang trước</Button>
+              <Button class="primary btnBackError404" onClick={() => handleBack()} style={{ background: 'linear-gradient(135deg, #6253e1, #04befe)' }}>
+                Quay về trang chủ
+              </Button>
             </div>
           </Col>
         </Row>
