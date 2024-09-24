@@ -144,9 +144,6 @@ export default function SidebarAdmin({ toggleTheme }) {
 
   return (
     <div >
-      <div >
-
-      </div>
       <div className={`menuHome ${(theme === "dark") ? "dark" : "light"} ${(collapsed ? "collapsed" : "")}`}>
         {/* Avatar Section */}
         <div className="avatar-container">

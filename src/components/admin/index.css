@@ -5,9 +5,20 @@
   /* Màu chữ cho chế độ sáng */
 }
 
+
+
 .admin-container.dark {
   background-color: #001529;
   /* Màu nền cho chế độ tối */
   color: white;
   /* Màu chữ cho chế độ tối */
+}
+
+.content-outlet {
+  height: 100vh;
+}
+
+.admin-container.dark label {
+  color: white;
+
 }

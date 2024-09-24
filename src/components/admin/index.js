@@ -26,7 +26,7 @@ export default function Admin() {
           <SidebarAdmin toggleTheme={toggleTheme} />
         </Col>
         <Col span={19}>
-          <div className='ms-5'>
+          <div className='ms-5 content-outlet'>
             <Outlet />
           </div>
         </Col>

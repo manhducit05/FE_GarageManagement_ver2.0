@@ -32,37 +32,23 @@ ul {
 }
 
 .ant-menu-item:hover {
-  background-color: #ddd;
+  background: red !important;
   /* optional hover effect */
   cursor: pointer;
   /* change to pointer on hover */
 }
 
-.ant-menu-item:hover .textMenu {
-  color: #FF7F00;
-}
-
-.textMenu.active {
-  color: #FF7F00;
-}
-
-.ant-menu-item .custom-icon.active {
-  color: #0d6efd;
-  /* Icon active color */
-}
 
 .menuHome {
-  position: relative;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
   height: 100vh;
-  /* Full viewport height */
+  padding: 16px;
   display: flex;
   flex-direction: column;
-  /* Stack items vertically */
   justify-content: flex-start;
-  /* Align items to the top */
-  /* Set background to match the menu theme */
-  padding: 16px;
-  /* Adjust padding as needed */
 }
 
 .menuHome.dark {
@@ -72,7 +58,10 @@ ul {
   color: #fff;
 }
 
+.menuHome.dark .ant-menu-item:hover {
+  color: #E2E5E9 !important;
 
+}
 
 /* Light theme styles */
 .menuHome.light {
@@ -83,8 +72,17 @@ ul {
 }
 
 .menuHome.dark .textMenu {
-  color: white;
+  color: #fff;
   /* Màu chữ cho chế độ tối */
+}
+
+.ant-menu-item:hover {
+  color: #0d6efd;
+  /* Icon active color */
+}
+
+.menuHome.dark .custom-icon {
+  color: #fff;
 }
 
 .menuHome.light .textMenu {
@@ -98,8 +96,11 @@ ul {
 }
 
 .menuHome.collapsed .ant-menu {
-  margin-top: 80px;
-  margin-left: -20px;
+  position: absolute;
+  width: 70px;
+  top: 170px;
+  left: 5px;
+  height: 100vh;
 }
 
 .menuHome.collapsed .textMenu {
