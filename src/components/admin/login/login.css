@@ -55,7 +55,7 @@
 .login-box .btn-loginAdmin {
   width: 120px;
   padding: 12px 15px;
-  background-color: #6c47ff;
+  background: linear-gradient(135deg, #2010ac, #09b8f3);
   border: none;
   border-radius: 45px;
   color: white;
@@ -65,8 +65,8 @@
 }
 
 /* Button hover effect */
-.login-box button:hover {
-  background-color: #875aff;
+.login-box .btn-loginAdmin:hover {
+  background: linear-gradient(135deg, #09b8f3, #140691);
 }
 
 /* Error message styling */
