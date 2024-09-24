@@ -11,7 +11,7 @@ axiosToken.interceptors.request.use(
   (config) => {
     const token = Cookies.get('token'); // Lấy token từ localStorage
     console.log(token)
-    if (token) {
+    if (token != undefined) {
       config.headers.Authorization = `Bearer ${token}`; // Thêm token vào header
     }
     return config;

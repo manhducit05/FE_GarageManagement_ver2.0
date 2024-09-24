@@ -12,7 +12,8 @@ const LoginAdmin = () => {
 
   const tokenCheck = Cookies.get('token');
   useEffect(() => {
-    navigate('/admin/dashboard');
+    if (tokenCheck != undefined)
+      navigate('/admin/dashboard');
   }, [tokenCheck]);
   const handleLogin = async (e) => {
     e.preventDefault(); // Ngăn chặn reload lại trang
@@ -42,15 +43,18 @@ const LoginAdmin = () => {
         const token = data.token; // Giả sử API trả về token trong thuộc tính 'token'
 
         // Lưu token vào cookies
-        Cookies.set('token', token, { expires: 1 }); // Lưu token, hết hạn trong 1 ngày
-
+        if (token != undefined)
+          Cookies.set('token', token, { expires: 1 }); // Lưu token, hết hạn trong 1 ngày
+        else {
+          alert("Sai tài khoản hoặc mật khẩu!")
+        }
         // Kiểm tra xem token đã được lưu chưa
         const storedToken = Cookies.get('token');
         console.log('Stored Token:', storedToken);
 
         // Xử lý tiếp theo sau khi đăng nhập thành công
         // Ví dụ: Chuyển hướng sang trang admin
-        if (storedToken) {
+        if (storedToken != undefined) {
           navigate('/admin/dashboard');;
         }
       } else {

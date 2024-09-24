@@ -10,6 +10,7 @@ import {
   MenuUnfoldOutlined,
 } from "@ant-design/icons"
 
+import Cookies from 'js-cookie'; // Thư viện để lưu token vào cookies
 import axiosToken from '../../context/axiosToken';
 import "./sidebar.css"
 
@@ -70,11 +71,16 @@ export default function SidebarAdmin({ toggleTheme }) {
     }
   };
 
+  const handleLogout = () => {
+    Cookies.remove("token")
+    navigate("/admin/login")
+  }
+
   const menu = (
     <Menu onClick={handleMenuClick}>
       <Menu.Item key="profile">Thông tin cá nhân</Menu.Item>
       <Menu.Item key="settings">Cài đặt</Menu.Item>
-      <Menu.Item key="logout">Đăng xuất</Menu.Item>
+      <Menu.Item key="logout" onClick={handleLogout}>Đăng xuất</Menu.Item>
     </Menu>
   );
 
