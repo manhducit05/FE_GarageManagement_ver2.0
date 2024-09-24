@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie'; // Thư viện để lưu token vào cookies
+import { Alert, Space, Badge } from 'antd';
 import "./login.css"
+
 
 const LoginAdmin = () => {
   const API = process.env.REACT_APP_API_URL;
@@ -9,6 +11,8 @@ const LoginAdmin = () => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
+  const [showSuccessAlert, setShowSuccessAlert] = useState(false);
+  const [showErrorAlert, setShowErrorAlert] = useState(false);
 
   const tokenCheck = Cookies.get('token');
   useEffect(() => {
@@ -43,10 +47,12 @@ const LoginAdmin = () => {
         const token = data.token; // Giả sử API trả về token trong thuộc tính 'token'
 
         // Lưu token vào cookies
-        if (token != undefined)
-          Cookies.set('token', token, { expires: 1 }); // Lưu token, hết hạn trong 1 ngày
-        else {
-          alert("Sai tài khoản hoặc mật khẩu!")
+        if (token !== undefined && token !== null) {
+          // Store the token in a cookie, set to expire in 1 day
+          Cookies.set('token', token, { expires: 1 });
+        } else {
+          // Display an error alert if the token is undefined or null
+          setShowErrorAlert(true)
         }
         // Kiểm tra xem token đã được lưu chưa
         const storedToken = Cookies.get('token');
@@ -67,34 +73,50 @@ const LoginAdmin = () => {
   };
 
   return (
-    <div className="login-background">
-      <div className="login-box">
-        <h3>Đăng nhập quản trị</h3>
-        <form onSubmit={handleLogin}>
-          <div>
-            <input
-              placeholder='Tài khoản'
-              type="text"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
-          </div>
-          <div className='mt-3'>
-            <input
-              placeholder='Mật khẩu'
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
-          </div>
-          {error && <p style={{ color: 'red' }}>{error}</p>}
-          <button className='btn-loginAdmin mt-3' type="submit">Đăng nhập</button>
-        </form>
-      </div>
-    </div>
+    <>
 
+      <div className="login-background">
+        <div className="login-box">
+
+          <h3>Đăng nhập quản trị</h3>
+          <form onSubmit={handleLogin}>
+            <div>
+              <input
+                placeholder='Tài khoản'
+                type="text"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
+            </div>
+            <div className='mt-3' style={{
+              position: "relative"
+            }}>
+              <input
+                placeholder='Mật khẩu'
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+              <Space direction="vertical" style={{
+                position: "absolute", width: '240px',
+                left: "39%", top: "50px"
+              }}>
+
+                {showErrorAlert && (
+                  <Badge key={"red"} color={"red"} text={
+                    <span style={{ color: "white" }}>Sai tên đăng nhập hoặc mật khẩu</span>
+                  } />
+                )}
+              </Space>
+            </div>
+            {error && <p style={{ color: 'red' }}>{error}</p>}
+            <button className='btn-loginAdmin' style={{ marginTop: "35px" }} type="submit">Đăng nhập</button>
+          </form>
+        </div >
+      </div >
+    </>
   );
 };
 
