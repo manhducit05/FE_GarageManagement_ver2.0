@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie'; // Thư viện để lưu token vào cookies
 import "./login.css"
@@ -11,10 +11,9 @@ const LoginAdmin = () => {
   const navigate = useNavigate();
 
   const tokenCheck = Cookies.get('token');
-  if (tokenCheck) {
+  useEffect(() => {
     navigate('/admin/dashboard');
-  }
-
+  }, [tokenCheck]);
   const handleLogin = async (e) => {
     e.preventDefault(); // Ngăn chặn reload lại trang
 
