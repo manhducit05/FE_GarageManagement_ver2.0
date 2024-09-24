@@ -32,7 +32,7 @@ ul {
 }
 
 .ant-menu-item:hover {
-  background: red !important;
+  background: #E2E5E9 !important;
   /* optional hover effect */
   cursor: pointer;
   /* change to pointer on hover */
