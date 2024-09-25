@@ -5,14 +5,15 @@ import SidebarAdmin from './sidebar/sidebar';
 import './index.css';
 
 export default function Admin() {
-  const [theme, setTheme] = useState('dark');
+  var storedTheme = localStorage.getItem('mode');
+  const [theme, setTheme] = useState(storedTheme);
 
   useEffect(() => {
-    const storedTheme = localStorage.getItem('mode');
+    storedTheme = localStorage.getItem('mode');
     if (storedTheme) {
       setTheme(storedTheme);
     }
-  }, []); // Chạy 1 lần khi component mount
+  }, [theme]); // Chạy 1 lần khi component mount
 
   const toggleTheme = (newTheme) => {
     setTheme(newTheme);

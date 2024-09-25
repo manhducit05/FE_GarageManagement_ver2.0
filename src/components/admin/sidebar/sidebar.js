@@ -21,7 +21,9 @@ export default function SidebarAdmin({ toggleTheme }) {
   const [permissions, setPermissions] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [theme, setTheme] = useState('dark');
+  var storedTheme = localStorage.getItem('mode');
+
+  const [theme, setTheme] = useState(storedTheme);
   const [collapsed, setCollapsed] = useState(false);
 
   localStorage.setItem('mode', theme)
