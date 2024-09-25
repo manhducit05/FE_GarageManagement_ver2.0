@@ -37,26 +37,34 @@ const AdminCreateProduct = () => {
       >
         <Form.Item
           label="Họ tên người dùng"
-          name="title"
+          name="fullName"
           rules={[{ required: true, message: 'Vui lòng nhập họ tên!' }]}
         >
-          <Input placeholder="Nhập tiêu đề sản phẩm" />
+          <Input placeholder="Nhập họ tên" />
         </Form.Item>
 
         <Form.Item
-          label="Mô tả"
-          name="description"
-          rules={[{ required: true, message: 'Vui lòng nhập mô tả!' }]}
+          label="Email"
+          name="email"
+          rules={[{ required: true, message: 'Vui lòng nhập email!' }]}
         >
-          <Input.TextArea rows={4} placeholder="Nhập mô tả sản phẩm" />
+          <Input.TextArea rows={4} placeholder="Nhập email" />
         </Form.Item>
 
         <Form.Item
-          label="Giá"
-          name="price"
-          rules={[{ required: true, message: 'Vui lòng nhập giá!' }]}
+          label="Password"
+          name="password"
+          rules={[{ required: true, message: 'Vui lòng nhập password!' }]}
         >
-          <Input type="number" placeholder="Nhập giá sản phẩm" />
+          <Input type="password" placeholder="Nhập password" />
+        </Form.Item>
+
+        <Form.Item
+          label="Xác nhận password"
+          name="passwordConfirm"
+          rules={[{ required: true, message: 'Vui lòng nhập password!' }]}
+        >
+          <Input type="password" placeholder="Nhập xác nhận password" />
         </Form.Item>
 
         <Form.Item
