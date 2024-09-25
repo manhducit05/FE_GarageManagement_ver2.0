@@ -149,7 +149,7 @@ export default function SidebarAdmin({ toggleTheme }) {
       <div className={`menuHome ${(theme === "dark") ? "dark" : "light"} ${(collapsed ? "collapsed" : "")}`}>
         {/* Avatar Section */}
         <div className="avatar-container">
-          <Dropdown overlay={menu} trigger={['click']}>
+          <Dropdown className='drop-avt' overlay={menu} trigger={['click']}>
             <span>
               <Avatar
                 size={50}

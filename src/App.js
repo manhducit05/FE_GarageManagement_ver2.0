@@ -13,6 +13,7 @@ import PrivateRoute from './components/admin/middleware/auth.middleware';
 import LoginAdmin from './components/admin/login/index'
 import DashboardAdmin from './components/admin/dashboard';
 import PermissionMiddleware from './components/admin/middleware/permission.middleware';
+import AdminCreateAccount from './components/admin/accounts/create';
 
 function App() {
   return (
@@ -43,6 +44,11 @@ function App() {
             < Route path="accounts" element={
               <PermissionMiddleware permission="accounts_view">
                 <AdminAccounts />
+              </PermissionMiddleware>
+            } />
+            <Route path={`accounts/create`} element={
+              <PermissionMiddleware permission="accounts_create">
+                <AdminCreateProduct />
               </PermissionMiddleware>
             } />
             {/* end accounts products */}

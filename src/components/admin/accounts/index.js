@@ -35,8 +35,8 @@ function AdminAccounts() {
 
   }
 
-  const handleAddProduct = () => {
-    navigate(`/admin/products/create`)
+  const handleAddAccount = () => {
+    navigate(`/admin/accounts/create`)
   }
 
   const handleDetail = (record) => {
@@ -168,7 +168,7 @@ function AdminAccounts() {
           <Row>
             <Col span={16}>
             </Col>
-            <Button type="primary" onClick={() => handleAddProduct()}>Thêm tài khoản</Button>
+            <Button type="primary" onClick={() => handleAddAccount()}>Thêm tài khoản</Button>
           </Row>
           <div className="mt-2">
             <Table
