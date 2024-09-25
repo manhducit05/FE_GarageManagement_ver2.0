@@ -12,7 +12,7 @@ const AdminCreateProduct = () => {
     console.log('Form values:', values);
 
     // Sending a POST request to create a new product
-    axiosToken.post(`${API}/products/create`, values) // axios tự động stringify body
+    axiosToken.post(`${API}/accounts/create`, values) // axios tự động stringify body
       .then((response) => {
         console.log('Success:', response.data); // Dữ liệu trả về từ server
         setLoading(false);
@@ -26,21 +26,19 @@ const AdminCreateProduct = () => {
 
   return (
     <div style={{ padding: '20px' }}>
-      <h2>Tạo sản phẩm mới</h2>
+      <h2>Tạo tài khoản mới</h2>
       <Form
         form={form}
         layout="vertical"
         onFinish={onFinish}
         initialValues={{
-          status: 'active',
-          featured: 'Màu xám',
-          position: 1
+
         }}
       >
         <Form.Item
-          label="Tiêu đề"
+          label="Họ tên người dùng"
           name="title"
-          rules={[{ required: true, message: 'Vui lòng nhập tiêu đề!' }]}
+          rules={[{ required: true, message: 'Vui lòng nhập họ tên!' }]}
         >
           <Input placeholder="Nhập tiêu đề sản phẩm" />
         </Form.Item>
