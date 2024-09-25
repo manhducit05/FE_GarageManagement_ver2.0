@@ -68,15 +68,15 @@ const AdminCreateProduct = () => {
         </Form.Item>
 
         <Form.Item
-          label="Phần trăm giảm giá"
-          name="discountPercentage"
-          rules={[{ required: true, message: 'Vui lòng nhập phần trăm giảm giá!' }]}
+          label="Số điện thoại"
+          name="phone"
+          rules={[{ required: true, message: 'Vui lòng nhập số điện thoại!' }]}
         >
-          <Input type="number" placeholder="Nhập % giảm giá" />
+          <Input type="number" placeholder="Nhập số điện thoại" />
         </Form.Item>
 
         <Form.Item
-          label="Tồn kho"
+          label="Avatar"
           name="stock"
           rules={[{ required: true, message: 'Vui lòng nhập số lượng tồn kho!' }]}
         >
