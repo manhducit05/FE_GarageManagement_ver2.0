@@ -9,14 +9,14 @@ const AdminCreateAccount = () => {
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     folder: 'Sale-bear-images/admin/avatar',
-    thumbnail: null
+    avatar: null
   });
 
   const onFinish = (values) => {
     setLoading(true);
 
     // Creating FormData object to handle file and text data
-    values.thumbnail = formData.thumbnail;
+    values.avatar = formData.avatar;
     values.folder = formData.folder;
 
     axiosToken.post(`${API}/accounts/create`, values, {
@@ -36,7 +36,7 @@ const AdminCreateAccount = () => {
   };
 
   const handleFileChange = (e) => {
-    setFormData({ ...formData, thumbnail: e.target.files[0] }); // Set file in formData
+    setFormData({ ...formData, avatar: e.target.files[0] }); // Set file in formData
   };
 
   return (
@@ -94,10 +94,10 @@ const AdminCreateAccount = () => {
 
         <Form.Item
           label="Avatar"
-          name="thumbnail"
+          name="avatar"
           rules={[{ required: true, message: 'Vui lòng chọn file!' }]}
         >
-          <input type="file" name="thumbnail" onChange={handleFileChange} required />
+          <input type="file" name="avatar" onChange={handleFileChange} required />
         </Form.Item>
 
         <Form.Item
