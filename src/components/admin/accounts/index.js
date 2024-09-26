@@ -52,23 +52,15 @@ function AdminAccounts() {
   };
 
   const handleDelete = (record) => {
-    console.log('Delete product:', record);
+    console.log('Delete account:', record);
 
     const fetchAccounts = async () => {
       setLoading(true); // Start loading when initiating the delete request
       try {
-        const res = await fetch(`${API}/accounts`, {
-          method: 'PATCH', // Specify DELETE method
-        });
+        const res = await axiosToken.patch(`${API}/accounts/delete/${record._id}`)
 
-        if (!res.ok) {
-          throw new Error('Failed to delete the product'); // Handle non-200 status
-        }
-
-        const json = await res.json();
-        console.log('Deleted product:', json);
-        setAccounts((prevProducts) =>
-          prevProducts.filter((product) => product.slug !== record.slug)
+        setAccounts((prevAccounts) =>
+          prevAccounts.filter((account) => account._id !== record._id)
         ); // Update the product list after successful deletion
 
       } catch (error) {
