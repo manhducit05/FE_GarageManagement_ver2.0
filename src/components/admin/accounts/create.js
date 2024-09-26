@@ -3,29 +3,40 @@ import { Input, Button, Form } from 'antd';
 import axiosToken from '../../context/axiosToken';
 
 const API = process.env.REACT_APP_API_URL;
+
 const AdminCreateAccount = () => {
   const [form] = Form.useForm();
   const [loading, setLoading] = useState(false);
+  const [formData, setFormData] = useState({
+    folder: 'Sale-bear-images/admin/avatar',
+    thumbnail: null
+  });
 
   const onFinish = (values) => {
     setLoading(true);
-    console.log('Form values:', values);
 
-    // Sending a POST request to create a new product
-    axiosToken.post(`${API}/accounts/create`, values) // axios tự động stringify body
+    // Creating FormData object to handle file and text data
+    values.thumbnail = formData.thumbnail;
+    values.folder = formData.folder;
+
+    axiosToken.post(`${API}/accounts/create`, values, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      }
+    })
       .then((response) => {
         console.log('Success:', response.data); // Dữ liệu trả về từ server
         setLoading(false);
-        form.resetFields(); // Reset form sau khi tạo thành công
+        form.resetFields(); // Reset form after success
       })
       .catch((error) => {
         console.error('Error:', error);
-        setLoading(false); // Dừng loading khi có lỗi
+        setLoading(false); // Stop loading on error
       });
-  }
+  };
 
   const handleFileChange = (e) => {
-    setFormData({ ...formData, thumbnail: e.target.files[0] });
+    setFormData({ ...formData, thumbnail: e.target.files[0] }); // Set file in formData
   };
 
   return (
@@ -54,7 +65,7 @@ const AdminCreateAccount = () => {
           name="email"
           rules={[{ required: true, message: 'Vui lòng nhập email!' }]}
         >
-          <Input.TextArea rows={4} placeholder="Nhập email" />
+          <Input placeholder="Nhập email" />
         </Form.Item>
 
         <Form.Item
@@ -83,7 +94,7 @@ const AdminCreateAccount = () => {
 
         <Form.Item
           label="Avatar"
-          name="stock"
+          name="thumbnail"
           rules={[{ required: true, message: 'Vui lòng chọn file!' }]}
         >
           <input type="file" name="thumbnail" onChange={handleFileChange} required />
