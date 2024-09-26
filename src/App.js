@@ -48,7 +48,7 @@ function App() {
             } />
             <Route path={`accounts/create`} element={
               <PermissionMiddleware permission="accounts_create">
-                <AdminCreateProduct />
+                <AdminCreateAccount />
               </PermissionMiddleware>
             } />
             {/* end accounts products */}

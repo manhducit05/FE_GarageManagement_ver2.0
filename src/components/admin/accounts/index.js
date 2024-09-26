@@ -18,8 +18,10 @@ function AdminAccounts() {
     const fetchAccounts = async () => {
       try {
         const res = await axiosToken.get(`${API}/accounts`);
+        console.log(res)
         if (res.data.accounts != []) {
           setAccounts(res.data.accounts);
+          console.log(accounts)
         }
       } catch (error) {
         setError(error.message);
@@ -125,7 +127,7 @@ function AdminAccounts() {
       title: 'Phân quyền',
       dataIndex: 'role.title',
       key: 'role.title',
-      render: (text, record) => (<span>{record.role.title}</span>),
+      render: (text, record) => (<span>{(record.role.title != null) ? record.role.title : ""}</span>),
     },
     {
       title: 'Email',

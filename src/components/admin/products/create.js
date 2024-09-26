@@ -12,7 +12,7 @@ const AdminCreateProduct = () => {
     console.log('Form values:', values);
 
     // Sending a POST request to create a new product
-    axiosToken.post(`${API}/accounts/create`, values) // axios tự động stringify body
+    axiosToken.post(`${API}/products/create`, values) // axios tự động stringify body
       .then((response) => {
         console.log('Success:', response.data); // Dữ liệu trả về từ server
         setLoading(false);
@@ -26,57 +26,51 @@ const AdminCreateProduct = () => {
 
   return (
     <div style={{ padding: '20px' }}>
-      <h2>Tạo tài khoản mới</h2>
+      <h2>Tạo sản phẩm mới</h2>
       <Form
         form={form}
         layout="vertical"
         onFinish={onFinish}
         initialValues={{
-
+          status: 'active',
+          featured: 'Màu xám',
+          position: 1
         }}
       >
         <Form.Item
-          label="Họ tên người dùng"
-          name="fullName"
-          rules={[{ required: true, message: 'Vui lòng nhập họ tên!' }]}
+          label="Tiêu đề"
+          name="title"
+          rules={[{ required: true, message: 'Vui lòng nhập tiêu đề!' }]}
         >
-          <Input placeholder="Nhập họ tên" />
+          <Input placeholder="Nhập tiêu đề sản phẩm" />
         </Form.Item>
 
         <Form.Item
-          label="Email"
-          name="email"
-          rules={[{ required: true, message: 'Vui lòng nhập email!' }]}
+          label="Mô tả"
+          name="description"
+          rules={[{ required: true, message: 'Vui lòng nhập mô tả!' }]}
         >
-          <Input.TextArea rows={4} placeholder="Nhập email" />
+          <Input.TextArea rows={4} placeholder="Nhập mô tả sản phẩm" />
         </Form.Item>
 
         <Form.Item
-          label="Password"
-          name="password"
-          rules={[{ required: true, message: 'Vui lòng nhập password!' }]}
+          label="Giá"
+          name="price"
+          rules={[{ required: true, message: 'Vui lòng nhập giá!' }]}
         >
-          <Input type="password" placeholder="Nhập password" />
+          <Input type="number" placeholder="Nhập giá sản phẩm" />
         </Form.Item>
 
         <Form.Item
-          label="Xác nhận password"
-          name="passwordConfirm"
-          rules={[{ required: true, message: 'Vui lòng nhập password!' }]}
+          label="Phần trăm giảm giá"
+          name="discountPercentage"
+          rules={[{ required: true, message: 'Vui lòng nhập phần trăm giảm giá!' }]}
         >
-          <Input type="password" placeholder="Nhập xác nhận password" />
+          <Input type="number" placeholder="Nhập % giảm giá" />
         </Form.Item>
 
         <Form.Item
-          label="Số điện thoại"
-          name="phone"
-          rules={[{ required: true, message: 'Vui lòng nhập số điện thoại!' }]}
-        >
-          <Input type="number" placeholder="Nhập số điện thoại" />
-        </Form.Item>
-
-        <Form.Item
-          label="Avatar"
+          label="Tồn kho"
           name="stock"
           rules={[{ required: true, message: 'Vui lòng nhập số lượng tồn kho!' }]}
         >
