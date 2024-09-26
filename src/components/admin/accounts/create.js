@@ -24,6 +24,10 @@ const AdminCreateAccount = () => {
       });
   }
 
+  const handleFileChange = (e) => {
+    setFormData({ ...formData, thumbnail: e.target.files[0] });
+  };
+
   return (
     <div style={{ padding: '20px' }}>
       <h2>Tạo tài khoản mới</h2>
@@ -80,9 +84,9 @@ const AdminCreateAccount = () => {
         <Form.Item
           label="Avatar"
           name="stock"
-          rules={[{ required: true, message: 'Vui lòng nhập số lượng tồn kho!' }]}
+          rules={[{ required: true, message: 'Vui lòng chọn file!' }]}
         >
-          <Input type="number" placeholder="Nhập số lượng tồn kho" />
+          <input type="file" name="thumbnail" onChange={handleFileChange} required />
         </Form.Item>
 
         <Form.Item
