@@ -67,11 +67,15 @@ export default function SidebarAdmin({ toggleTheme }) {
         const arrayRoles = res.data.roles
         console.log("arrayRoles: ", arrayRoles)
 
-        const arrayPermissions = arrayRoles.map(item => ({
-          permissions: item.permissions, // Đảm bảo là một mảng
-        }));
+        const arrayPermissions = []
+        arrayRoles.map(item => (
+          arrayPermissions.push(item.permissions) // Đảm bảo là một mảng
+        ));
+
+        console.log("arrayPermissions: ", arrayPermissions)
         setPermissions(arrayPermissions)
-        localStorage.setItem('permissions', JSON.stringify(permissions));
+        console("P: ", JSON.stringify(arrayPermissions))
+        localStorage.setItem('permissions', JSON.stringify(arrayPermissions));
       } catch (err) {
         setError(err.message);
       } finally {

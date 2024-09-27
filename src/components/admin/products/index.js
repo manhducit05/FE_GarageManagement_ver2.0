@@ -145,16 +145,16 @@ function AdminProducts({ permissions, permission }) {
       render: (text, record) => (
         <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
 
-          {(permissions.includes("products_view")) ?
+          {(permissions?.includes("products_view")) ?
             < Button className='' type="primary" onClick={() => handleDetail(record)} style={{ background: 'linear-gradient(135deg, #6253e1, #04befe)' }}><b>Chi tiết</b></Button>
             : ""
           }
-          {(permissions.includes("products_edit")) ?
+          {(permissions?.includes("products_edit")) ?
             < Button className='btn-warn' type="primary" onClick={() => handleEdit(record)
             } > <b>Sửa</b></Button >
             : ""
           }
-          {(permissions.includes("products_delete")) ?
+          {(permissions?.includes("products_delete")) ?
             <Button type="primary" danger onClick={() => showDeleteConfirm(record)}><b>Xóa</b></Button>
             : ""
           }
@@ -174,7 +174,7 @@ function AdminProducts({ permissions, permission }) {
             <h1>Danh sách sản phẩm</h1>
           </div>
           <Row>
-            {(permissions.includes("products_create")) ?
+            {(permissions?.includes("products_create")) ?
               <Button type="primary" onClick={() => handleAddProduct()}>Thêm sản phẩm</Button>
               : ""
             }
