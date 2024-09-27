@@ -63,7 +63,9 @@ const AdminPermissions = () => {
     const fetchPermissions = async () => {
       setLoading(true); // Start loading when initiating the delete request
       try {
-        const res = await axiosToken.patch(`${API}/roles/permissions/update`);
+        const res = await axiosToken.patch(`${API}/roles/permissions/update`, {
+          permissions: permissions
+        });
       } catch (error) {
         setError(error.message); // Set error if something goes wrong
         console.error("Delete error:", error);
