@@ -2,3 +2,30 @@
   width: 100px;
   height: 100px;
 }
+
+.bin:hover {
+  color: orangered;
+  cursor: pointer;
+}
+
+.custom-icon-bin {
+  color: orangered;
+  font-size: 24px !important;
+  display: inline-block;
+  vertical-align: middle;
+  cursor: pointer;
+}
+
+.custom-icon-bin:hover {
+  color: orangered;
+}
+
+.text-bin {
+  position: relative;
+  top: 5px;
+  font-size: 18px;
+}
+
+.text-bin:hover {
+  color: orangered;
+}

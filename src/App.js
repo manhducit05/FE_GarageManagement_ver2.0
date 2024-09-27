@@ -14,6 +14,8 @@ import LoginAdmin from './components/admin/login/index'
 import DashboardAdmin from './components/admin/dashboard';
 import PermissionMiddleware from './components/admin/middleware/permission.middleware';
 import AdminCreateAccount from './components/admin/accounts/create';
+import AdminAccountsBin from './components/admin/accounts/restore';
+import AdminPermissions from './components/admin/roles/permission';
 
 function App() {
   return (
@@ -40,6 +42,12 @@ function App() {
                 <AdminRoles />
               </PermissionMiddleware>
             } />
+
+            <Route path="permissions" element={
+              <PermissionMiddleware permission="roles_view">
+                <AdminPermissions />
+              </PermissionMiddleware>
+            } />
             {/* end roles products */}
             < Route path="accounts" element={
               <PermissionMiddleware permission="accounts_view">
@@ -49,6 +57,12 @@ function App() {
             <Route path={`accounts/create`} element={
               <PermissionMiddleware permission="accounts_create">
                 <AdminCreateAccount />
+              </PermissionMiddleware>
+            } />
+
+            <Route path={`accounts/bin`} element={
+              <PermissionMiddleware permission="accounts_create">
+                <AdminAccountsBin />
               </PermissionMiddleware>
             } />
             {/* end accounts products */}

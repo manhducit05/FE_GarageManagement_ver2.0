@@ -12,3 +12,7 @@
   background: #FFC107;
   border-color: #FFC107;
 }
+
+.btn-warn:hover {
+  background: #f8d469 !important;
+}

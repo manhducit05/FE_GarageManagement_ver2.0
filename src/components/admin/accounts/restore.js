@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Row, Col, Input, Table, Modal } from 'antd';
-import { DeleteOutlined } from "@ant-design/icons"
 import { useNavigate } from 'react-router-dom';
 import "./index.css"
 import axiosToken from '../../context/axiosToken';
 
 const { confirm } = Modal;
 
-function AdminAccounts() {
+function AdminAccountsBin() {
   const API = process.env.REACT_APP_API_URL;
   const [accounts, setAccounts] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -18,7 +17,7 @@ function AdminAccounts() {
   useEffect(() => {
     const fetchAccounts = async () => {
       try {
-        const res = await axiosToken.get(`${API}/accounts`);
+        const res = await axiosToken.get(`${API}/accounts/bin`);
         console.log(res)
         if (res.data.accounts != []) {
           setAccounts(res.data.accounts);
@@ -38,10 +37,6 @@ function AdminAccounts() {
 
   }
 
-  const handleAddAccount = () => {
-    navigate(`/admin/accounts/create`)
-  }
-
   const handleDetail = (record) => {
     console.log('View details:', record);
     navigate(`/admin/accounts`);
@@ -52,13 +47,13 @@ function AdminAccounts() {
     navigate(`/admin/accounts`);
   };
 
-  const handleDelete = (record) => {
+  const handleRestore = (record) => {
     console.log('Delete account:', record);
 
     const fetchAccounts = async () => {
       setLoading(true); // Start loading when initiating the delete request
       try {
-        const res = await axiosToken.patch(`${API}/accounts/delete/${record._id}`)
+        const res = await axiosToken.patch(`${API}/accounts/restore/${record._id}`)
 
         setAccounts((prevAccounts) =>
           prevAccounts.filter((account) => account._id !== record._id)
@@ -75,7 +70,7 @@ function AdminAccounts() {
     fetchAccounts(); // Call the function to initiate the delete request
   };
 
-  const showDeleteConfirm = (record) => {
+  const showRestoreConfirm = (record) => {
     confirm({
       title: 'Bạn có chắc chắn muốn xóa sản phẩm này?',
       okText: 'Xác nhận',
@@ -87,17 +82,13 @@ function AdminAccounts() {
         },
       },
       onOk() {
-        handleDelete(record);
+        handleRestore(record);
       },
       onCancel() {
         console.log('Hủy thao tác xóa');
       },
     });
   };
-
-  const handleBin = () => {
-    navigate("/admin/accounts/bin")
-  }
 
   const rowSelection = {
     onChange: (selectedRowKeys, selectedRows) => {
@@ -146,9 +137,7 @@ function AdminAccounts() {
       key: 'action',
       render: (text, record) => (
         <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
-          <Button className='' type="primary" onClick={() => handleDetail(record)} style={{ background: 'linear-gradient(135deg, #6253e1, #04befe)' }}><b>Chi tiết</b></Button>
-          <Button className='btn-warn' type="primary" onClick={() => handleEdit(record)}><b>Sửa</b></Button>
-          <Button type="primary" danger onClick={() => showDeleteConfirm(record)}><b>Xóa</b></Button>
+          <Button type="primary" danger onClick={() => showRestoreConfirm(record)}><b>Khôi phục</b></Button>
         </div>
       ),
     },
@@ -164,12 +153,6 @@ function AdminAccounts() {
           <div>
             <h1>Danh sách sản phẩm</h1>
           </div>
-          <Row>
-            <Button type="primary" onClick={() => handleAddAccount()}>Thêm tài khoản</Button>
-            <Col span={14}>
-            </Col>
-            <span className='bin' onClick={handleBin}><DeleteOutlined className='custom-icon-bin ' /><span className='text-bin'><b>Thùng rác</b></span></span>
-          </Row>
           <div className="mt-2">
             <Table
               rowSelection={{
@@ -181,10 +164,9 @@ function AdminAccounts() {
             />
           </div>
         </div>)
-        : <div>Không có tài khoản nào để hiển thị</div>
-      }
-    </div >
+        : <div>Không có tài khoản nào để hiển thị</div>}
+    </div>
   );
 }
 
-export default AdminAccounts;
+export default AdminAccountsBin;

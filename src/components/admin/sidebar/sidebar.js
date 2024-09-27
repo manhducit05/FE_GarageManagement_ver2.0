@@ -123,8 +123,29 @@ export default function SidebarAdmin({ toggleTheme }) {
         />
       ),
       key: "/admin/roles",
-    });
+    },
+    );
   }
+
+  if (permissions.includes("roles_permissions")) {
+    items.push({
+      label: (
+        <Link to="/admin/permissions">
+          <span className={`textMenu ${location.pathname === '/admin/permissions' ? 'active' : ''}`}>
+            Phân quyền
+          </span>
+        </Link>
+      ),
+      icon: (
+        <UserSwitchOutlined
+          className={`custom-icon ${location.pathname === '/admin/permissions' ? 'active' : ''}`}
+        />
+      ),
+      key: "/admin/permissions",
+    },
+    );
+  }
+
 
   if (permissions.includes("accounts_view")) {
     items.push({
