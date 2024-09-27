@@ -45,12 +45,6 @@ export default function SidebarAdmin({ toggleTheme }) {
         const res = await axiosToken.get(`${API}/accounts/verify`);
         console.log(res)
 
-        if (res.data.account.permissions != []) {
-          setPermissions(res.data.account.permissions);
-          console.log(res.data.account.permissions)
-          localStorage.setItem('permissions', JSON.stringify(res.data.account.permissions));
-        }
-
         if (res.data.account != []) {
           setAccount(res.data.account);
         }
@@ -62,6 +56,26 @@ export default function SidebarAdmin({ toggleTheme }) {
     };
 
     fetchAccount();
+  }, [API]);
+
+  useEffect(() => {
+    const fetchPermissions = async () => {
+      try {
+        const res = await axiosToken.get(`${API}/roles/permissions`);
+        console.log('API Response: ', res.data);
+        localStorage.setItem('permissions', JSON.stringify(res.data.permissions));
+
+        if (res.data.roles) {
+          setPermissions(res.data.roles); // Set permissions directly from the array
+        }
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchPermissions();
   }, [API]);
 
   const navigate = useNavigate([])

@@ -60,23 +60,27 @@ const AdminPermissions = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const fetchPermissions = async () => {
-      setLoading(true); // Start loading when initiating the delete request
-      try {
-        const res = await axiosToken.patch(`${API}/roles/permissions/update`, {
-          permissions: permissions
-        });
-      } catch (error) {
-        setError(error.message); // Set error if something goes wrong
-        console.error("Delete error:", error);
-      } finally {
-        setLoading(false); // End loading after the delete operation
-      }
+
+    const payload = {
+      permissions: permissions.map(item => ({
+        _id: item.id,  // hoặc item._id nếu bạn sử dụng thuộc tính đó
+        permissions: item.permissions
+      }))
     };
 
-    fetchPermissions(); // 
-    console.log("Per lúc sau: ", permissions)
-    // Logic to send data to the server
+    setLoading(true); // Bắt đầu loading
+
+    try {
+      const res = await axiosToken.patch(`${API}/roles/permissions/update`, payload);
+      console.log('Update response:', res.data);
+      // Cập nhật lại state permissions nếu cần
+      // Optionally re-fetch permissions or update local state directly here
+    } catch (error) {
+      setError(error.message);
+      console.error('Update error:', error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
