@@ -14,7 +14,8 @@ const AdminPermissions = () => {
         console.log('API Response: ', res.data);
 
         if (res.data.roles) {
-          setPermissions(res.data.roles); // Set permissions directly from the array
+          setPermissions(res.data.roles);
+          console.log(permissions)// Set permissions directly from the array
         }
       } catch (err) {
         setError(err.message);
@@ -71,7 +72,7 @@ const AdminPermissions = () => {
     setLoading(true); // Bắt đầu loading
 
     try {
-      const res = await axiosToken.patch(`${API}/roles/permissions/update`, payload);
+      const res = await axiosToken.patch(`${API}/roles/permissions/update`, permissions);
       console.log('Update response:', res.data);
       // Cập nhật lại state permissions nếu cần
       // Optionally re-fetch permissions or update local state directly here
@@ -108,6 +109,60 @@ const AdminPermissions = () => {
               <tbody>
                 <tr>
                   <td colSpan={permissions.length + 1}>
+                    <b>Danh mục sản phẩm</b>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Xem</td>
+                  {permissions.map((item) => (
+                    <td className="text-center" key={item.id}>
+                      <input
+                        type="checkbox"
+                        checked={item.permissions.includes('products-category_view') || false}
+                        onChange={handleCheckboxChange(item._id, 'products-category_view')}
+                      />
+                    </td>
+                  ))}
+                </tr>
+                <tr>
+                  <td>Thêm</td>
+                  {permissions.map((item) => (
+                    <td className="text-center" key={item.id}>
+                      <input
+                        type="checkbox"
+                        checked={item.permissions.includes('products-category_create' || false)}
+                        onChange={handleCheckboxChange(item._id, 'products-category_create')}
+                      />
+                    </td>
+                  ))}
+                </tr>
+                <tr>
+                  <td>Sửa</td>
+                  {permissions.map((item) => (
+                    <td className="text-center" key={item.id}>
+                      <input
+                        type="checkbox"
+                        checked={item.permissions.includes('products-category_edit') || false}
+                        onChange={handleCheckboxChange(item._id, 'products-category_edit')}
+                      />
+                    </td>
+                  ))}
+                </tr>
+                <tr>
+                  <td>Xóa</td>
+                  {permissions.map((item) => (
+                    <td className="text-center" key={item.id}>
+                      <input
+                        type="checkbox"
+                        checked={item.permissions.includes('products-category_delete') || false}
+                        onChange={handleCheckboxChange(item._id, 'products-category_delete')}
+                      />
+                    </td>
+                  ))}
+                </tr>
+                {/* End Danh sách sản phẩm */}
+                <tr>
+                  <td colSpan={permissions.length + 1}>
                     <b>Danh sách sản phẩm</b>
                   </td>
                 </tr>
@@ -129,7 +184,7 @@ const AdminPermissions = () => {
                     <td className="text-center" key={item.id}>
                       <input
                         type="checkbox"
-                        checked={item.permissions.includes('products_create')}
+                        checked={item.permissions.includes('products_create' || false)}
                         onChange={handleCheckboxChange(item._id, 'products_create')}
                       />
                     </td>
@@ -155,6 +210,153 @@ const AdminPermissions = () => {
                         type="checkbox"
                         checked={item.permissions.includes('products_delete') || false}
                         onChange={handleCheckboxChange(item._id, 'products_delete')}
+                      />
+                    </td>
+                  ))}
+                </tr>
+
+                <tr>
+                  <td>Thùng rác</td>
+                  {permissions.map((item) => (
+                    <td className="text-center" key={item.id}>
+                      <input
+                        type="checkbox"
+                        checked={item.permissions.includes('products_bin') || false}
+                        onChange={handleCheckboxChange(item._id, 'products_bin')}
+                      />
+                    </td>
+                  ))}
+                </tr>
+                {/* End sản phẩm */}
+
+                <tr>
+                  <td colSpan={permissions.length + 1}>
+                    <b>Nhóm quyền</b>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Xem</td>
+                  {permissions.map((item) => (
+                    <td className="text-center" key={item.id}>
+                      <input
+                        type="checkbox"
+                        checked={item.permissions.includes('roles_view') || false}
+                        onChange={handleCheckboxChange(item._id, 'roles_view')}
+                      />
+                    </td>
+                  ))}
+                </tr>
+                <tr>
+                  <td>Thêm</td>
+                  {permissions.map((item) => (
+                    <td className="text-center" key={item.id}>
+                      <input
+                        type="checkbox"
+                        checked={item.permissions.includes('roles_create' || false)}
+                        onChange={handleCheckboxChange(item._id, 'roles_create')}
+                      />
+                    </td>
+                  ))}
+                </tr>
+                <tr>
+                  <td>Sửa</td>
+                  {permissions.map((item) => (
+                    <td className="text-center" key={item.id}>
+                      <input
+                        type="checkbox"
+                        checked={item.permissions.includes('roles_edit') || false}
+                        onChange={handleCheckboxChange(item._id, 'roles_edit')}
+                      />
+                    </td>
+                  ))}
+                </tr>
+                <tr>
+                  <td>Xóa</td>
+                  {permissions.map((item) => (
+                    <td className="text-center" key={item.id}>
+                      <input
+                        type="checkbox"
+                        checked={item.permissions.includes('roles_delete') || false}
+                        onChange={handleCheckboxChange(item._id, 'roles_delete')}
+                      />
+                    </td>
+                  ))}
+                </tr>
+
+                <tr>
+                  <td>Phân quyền</td>
+                  {permissions.map((item) => (
+                    <td className="text-center" key={item.id}>
+                      <input
+                        type="checkbox"
+                        checked={item.permissions.includes('roles_permissions') || false}
+                        onChange={handleCheckboxChange(item._id, 'roles_permissions')}
+                      />
+                    </td>
+                  ))}
+                </tr>
+
+                <tr>
+                  <td colSpan={permissions.length + 1}>
+                    <b>Tài khoản</b>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Xem</td>
+                  {permissions.map((item) => (
+                    <td className="text-center" key={item.id}>
+                      <input
+                        type="checkbox"
+                        checked={item.permissions.includes('accounts_view') || false}
+                        onChange={handleCheckboxChange(item._id, 'accounts_view')}
+                      />
+                    </td>
+                  ))}
+                </tr>
+                <tr>
+                  <td>Thêm</td>
+                  {permissions.map((item) => (
+                    <td className="text-center" key={item.id}>
+                      <input
+                        type="checkbox"
+                        checked={item.permissions.includes('accounts_create' || false)}
+                        onChange={handleCheckboxChange(item._id, 'accounts_create')}
+                      />
+                    </td>
+                  ))}
+                </tr>
+                <tr>
+                  <td>Sửa</td>
+                  {permissions.map((item) => (
+                    <td className="text-center" key={item.id}>
+                      <input
+                        type="checkbox"
+                        checked={item.permissions.includes('accounts_edit') || false}
+                        onChange={handleCheckboxChange(item._id, 'accounts_edit')}
+                      />
+                    </td>
+                  ))}
+                </tr>
+                <tr>
+                  <td>Xóa</td>
+                  {permissions.map((item) => (
+                    <td className="text-center" key={item.id}>
+                      <input
+                        type="checkbox"
+                        checked={item.permissions.includes('accounts_delete') || false}
+                        onChange={handleCheckboxChange(item._id, 'accounts_delete')}
+                      />
+                    </td>
+                  ))}
+                </tr>
+                <tr>
+                  <td>Thùng rác</td>
+                  {permissions.map((item) => (
+                    <td className="text-center" key={item.id}>
+                      <input
+                        type="checkbox"
+                        checked={item.permissions.includes('accounts_bin') || false}
+                        onChange={handleCheckboxChange(item._id, 'accounts_bin')}
                       />
                     </td>
                   ))}

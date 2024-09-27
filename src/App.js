@@ -61,7 +61,7 @@ function App() {
             } />
 
             <Route path={`accounts/bin`} element={
-              <PermissionMiddleware permission="accounts_create">
+              <PermissionMiddleware permission="accounts_bin">
                 <AdminAccountsBin />
               </PermissionMiddleware>
             } />
