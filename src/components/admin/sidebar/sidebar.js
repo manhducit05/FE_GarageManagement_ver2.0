@@ -63,11 +63,15 @@ export default function SidebarAdmin({ toggleTheme }) {
       try {
         const res = await axiosToken.get(`${API}/roles/permissions`);
         console.log('API Response: ', res.data);
-        localStorage.setItem('permissions', JSON.stringify(res.data.permissions));
 
-        if (res.data.roles) {
-          setPermissions(res.data.roles); // Set permissions directly from the array
-        }
+        const arrayRoles = res.data.roles
+        console.log("arrayRoles: ", arrayRoles)
+
+        const arrayPermissions = arrayRoles.map(item => ({
+          permissions: item.permissions, // Đảm bảo là một mảng
+        }));
+        setPermissions(arrayPermissions)
+        localStorage.setItem('permissions', JSON.stringify(permissions));
       } catch (err) {
         setError(err.message);
       } finally {
