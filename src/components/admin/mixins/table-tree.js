@@ -2,21 +2,26 @@ import React, { useEffect, useState } from 'react';
 import { Input, Table, Button } from 'antd';
 
 // Function to recursively process the tree data
-export function DataTree({ items }) {
-  const processTreeData = (items, level = 0) => {
-    if (!items || !Array.isArray(items)) return [];
+export function DataTree({ items, level = 1 }) {
 
-    return items.map(item => {
-      const prefix = '-- '.repeat(level); // Generate prefix for hierarchy
+  console.log("items: ", items)
+  const processTreeData = (items, level) => {
+    if (!items) return [];
+
+    return items.map((item) => {
+      const prefix = Array(level + 1).join('-- '); // Generate prefix for hierarchy
+
+      // Log the item to see its structure
+      console.log(`Processing item:`, item);
 
       const processedItem = {
         ...item,
         key: item._id, // Assuming '_id' is the unique key
-        title: `${prefix}${item.title || 'No Title'}`, // Add prefix to indicate hierarchy
+        title: `${prefix}${item.title}`, // Handle undefined title
       };
 
-      // If item has children, process them recursively
-      if (Array.isArray(item.children) && item.children.length > 0) {
+      // If item has children, recursively process them, incrementing the level
+      if (item.children) {
         processedItem.children = processTreeData(item.children, level + 1);
       }
 
@@ -24,7 +29,8 @@ export function DataTree({ items }) {
     });
   };
 
-  return processTreeData(items);
+  // Return processed tree data
+  return processTreeData(items, level);
 }
 
 // Component to render the table with hierarchical data
