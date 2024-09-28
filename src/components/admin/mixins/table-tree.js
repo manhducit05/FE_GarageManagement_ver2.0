@@ -9,6 +9,7 @@ export function DataTree({ items, level = 1 }) {
     if (!items) return [];
 
     return items.map((item) => {
+      console.log("item.children.children: ", item)
       const prefix = Array(level + 1).join('-- '); // Generate prefix for hierarchy
 
       // Log the item to see its structure
@@ -22,7 +23,7 @@ export function DataTree({ items, level = 1 }) {
 
       // If item has children, recursively process them, incrementing the level
       if (item.children) {
-        processedItem.children = processTreeData(item.children, level + 1);
+        processedItem.children = processTreeData(item.children.children, level + 1);
       }
 
       return processedItem;

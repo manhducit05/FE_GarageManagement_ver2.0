@@ -16,6 +16,8 @@ function AdminProductsCategory({ permissions }) {
     const fetchProductsCategory = async () => {
       try {
         const res = await axiosToken.get(`${API}/products-category`);
+
+        console.log(res.data)
         if (res.data.categories) {
           setProductsCategory(res.data.categories);
           console.log('categories: ', productsCategory)
