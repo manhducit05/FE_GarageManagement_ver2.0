@@ -75,25 +75,6 @@ export function TableTree({ data, permissions, onDetail, onEdit, onDelete }) {
       columns={renderColumns}
       dataSource={data}
       rowKey="key"
-      expandable={{
-        expandedRowRender: (record) => (
-          <Table
-            columns={renderColumns}
-            dataSource={record.children || []} // Display children here
-            rowKey="key"
-            pagination={false} // Disable pagination for child rows
-            expandable={{
-              expandedRowRender: (childRecord) => (
-                <Table
-                  dataSource={childRecord.children || []} // Display grandchildren if they exist
-                  rowKey="key"
-                  pagination={false}
-                />
-              ),
-            }}
-          />
-        ),
-      }}
     />
   );
 }
