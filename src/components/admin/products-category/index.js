@@ -36,6 +36,7 @@ function AdminProductsCategory({ permissions }) {
     if (productsCategory.length > 0) {
       const tree = DataTree({ items: productsCategory, level: 1 });
       setTreeData(tree);
+      console.log("treeData: ", treeData)
     }
   }, [productsCategory]);
 

@@ -1,19 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Input, Table, Button } from 'antd';
 
 // Function to recursively process the tree data
-export function DataTree({ items, level = 1 }) {
-
-  console.log("items: ", items)
-  const processTreeData = (items, level) => {
+export function DataTree({ items }) {
+  const processTreeData = (items, level = 1) => {
     if (!items) return [];
 
     return items.map((item) => {
-      console.log("item.children.children: ", item)
-      const prefix = Array(level + 1).join('-- '); // Generate prefix for hierarchy
-
-      // Log the item to see its structure
-      console.log(`Processing item:`, item);
+      const prefix = Array(level).join('-- '); // Generate prefix for hierarchy
 
       const processedItem = {
         ...item,
@@ -22,8 +16,8 @@ export function DataTree({ items, level = 1 }) {
       };
 
       // If item has children, recursively process them, incrementing the level
-      if (item.children) {
-        processedItem.children = processTreeData(item.children.children, level + 1);
+      if (item.children && item.children.length > 0) {
+        processedItem.children = processTreeData(item.children, level + 1);
       }
 
       return processedItem;
@@ -31,17 +25,17 @@ export function DataTree({ items, level = 1 }) {
   };
 
   // Return processed tree data
-  return processTreeData(items, level);
+  return processTreeData(items);
 }
 
 // Component to render the table with hierarchical data
-export function TableTree({ data, columns, permissions, onDetail, onEdit, onDelete }) {
+export function TableTree({ data, permissions, onDetail, onEdit, onDelete }) {
   const renderColumns = [
     {
       title: 'Tiêu đề',
       dataIndex: 'title',
       key: 'title',
-      render: (text) => <span>{text}</span>, // Directly render title with prefix
+      render: (text) => <span>{text}</span>, // Render title with prefix
     },
     {
       title: 'Vị trí',
@@ -88,6 +82,15 @@ export function TableTree({ data, columns, permissions, onDetail, onEdit, onDele
             dataSource={record.children || []} // Display children here
             rowKey="key"
             pagination={false} // Disable pagination for child rows
+            expandable={{
+              expandedRowRender: (childRecord) => (
+                <Table
+                  dataSource={childRecord.children || []} // Display grandchildren if they exist
+                  rowKey="key"
+                  pagination={false}
+                />
+              ),
+            }}
           />
         ),
       }}
