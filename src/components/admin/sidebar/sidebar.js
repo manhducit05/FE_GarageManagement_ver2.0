@@ -89,8 +89,26 @@ export default function SidebarAdmin({ toggleTheme }) {
   const items = [];
 
   // Check permissions and add items to array
+  if (permissions.includes("products-category_view")) {
+    items.push({
+      label: (
+        <Link to="/admin/products-category">
+          <span className={`textMenu ${location.pathname === '/admin/products-category' ? 'active' : ''}`}>
+            Danh mục sản phẩm
+          </span>
+        </Link>
+      ),
+      icon: (
+        <InsertRowBelowOutlined
+          className={`custom-icon ${location.pathname === '/admin/products-category' ? 'active' : ''}`}
+        />
+      ),
+      key: "/admin/products-category",
+    });
+  }
   if (permissions.includes("products_view")) {
     items.push({
+
       label: (
         <Link to="/admin/products">
           <span className={`textMenu ${location.pathname === '/admin/products' ? 'active' : ''}`}>

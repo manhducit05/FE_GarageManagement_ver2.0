@@ -16,6 +16,7 @@ import PermissionMiddleware from './components/admin/middleware/permission.middl
 import AdminCreateAccount from './components/admin/accounts/create';
 import AdminAccountsBin from './components/admin/accounts/restore';
 import AdminPermissions from './components/admin/roles/permission';
+import AdminProductsCategory from './components/admin/products-category';
 
 function App() {
   return (
@@ -25,6 +26,11 @@ function App() {
         <Route path="admin" element={<Admin />} >
           <Route element={<PrivateRoute />}>
             <Route path="dashboard" element={<DashboardAdmin />} />
+            <Route path="products-category" element={
+              <PermissionMiddleware permission="products-category_view">
+                <AdminProductsCategory />
+              </PermissionMiddleware>
+            } />
             <Route path="products" element={
               <PermissionMiddleware permission="products_view">
                 <AdminProducts />
