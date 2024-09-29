@@ -1,0 +1,51 @@
+/* sidebar.css */
+
+.menu-container {
+  display: flex;
+  position: relative;
+  width: 100vw;
+}
+
+.btnDarkLight {
+  margin-bottom: 16px;
+  /* Space between switch and menu */
+}
+
+.ant-menu-horizontal {
+  display: flex;
+  justify-content: space-around;
+  /* Space out menu items evenly */
+  flex-wrap: nowrap;
+  /* Prevent wrapping to a new line */
+  overflow: hidden;
+  /* Hide overflow */
+}
+
+.ant-menu-item {
+  /* margin-right: 100px; */
+}
+
+.textMenu {
+  font-size: 16px;
+  /* Adjust font size as needed */
+  white-space: nowrap;
+  /* Prevent text from wrapping */
+}
+
+.textMenu.active {
+  color: #1890ff;
+  /* Color for the active menu item */
+}
+
+/* Optional: add some padding for better appearance */
+.menu-container .ant-menu-item {
+  margin-right: 100px;
+  /* Add horizontal padding */
+}
+
+.btnDarkLightClient {
+  width: 65px;
+  position: absolute;
+  right: 0;
+  top: 13px;
+}

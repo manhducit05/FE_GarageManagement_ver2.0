@@ -1,0 +1,19 @@
+.client-container.light {
+  background-color: white;
+  /* Màu nền cho chế độ sáng */
+  min-height: 100vh;
+  color: black;
+  /* Màu chữ cho chế độ sáng */
+}
+
+.client-container.dark {
+  background-color: #001529;
+  min-height: 100vh;
+  /* Màu nền cho chế độ tối */
+  color: white;
+  /* Màu chữ cho chế độ tối */
+}
+
+.admin-container.dark label {
+  color: white;
+}
