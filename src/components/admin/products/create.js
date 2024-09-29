@@ -1,11 +1,33 @@
-import React, { useState } from 'react';
-import { Input, Button, Form } from 'antd';
+import React, { useState, useEffect } from 'react';
+import { Input, Button, Form, TreeSelect } from 'antd';
 import axiosToken from '../../context/axiosToken';
 
-const API = process.env.REACT_APP_API_URL;
+const API = process.env.REACT_APP_API_URL_ADMIN;
 const AdminCreateProduct = () => {
+  const [productsCategory, setProductsCategory] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [value, setValue] = useState();
+  const [error, setError] = useState(null);
   const [form] = Form.useForm();
-  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    const fetchProductsCategory = async () => {
+      try {
+        const res = await axiosToken.get(`${API}/products-category`);
+
+        console.log(res.data)
+        if (res.data.categories) {
+          setProductsCategory(res.data.categories);
+          console.log('categories: ', productsCategory)
+        }
+      } catch (error) {
+        setError(error.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchProductsCategory();
+  }, [API]);
 
   const onFinish = (values) => {
     setLoading(true);
@@ -23,6 +45,20 @@ const AdminCreateProduct = () => {
         setLoading(false); // Dừng loading khi có lỗi
       });
   }
+
+  const generateTreeData = (productsCategory) => {
+    return productsCategory.map(category => ({
+      title: category.title, // This is used for the display in TreeSelect
+      value: category._id,
+      children: category.children ? generateTreeData(category.children) : []
+    }));
+  };
+
+  const onChange = (newValue) => {
+    console.log('newValue: ', newValue);
+    // if (newValue)
+    //   setValue(newValue);
+  };
 
   return (
     <div style={{ padding: '20px' }}>
@@ -43,6 +79,22 @@ const AdminCreateProduct = () => {
           rules={[{ required: true, message: 'Vui lòng nhập tiêu đề!' }]}
         >
           <Input placeholder="Nhập tiêu đề sản phẩm" />
+        </Form.Item>
+
+        <Form.Item
+          label="Danh mục"
+          name="product_category_id"
+          rules={[{ required: true, message: 'Vui lòng nhập tiêu đề!' }]}
+        >
+          <TreeSelect
+            treeData={generateTreeData(productsCategory)}
+            placeholder="Chọn danh mục sản phẩm"
+            treeDefaultExpandAll
+            allowClear
+            value={value}
+            treeNodeFilterProp="title"
+            onChange={onChange}
+          />
         </Form.Item>
 
         <Form.Item

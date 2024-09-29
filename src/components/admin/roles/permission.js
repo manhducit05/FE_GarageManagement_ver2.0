@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axiosToken from '../../context/axiosToken';
 
 const AdminPermissions = () => {
-  const API = process.env.REACT_APP_API_URL;
+  const API = process.env.REACT_APP_API_URL_ADMIN;
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [permissions, setPermissions] = useState([]); // Initialize as an array

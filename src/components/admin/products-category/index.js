@@ -5,7 +5,7 @@ import axiosToken from '../../context/axiosToken';
 import { DataTree, TableTree } from '../mixins/table-tree';
 
 function AdminProductsCategory({ permissions }) {
-  const API = process.env.REACT_APP_API_URL;
+  const API = process.env.REACT_APP_API_URL_ADMIN;
   const [productsCategory, setProductsCategory] = useState([]);
   const [treeData, setTreeData] = useState([]);
   const [loading, setLoading] = useState(true);

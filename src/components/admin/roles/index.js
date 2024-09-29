@@ -6,7 +6,7 @@ import axiosToken from '../../context/axiosToken';
 const { confirm } = Modal;
 
 function AdminRoles() {
-  const API = process.env.REACT_APP_API_URL;
+  const API = process.env.REACT_APP_API_URL_ADMIN;
   const [roles, setRoles] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);

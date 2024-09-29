@@ -8,7 +8,7 @@ import axiosToken from '../../context/axiosToken';
 const { confirm } = Modal;
 
 function AdminAccounts() {
-  const API = process.env.REACT_APP_API_URL;
+  const API = process.env.REACT_APP_API_URL_ADMIN;
   const [accounts, setAccounts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);

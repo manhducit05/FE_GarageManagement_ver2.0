@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Input, Button, Form } from 'antd';
 import axiosToken from '../../context/axiosToken';
 
-const API = process.env.REACT_APP_API_URL;
+const API = process.env.REACT_APP_API_URL_ADMIN;
 
 const AdminCreateAccount = () => {
   const [form] = Form.useForm();

@@ -3,7 +3,7 @@ import Cookies from 'js-cookie'; // Thư viện để lưu token vào cookies
 
 // Tạo instance của Axios
 const axiosToken = axios.create({
-  baseURL: process.env.REACT_APP_API_URL, // Địa chỉ API của bạn
+  baseURL: process.env.REACT_APP_API_URL_ADMIN, // Địa chỉ API của bạn
 });
 
 // Sử dụng interceptor để tự động thêm token vào headers

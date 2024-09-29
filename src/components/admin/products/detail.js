@@ -4,7 +4,7 @@ import Error404 from '../page/error404/error404';
 import axiosToken from '../../context/axiosToken';
 
 const AdminDetailProduct = () => {
-  const API = process.env.REACT_APP_API_URL
+  const API = process.env.REACT_APP_API_URL_ADMIN
   const [productDetail, setProductDetail] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);

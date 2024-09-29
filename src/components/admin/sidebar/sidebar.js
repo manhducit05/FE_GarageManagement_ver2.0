@@ -16,7 +16,7 @@ import "./sidebar.css"
 
 export default function SidebarAdmin({ toggleTheme }) {
   const location = useLocation();
-  const API = process.env.REACT_APP_API_URL;
+  const API = process.env.REACT_APP_API_URL_ADMIN;
   const [account, setAccount] = useState([]);
   const [permissions, setPermissions] = useState([]);
   const [loading, setLoading] = useState(true);
