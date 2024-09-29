@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Input, Button, Form, TreeSelect } from 'antd';
+import { Input, Button, Form, TreeSelect, Radio } from 'antd';
 import axiosToken from '../../context/axiosToken';
 
 const API = process.env.REACT_APP_API_URL_ADMIN;
 const AdminCreateProduct = () => {
   const [productsCategory, setProductsCategory] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [value, setValue] = useState();
+  const [value, setValue] = useState("");
   const [error, setError] = useState(null);
   const [form] = Form.useForm();
 
@@ -56,8 +56,7 @@ const AdminCreateProduct = () => {
 
   const onChange = (newValue) => {
     console.log('newValue: ', newValue);
-    // if (newValue)
-    //   setValue(newValue);
+    setValue(newValue);
   };
 
   return (
@@ -69,7 +68,7 @@ const AdminCreateProduct = () => {
         onFinish={onFinish}
         initialValues={{
           status: 'active',
-          featured: 'Màu xám',
+          featured: '0',
           position: 1
         }}
       >
@@ -95,6 +94,21 @@ const AdminCreateProduct = () => {
             treeNodeFilterProp="title"
             onChange={onChange}
           />
+        </Form.Item>
+
+        <Form.Item
+          name="featured"
+          rules={[{ required: true, message: 'Vui lòng nhập tiêu đề!' }]}
+          className="custom-form-item"  // Custom class for further styling
+        >
+          <Radio.Group name="featured" defaultValue="0">
+            <Radio value="1" id="featured1">
+              Nổi bật
+            </Radio>
+            <Radio value="0" id="featured2">
+              Không
+            </Radio>
+          </Radio.Group>
         </Form.Item>
 
         <Form.Item
@@ -145,10 +159,10 @@ const AdminCreateProduct = () => {
         </Form.Item>
 
         <Form.Item
-          label="Màu nổi bật"
-          name="featured"
+          label="Màu"
+          name="color"
         >
-          <Input placeholder="Nhập màu nổi bật" />
+          <Input placeholder="Nhập mà" />
         </Form.Item>
 
         <Form.Item
