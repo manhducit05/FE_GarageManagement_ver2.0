@@ -5,6 +5,7 @@
   position: relative;
   left: 70px;
   width: 100vw;
+  z-index: 1;
 }
 
 .btnDarkLight {
@@ -19,6 +20,7 @@
   flex-wrap: nowrap;
   /* Prevent wrapping to a new line */
   overflow: hidden;
+  z-index: 1;
   /* Hide overflow */
 }
 
@@ -33,7 +35,7 @@
   /* Prevent text from wrapping */
 }
 
-.textMenu.active {
+.menu-container .textMenu.active {
   color: #1890ff;
   /* Color for the active menu item */
 }
@@ -44,9 +46,42 @@
   /* Add horizontal padding */
 }
 
-.btnDarkLightClient {
+.menu-container .ant-menu-item {}
+
+
+.menu-container .btnDarkLightClient {
   width: 65px;
   position: absolute;
-  right: 170px;
-  top: 30px;
+  right: 270px;
+  top: 25px;
+}
+
+.menu-container .btn-loginClient {
+  position: absolute;
+  right: 130px;
+  top: 20px;
+}
+
+.menu-container.light .textMenu {
+  color: black;
+  /* Màu chữ cho chế độ sáng */
+}
+
+.menu-container.dark .textMenu {
+  color: white;
+  /* Màu chữ cho chế độ sáng */
+}
+
+.menu-container .btn-loginClient {
+  color: white !important;
+  font-weight: 500;
+  background-color: orangered;
+  padding: 0 20px;
+  border-radius: 45px;
+  border: none;
+  /* Màu chữ cho chế độ sáng */
+}
+
+.menu-container .btn-loginClient:hover {
+  background-color: rgb(238, 138, 102) !important;
 }
