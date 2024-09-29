@@ -3,6 +3,7 @@
 .menu-container {
   display: flex;
   position: relative;
+  left: 70px;
   width: 100vw;
 }
 
@@ -46,6 +47,6 @@
 .btnDarkLightClient {
   width: 65px;
   position: absolute;
-  right: 0;
-  top: 13px;
+  right: 170px;
+  top: 30px;
 }
