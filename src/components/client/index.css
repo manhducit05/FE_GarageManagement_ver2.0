@@ -24,6 +24,7 @@
 
 .content-outlet-client {
   padding-top: 10px;
+  margin-left: 100px;
   overflow-y: auto;
   height: calc(100vh - 10px);
 }
