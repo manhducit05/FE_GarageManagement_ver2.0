@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Button, Row, Col, Input, Table, Modal } from 'antd';
+import { Button, Row, Col, Input, Badge, Modal } from 'antd';
 import { useNavigate, useParams } from 'react-router-dom';
 import './index.css';
 
@@ -37,11 +37,36 @@ function ClientProductsInCategory({ permissions, permission }) {
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
 
+  const handleProductName = () => {
+
+  }
+
   return (
     <>
       <div>
         {products ?
-          (<div> Có </div>)
+          (
+            <div className='products__main'>
+              <div className='container'>
+                {products.map((item) => (
+                  item.title &&
+                  <div className='products__main--item' onClick={() => handleProductName(item)}>
+                    <Badge.Ribbon className='badge'
+                      text={`Giảm ${item.discountPercentage}%`}
+                      color="red"
+                    >
+                      <img className='image__product--main' src={item.thumbnail} />
+                      <h3>{item.title}</h3>
+                      <div className='price'>
+                        <span className='priceDiscount'><strong>{item.price}</strong></span>
+                        <span className='priceOriginal'><strong>{item.priceNew}</strong></span>
+                      </div>
+                    </Badge.Ribbon>
+                  </div >
+                ))}
+              </div >
+            </div >
+          )
           :
           (<div> Không </div>)
 

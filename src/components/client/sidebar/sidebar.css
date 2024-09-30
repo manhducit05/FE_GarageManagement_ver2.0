@@ -1,5 +1,3 @@
-/* sidebar.css */
-
 .menu-container {
   display: flex;
   position: relative;
@@ -8,29 +6,29 @@
   z-index: 1;
 }
 
-.btnDarkLight {
+.menu-container .btnDarkLight {
   margin-bottom: 16px;
   /* Space between switch and menu */
 }
 
-.ant-menu-submenu .ant-menu-submenu-horizontal {
+.menu-container .ant-menu-submenu .ant-menu-submenu-horizontal {
   width: 152px;
   /* Kích thước chữ cho mục cha */
   color: #000;
   /* Màu cho mục cha */
 }
 
-.menuClient {
+.menu-container .menuClient {
   width: 700px;
 }
 
-.ant-menu {
+.menu-container .ant-menu {
   height: auto;
   /* Thiết lập chiều cao cho menu */
 }
 
 
-.ant-menu-submenu {
+.menu-container .ant-menu-submenu {
   height: 100%;
   font-size: 16px;
   font-weight: 500;
@@ -38,22 +36,22 @@
   /* Màu cho mục con */
 }
 
-.ant-menu-submenu-title {
+.menu-container .ant-menu-submenu-title {
   padding: 10px 30px;
 }
 
-.ant-menu-submenu-title:hover {
+.menu-container .ant-menu-submenu-title:hover {
   background-color: aquamarine !important;
 }
 
 
-.ant-menu-submenu a {
+.menu-container .ant-menu-submenu a {
   color: black;
   text-decoration: none;
 }
 
 
-.ant-menu-horizontal {
+.menu-container .ant-menu-horizontal {
   display: flex;
   justify-content: space-around;
   /* Space out menu items evenly */
@@ -64,29 +62,29 @@
   /* Hide overflow */
 }
 
-.ant-menu {
+.menu-container .ant-menu {
   /* Đảm bảo menu sử dụng flex */
   align-items: center;
   /* Căn giữa các item theo chiều dọc */
 }
 
-.ant-menu-item {
+.menu-container .ant-menu-item {
   font-size: 24px;
 }
 
-.textMenu {
+.menu-container .textMenu {
   font-size: 16px;
   /* Adjust font size as needed */
   white-space: nowrap;
   /* Prevent text from wrapping */
 }
 
-.textParent {
+.menu-container .textParent {
   font-size: 16px;
   font-weight: 500;
 }
 
-.textMenu {
+.menu-container .textMenu {
   font-size: 16px;
   color: #000;
   /* Màu chữ */
@@ -96,12 +94,12 @@
   /* Hiệu ứng chuyển màu */
 }
 
-.textMenu:hover {
+.menu-container .textMenu:hover {
   color: #1890ff;
   /* Màu hover cho các mục menu */
 }
 
-.textMenu.active {
+.menu-container .textMenu.active {
   color: #ff4d4f;
   /* Màu cho mục đang hoạt động */
 }

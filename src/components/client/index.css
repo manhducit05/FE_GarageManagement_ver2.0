@@ -23,8 +23,8 @@
 }
 
 .content-outlet-client {
-  padding-top: 10px;
+  padding-top: 30px;
   margin-left: 100px;
   overflow-y: auto;
-  height: calc(100vh - 10px);
+  height: calc(100vh - 30px);
 }

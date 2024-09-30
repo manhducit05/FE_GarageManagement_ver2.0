@@ -9,6 +9,10 @@ const AdminCreateProduct = () => {
   const [value, setValue] = useState("");
   const [error, setError] = useState(null);
   const [form] = Form.useForm();
+  const [formData, setFormData] = useState({
+    folder: 'Sale-bear-images/admin/avatar',
+    avatar: null
+  });
 
   useEffect(() => {
     const fetchProductsCategory = async () => {
