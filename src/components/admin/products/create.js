@@ -10,8 +10,8 @@ const AdminCreateProduct = () => {
   const [error, setError] = useState(null);
   const [form] = Form.useForm();
   const [formData, setFormData] = useState({
-    folder: 'Sale-bear-images/admin/avatar',
-    avatar: null
+    folder: 'Sale-bear-images/admin/products',
+    thumnail: null
   });
 
   useEffect(() => {
@@ -37,8 +37,15 @@ const AdminCreateProduct = () => {
     setLoading(true);
     console.log('Form values:', values);
 
+    values.thumnail = formData.thumnail;
+    values.folder = formData.folder;
+
     // Sending a POST request to create a new product
-    axiosToken.post(`${API}/products/create`, values) // axios tự động stringify body
+    axiosToken.post(`${API}/products/create`, values, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      }
+    }) // axios tự động stringify body
       .then((response) => {
         console.log('Success:', response.data); // Dữ liệu trả về từ server
         setLoading(false);
@@ -61,6 +68,10 @@ const AdminCreateProduct = () => {
   const onChange = (newValue) => {
     console.log('newValue: ', newValue);
     setValue(newValue);
+  };
+
+  const handleFileChange = (e) => {
+    setFormData({ ...formData, thumnail: e.target.files[0] }); // Set file in formData
   };
 
   return (
@@ -148,11 +159,11 @@ const AdminCreateProduct = () => {
         </Form.Item>
 
         <Form.Item
-          label="Hình thu nhỏ"
+          label="Ảnh"
           name="thumbnail"
-          rules={[{ required: true, message: 'Vui lòng nhập URL hình thu nhỏ!' }]}
+          rules={[{ required: true, message: 'Vui lòng chọn file!' }]}
         >
-          <Input placeholder="Nhập URL hình thu nhỏ" />
+          <input type="file" name="thumbnail" onChange={handleFileChange} required />
         </Form.Item>
 
         <Form.Item
