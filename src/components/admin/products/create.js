@@ -11,7 +11,7 @@ const AdminCreateProduct = () => {
   const [form] = Form.useForm();
   const [formData, setFormData] = useState({
     folder: 'Sale-bear-images/admin/products',
-    thumnail: null
+    thumbnail: null
   });
 
   useEffect(() => {
@@ -37,7 +37,7 @@ const AdminCreateProduct = () => {
     setLoading(true);
     console.log('Form values:', values);
 
-    values.thumnail = formData.thumnail;
+    values.thumbnail = formData.thumbnail;
     values.folder = formData.folder;
 
     // Sending a POST request to create a new product
@@ -71,7 +71,7 @@ const AdminCreateProduct = () => {
   };
 
   const handleFileChange = (e) => {
-    setFormData({ ...formData, thumnail: e.target.files[0] }); // Set file in formData
+    setFormData({ ...formData, thumbnail: e.target.files[0] }); // Set file in formData
   };
 
   return (
