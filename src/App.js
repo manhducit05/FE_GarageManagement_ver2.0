@@ -19,6 +19,7 @@ import AdminPermissions from './components/admin/roles/permission';
 import AdminProductsCategory from './components/admin/products-category';
 import Client from './components/client';
 import ClientProductsInCategory from './components/client/product-category';
+import HomeClient from './components/client/home';
 
 function App() {
   return (
@@ -77,8 +78,8 @@ function App() {
         </Route >
 
         <Route path="/" element={<Client />} >
+          <Route index element={<HomeClient />} />
           <Route path="category/:slug" element={<ClientProductsInCategory />} />
-
         </Route>
         <Route path={`/error404`} element={<Error404 />} />
       </Routes>

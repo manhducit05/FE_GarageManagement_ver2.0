@@ -1,0 +1,23 @@
+.products__main--item .badge {
+  position: absolute;
+  top: 0;
+  margin-left: auto;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  border-top-left-radius: 19px;
+  border-bottom-left-radius: 19px;
+}
+
+.badge-top-left {
+  position: absolute;
+  z-index: 100000;
+  /* left: 0; */
+  top: 0;
+  width: 60px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  border-top-left-radius: 19px;
+  border-bottom-left-radius: 19px;
+}

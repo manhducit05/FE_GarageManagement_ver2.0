@@ -4,7 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import './index.css';
 import priceNewProducts from '../helper/product';
 
-function ClientProductsInCategory({ permissions, permission }) {
+function HomeClient({ permissions, permission }) {
   const API = process.env.REACT_APP_API_URL_CLIENT;
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -16,11 +16,11 @@ function ClientProductsInCategory({ permissions, permission }) {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const res = await fetch(`${API}/products-category/${slug}`);
+        const res = await fetch(`${API}/products/products-feature`);
         const json = await res.json()
         console.log("res: ", json)
-        if (json.data != []) {
-          setProducts(priceNewProducts(json.data))
+        if (json.productsFeature != []) {
+          setProducts(priceNewProducts(json.productsFeature))
           console.log("prd: ", products)
         }
       } catch (error) {
@@ -55,33 +55,37 @@ function ClientProductsInCategory({ permissions, permission }) {
         {products ?
           (
             <div className='products__main'>
-              <div className='container'>
-                {products.map((item) => (
-                  item.title &&
-                  <div className='products__main--item' onClick={() => handleProductName(item)}>
-                    <Badge.Ribbon className='badge'
-                      text={`Giảm ${item.discountPercentage}%`}
-                      color="red"
-                    >
-                      <img className='image__product--main' src={item.thumbnail} />
-                      <span className='title'>{item.title}</span>
-                      <div className='price'>
-                        <span className='priceDiscount'><strong>{formatCurrency(item.price)}</strong></span>
-                        <span className='priceOriginal'><strong>{formatCurrency(item.priceNew)}</strong></span>
-                      </div>
-                    </Badge.Ribbon>
-                  </div >
-                ))}
-              </div >
+              {products.map((item) => (
+                item.title &&
+                <div className='products__main--item' onClick={() => handleProductName(item)}>
+
+                  <Badge.Ribbon className='badge-top-left ant-ribbon-placement-start'
+                    text={`Nổi bật`}
+                    color="green"
+                  />
+                  <Badge.Ribbon className='badge'
+                    text={`Giảm ${item.discountPercentage}%`}
+                    color="red"
+                  >
+
+                    <img className='image__product--main' src={item.thumbnail} />
+                    <span className='title'>{item.title}</span>
+                    <div className='price'>
+                      <span className='priceDiscount'><strong>{formatCurrency(item.price)}</strong></span>
+                      <span className='priceOriginal'><strong>{formatCurrency(item.priceNew)}</strong></span>
+                    </div>
+                  </Badge.Ribbon>
+                </div >
+              ))}
             </div >
           )
           :
           (<div> Không </div>)
 
         }
-      </div>
+      </div >
     </>
   );
 }
 
-export default ClientProductsInCategory;
+export default HomeClient;
