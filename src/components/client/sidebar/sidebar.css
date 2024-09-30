@@ -13,6 +13,46 @@
   /* Space between switch and menu */
 }
 
+.ant-menu-submenu .ant-menu-submenu-horizontal {
+  width: 152px;
+  /* Kích thước chữ cho mục cha */
+  color: #000;
+  /* Màu cho mục cha */
+}
+
+.menuClient {
+  width: 700px;
+}
+
+.ant-menu {
+  height: auto;
+  /* Thiết lập chiều cao cho menu */
+}
+
+
+.ant-menu-submenu {
+  height: 100%;
+  font-size: 16px;
+  font-weight: 500;
+  color: black;
+  /* Màu cho mục con */
+}
+
+.ant-menu-submenu-title {
+  padding: 10px 30px;
+}
+
+.ant-menu-submenu-title:hover {
+  background-color: aquamarine !important;
+}
+
+
+.ant-menu-submenu a {
+  color: black;
+  text-decoration: none;
+}
+
+
 .ant-menu-horizontal {
   display: flex;
   justify-content: space-around;
@@ -24,8 +64,14 @@
   /* Hide overflow */
 }
 
+.ant-menu {
+  /* Đảm bảo menu sử dụng flex */
+  align-items: center;
+  /* Căn giữa các item theo chiều dọc */
+}
+
 .ant-menu-item {
-  /* margin-right: 100px; */
+  font-size: 24px;
 }
 
 .textMenu {
@@ -33,6 +79,31 @@
   /* Adjust font size as needed */
   white-space: nowrap;
   /* Prevent text from wrapping */
+}
+
+.textParent {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.textMenu {
+  font-size: 16px;
+  color: #000;
+  /* Màu chữ */
+  padding: 10px;
+  /* Khoảng cách bên trong */
+  transition: color 0.3s;
+  /* Hiệu ứng chuyển màu */
+}
+
+.textMenu:hover {
+  color: #1890ff;
+  /* Màu hover cho các mục menu */
+}
+
+.textMenu.active {
+  color: #ff4d4f;
+  /* Màu cho mục đang hoạt động */
 }
 
 .menu-container .textMenu.active {
@@ -45,9 +116,6 @@
   margin-right: 100px;
   /* Add horizontal padding */
 }
-
-.menu-container .ant-menu-item {}
-
 
 .menu-container .btnDarkLightClient {
   width: 65px;

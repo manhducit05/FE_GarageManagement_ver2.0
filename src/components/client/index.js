@@ -22,16 +22,10 @@ export default function Client() {
 
   return (
     <div className={`client-container ${theme}`}>
-      <Row>
-        <Col span={4}>
-          <SidebarClient toggleTheme={toggleTheme} />
-        </Col>
-        <Col span={19}>
-          <div className='ms-5 content-outlet'>
-            <Outlet />
-          </div>
-        </Col>
-      </Row>
+      <SidebarClient toggleTheme={toggleTheme} />
+      <div className='content-outlet-client'>
+        <Outlet />
+      </div>
     </div>
   );
 }

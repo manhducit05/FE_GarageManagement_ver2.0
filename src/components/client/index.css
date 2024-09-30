@@ -1,3 +1,9 @@
+.client-container {
+  position: fixed;
+  top: 0;
+  z-index: 9999;
+}
+
 .client-container.light {
   background-color: white;
   /* Màu nền cho chế độ sáng */
@@ -9,11 +15,15 @@
 .client-container.dark {
   background-color: #001529;
   min-height: 100vh;
-  /* Màu nền cho chế độ tối */
   color: white;
-  /* Màu chữ cho chế độ tối */
 }
 
 .client-container.dark label {
   color: white;
+}
+
+.content-outlet-client {
+  padding-top: 10px;
+  overflow-y: auto;
+  height: calc(100vh - 10px);
 }

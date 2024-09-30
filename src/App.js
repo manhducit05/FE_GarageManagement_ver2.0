@@ -18,6 +18,7 @@ import AdminAccountsBin from './components/admin/accounts/restore';
 import AdminPermissions from './components/admin/roles/permission';
 import AdminProductsCategory from './components/admin/products-category';
 import Client from './components/client';
+import ClientProductsInCategory from './components/client/product-category';
 
 function App() {
   return (
@@ -72,11 +73,12 @@ function App() {
                 <AdminAccountsBin />
               </PermissionMiddleware>
             } />
-            {/* end accounts products */}
           </Route >
         </Route >
 
         <Route path="/" element={<Client />} >
+          <Route path="category/:slug" element={<ClientProductsInCategory />} />
+
         </Route>
         <Route path={`/error404`} element={<Error404 />} />
       </Routes>
