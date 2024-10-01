@@ -8,6 +8,7 @@
   border-top-left-radius: 19px;
   border-bottom-left-radius: 19px;
 }
+
 .badge-top-left {
   position: absolute;
   z-index: 100000;
