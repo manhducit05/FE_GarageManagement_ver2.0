@@ -13,11 +13,6 @@ const LoginClient = () => {
   const [showSuccessAlert, setShowSuccessAlert] = useState(false);
   const [showErrorAlert, setShowErrorAlert] = useState(false);
 
-  const tokenCheck = Cookies.get('token');
-  useEffect(() => {
-    if (tokenCheck != undefined)
-      navigate('/admin/dashboard');
-  }, [tokenCheck]);
   const handleLogin = async (e) => {
     e.preventDefault(); // Ngăn chặn reload lại trang
 
@@ -59,9 +54,6 @@ const LoginClient = () => {
 
         // Xử lý tiếp theo sau khi đăng nhập thành công
         // Ví dụ: Chuyển hướng sang trang admin
-        if (storedToken != undefined) {
-          navigate('/admin/dashboard');;
-        }
       } else {
         // Xử lý khi đăng nhập không thành công
         console.error('Login failed:', data.message);

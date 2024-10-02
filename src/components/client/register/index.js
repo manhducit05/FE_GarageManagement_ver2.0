@@ -54,13 +54,19 @@ const RegisterClient = () => {
         console.log('Success:', data);
         setShowSuccessAlert(true);
         setLoading(false);
-        // Navigate or reset form if needed
-      } else {
-        const errorData = await response.json();
-        setError(errorData.message || 'Registration failed');
-        setShowErrorAlert(true);
-        setLoading(false);
+        // Optionally redirect or reset the form
       }
+      const errorData = await response.json();
+      if (response.status === 400) {
+        setError("Email already exists!");
+      } else if (response.status === 401) {
+        setError("Username already exists!");
+      } else {
+        setError(errorData.message || 'Registration failed');
+      }
+      setShowErrorAlert(true);
+      setLoading(false);
+
     } catch (error) {
       console.error('Error:', error);
       setError('An unexpected error occurred');
@@ -93,7 +99,6 @@ const RegisterClient = () => {
             onChange={handleChange}
             required
           />
-
         </div>
 
         <div className='mt-3' style={{ position: "relative" }}>
@@ -140,14 +145,14 @@ const RegisterClient = () => {
           />
           <Space direction="vertical" style={{ position: "absolute", width: '240px', left: "39%", top: "50px" }}>
             {showErrorAlert && (
-              <Badge key={"red"} color={"red"} text={<span style={{ color: "white" }}>Sai tên đăng nhập hoặc mật khẩu</span>} />
+              <Badge key={"red"} color={"red"} text={<span style={{ color: "white" }}>{error}</span>} />
             )}
           </Space>
         </div>
 
         {error && <p style={{ color: 'red' }}>{error}</p>}
         <button className='btn-registerClient' style={{ marginTop: "35px" }} type="submit" disabled={loading}>
-          {loading ? 'Đang xử lý...' : 'Đăng ký'}
+          Đăng ký
         </button>
       </form>
       <div className='mt-2 text-center'>
