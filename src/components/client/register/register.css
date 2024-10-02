@@ -43,3 +43,7 @@
   cursor: pointer;
   background: linear-gradient(135deg, #09b8f3, #140691);
 }
+
+.register-box-client .btn-registerClient:hover {
+  background: linear-gradient(135deg, #217f9f, #6453f8);
+}
