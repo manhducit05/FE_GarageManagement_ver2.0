@@ -4,7 +4,6 @@ import Cookies from 'js-cookie'; // Thư viện để lưu token vào cookies
 import { Alert, Space, Badge } from 'antd';
 import "./login.css"
 
-
 const LoginClient = () => {
   const API = process.env.REACT_APP_API_URL_ADMIN;
   const [email, setEmail] = useState('');
@@ -72,52 +71,53 @@ const LoginClient = () => {
     }
   };
 
+  const handleRegister = () => {
+    navigate("/register")
+  }
+
   return (
     <>
+      <div className="login-box-client">
 
-      <div className="login-background">
-        <div className="login-box">
-
-          <h3>Đăng nhập</h3>
-          <form onSubmit={handleLogin}>
-            <div>
-              <input
-                placeholder='Tài khoản'
-                type="text"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-              />
-            </div>
-            <div className='mt-3' style={{
-              position: "relative"
-            }}>
-              <input
-                placeholder='Mật khẩu'
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-              />
-              <Space direction="vertical" style={{
-                position: "absolute", width: '240px',
-                left: "39%", top: "50px"
-              }}>
-
-                {showErrorAlert && (
-                  <Badge key={"red"} color={"red"} text={
-                    <span style={{ color: "white" }}>Sai tên đăng nhập hoặc mật khẩu</span>
-                  } />
-                )}
-              </Space>
-            </div>
-            {error && <p style={{ color: 'red' }}>{error}</p>}
-            <button className='btn-loginAdmin' style={{ marginTop: "35px" }} type="submit">Đăng nhập</button>
-          </form>
+        <h3>Đăng nhập</h3>
+        <form onSubmit={handleLogin}>
           <div>
-            Bạn chưa có tài khoản? <span style={{ color: '#d70018' }}> Đăng ký ngay</span>
+            <input
+              placeholder='Tài khoản'
+              type="text"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
           </div>
-        </div >
+          <div className='mt-3' style={{
+            position: "relative"
+          }}>
+            <input
+              placeholder='Mật khẩu'
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+            <Space direction="vertical" style={{
+              position: "absolute", width: '240px',
+              left: "39%", top: "50px"
+            }}>
+
+              {showErrorAlert && (
+                <Badge key={"red"} color={"red"} text={
+                  <span style={{ color: "white" }}>Sai tên đăng nhập hoặc mật khẩu</span>
+                } />
+              )}
+            </Space>
+          </div>
+          {error && <p style={{ color: 'red' }}>{error}</p>}
+          <button className='btn-loginAdmin' style={{ marginTop: "35px" }} type="submit">Đăng nhập</button>
+        </form>
+        <div className='mt-2'>
+          Bạn chưa có tài khoản? <span className='text-register' onClick={handleRegister}> Đăng ký ngay</span>
+        </div>
       </div >
     </>
   );
