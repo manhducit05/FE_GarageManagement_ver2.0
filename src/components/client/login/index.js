@@ -113,7 +113,7 @@ const LoginClient = () => {
             </Space>
           </div>
           {error && <p style={{ color: 'red' }}>{error}</p>}
-          <button className='btn-loginAdmin' style={{ marginTop: "35px" }} type="submit">Đăng nhập</button>
+          <button className='btn-loginClient' style={{ marginTop: "35px" }} type="submit">Đăng nhập</button>
         </form>
         <div className='mt-2'>
           Bạn chưa có tài khoản? <span className='text-register' onClick={handleRegister}> Đăng ký ngay</span>

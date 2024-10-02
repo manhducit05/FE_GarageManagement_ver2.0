@@ -1,6 +1,3 @@
-/* Styles for the entire login container */
-
-
 .login-background {
   position: fixed;
   top: 0;
@@ -11,8 +8,6 @@
   z-index: -1;
 }
 
-
-/* Box container for the form */
 .login-box-client {
   z-index: 1;
   position: relative;
@@ -47,7 +42,7 @@
 /* Input focus state */
 
 /* Button styling */
-.login-box-client .btn-loginAdmin {
+.login-box-client .btn-loginClient {
   width: 120px;
   padding: 12px 15px;
   border: none;
