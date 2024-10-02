@@ -50,8 +50,6 @@ const RegisterClient = () => {
       });
 
       if (response.ok) {
-        const data = await response.json();
-        console.log('Success:', data);
         setShowSuccessAlert(true);
         setLoading(false);
         // Optionally redirect or reset the form
