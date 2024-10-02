@@ -20,6 +20,7 @@ import AdminProductsCategory from './components/admin/products-category';
 import Client from './components/client';
 import ClientProductsInCategory from './components/client/product-category';
 import HomeClient from './components/client/home';
+import LoginClient from './components/client/login';
 
 function App() {
   return (
@@ -77,6 +78,7 @@ function App() {
           </Route >
         </Route >
 
+        <Route path="/login" element={<LoginClient />} />
         <Route path="/" element={<Client />} >
           <Route index element={<HomeClient />} />
           <Route path="category/:slug" element={<ClientProductsInCategory />} />

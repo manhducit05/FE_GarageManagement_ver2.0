@@ -34,8 +34,8 @@ function HomeClient({ permissions, permission }) {
   }, [API, slug]);
 
 
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error}</div>;
+  if (loading) return <div className='products__main'>Loading...</div>;
+  if (error) return <div className='products__main'>Error: {error}</div>;
 
   const handleProductName = () => {
 
