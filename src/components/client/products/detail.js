@@ -64,9 +64,7 @@ function DetailProductClient() {
               <h2 className='product__content--name'>{product.title}</h2>
               <span>Giá ưu đãi: {formatCurrency(product.price)}</span>
               <div className='orderProduct'>
-                <div className='orderProduct--pay'>
-                  <Button type="primary" danger >MUA NGAY</Button>
-                </div>
+                <Button className='orderNow-button' type="primary" danger >MUA NGAY</Button>
                 <div className="order-form mt-4">
                   <Input
                     type="string"

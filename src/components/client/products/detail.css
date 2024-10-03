@@ -40,11 +40,6 @@
   color: red;
 }
 
-.product__content--price span {
-  font-size: 19px;
-  color: #4A4A4A;
-  font-weight: bold;
-}
 
 .orderProduct {
   position: absolute;
@@ -57,8 +52,12 @@
   cursor: pointer;
 }
 
-.orderProduct--pay button {
+.orderProduct .orderNow-button {
+  font-size: 14px;
   border-radius: 15px;
+  color: white !important;
+  font-weight: 700;
+  background-color: orangered;
 }
 
 .orderProduct h2 {
@@ -72,11 +71,6 @@
   margin-top: -10px;
 }
 
-.order-button {
-  border-radius: 15px;
-  color: #fff;
-}
-
 .order-form {
   display: flex;
   align-items: stretch;
@@ -84,14 +78,6 @@
   border-radius: 20px;
   overflow: hidden;
   width: fit-content;
-}
-
-.order-button {
-  border-top-left-radius: 20px;
-  border-bottom-left-radius: 20px;
-  font-size: 16px;
-  font-weight: bold;
-  color: #fff;
 }
 
 .phone-input {
@@ -104,4 +90,12 @@
   font-size: 16px;
   border-top-right-radius: 20px;
   border-bottom-right-radius: 20px;
+}
+
+.order-button {
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff !important;
 }
