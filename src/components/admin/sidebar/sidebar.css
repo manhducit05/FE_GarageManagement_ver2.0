@@ -169,6 +169,12 @@ ul {
 .btnDarkLight {
   width: 65px;
   position: absolute;
+  left: 20px;
+  top: 75px;
+}
+
+.menuHome .notification-dropdown {
+  position: absolute;
   right: 17px;
   top: 25px;
 }

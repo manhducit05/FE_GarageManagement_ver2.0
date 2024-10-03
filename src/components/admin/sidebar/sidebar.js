@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Avatar, Menu, Dropdown, Button, Switch, } from 'antd';
+import { Avatar, Menu, Dropdown, Button, Switch, Badge } from 'antd';
 
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import {
@@ -8,15 +8,20 @@ import {
   UserSwitchOutlined,
   MenuFoldOutlined,
   MenuUnfoldOutlined,
+  BellOutlined
 } from "@ant-design/icons"
 
 import Cookies from 'js-cookie'; // Thư viện để lưu token vào cookies
 import axiosToken from '../../context/axiosToken';
 import "./sidebar.css"
+import io from 'socket.io-client';
 
 export default function SidebarAdmin({ toggleTheme }) {
   const location = useLocation();
   const API = process.env.REACT_APP_API_URL_ADMIN;
+  const [notifications, setNotifications] = useState([]);
+  const [socket, setSocket] = useState(null);
+  const [unreadCount, setUnreadCount] = useState(0);
   const [account, setAccount] = useState([]);
   const [permissions, setPermissions] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -38,6 +43,24 @@ export default function SidebarAdmin({ toggleTheme }) {
     console.log("collapsed", collapsed)
   };
 
+  useEffect(() => {
+    const newSocket = io("http://localhost:5000");
+    setSocket(newSocket);
+
+    newSocket.on("getNotification", (notification) => {
+      setNotifications((prev) => [...prev, notification]);
+      setUnreadCount((prev) => prev + 1);
+    });
+
+    return () => newSocket.close();
+  }, []);
+
+  // Gửi ID user sau khi user đăng nhập
+  useEffect(() => {
+    if (socket && account._id) {
+      socket.emit("addUser", account._id);
+    }
+  }, [socket, account]);
 
   useEffect(() => {
     const fetchAccount = async () => {
@@ -183,6 +206,30 @@ export default function SidebarAdmin({ toggleTheme }) {
     });
   }
 
+  const handleMarkAsRead = () => {
+    setUnreadCount(0); // Đánh dấu tất cả thông báo đã đọc
+  };
+
+  const menuNotifications = (
+    <Menu>
+      {notifications.length > 0 ? (
+        notifications.map((notification, index) => (
+          <Menu.Item key={index}>
+            <span>{notification.message}</span>
+          </Menu.Item>
+        ))
+      ) : (
+        <Menu.Item>
+          <span>Không có thông báo mới</span>
+        </Menu.Item>
+      )}
+      <Menu.Divider />
+      <Menu.Item onClick={handleMarkAsRead}>
+        Đánh dấu tất cả đã đọc
+      </Menu.Item>
+    </Menu>
+  );
+
   return (
     <div >
       <div className={`menuHome ${(theme === "dark") ? "dark" : "light"} ${(collapsed ? "collapsed" : "")}`}>
@@ -218,6 +265,11 @@ export default function SidebarAdmin({ toggleTheme }) {
           unCheckedChildren="Light"
           className='btnDarkLight'
         />
+        <Dropdown overlay={menuNotifications} trigger={['click']} className="notification-dropdown">
+          <Badge count={unreadCount} offset={[10, 0]}>
+            <BellOutlined style={{ fontSize: '24px', color: 'black', cursor: 'pointer' }} />
+          </Badge>
+        </Dropdown>
         <Menu
           theme={theme}
           inlineCollapsed={collapsed}
@@ -226,6 +278,8 @@ export default function SidebarAdmin({ toggleTheme }) {
           defaultSelectedKeys={["1"]}
           defaultOpenKeys={["menu-1"]}
         />
+
+
       </div>
 
     </div >
