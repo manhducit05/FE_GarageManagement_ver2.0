@@ -18,6 +18,7 @@ function DetailProductClient() {
         const json = await res.json()
 
         setProduct(json.data)
+        document.title = product.title
       } catch (error) {
         setError(error.message);
       } finally {
@@ -28,12 +29,42 @@ function DetailProductClient() {
     fetchProduct();
   }, [API, slug]);
 
+  function formatCurrency(number) {
+    if (number) {
+      const numberString = number.toString();
+      const formattedNumber = numberString.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+      const formattedCurrency = formattedNumber + '₫';
+
+      return formattedCurrency;
+    }
+  }
+
+  const handlePay = () => {
+    navigate("/login");
+  }
+
   return (
     <>
       <div>
         {product ?
-          <div>
-            {product.title}
+          <div className='product__content'>
+            <div className='product__content--image'>
+              <img src={product.thumbnail} />
+            </div>
+
+            <div className='product__content--price'>
+              <h2 className='product__content--name'>{product.title}</h2>
+              <span>Giá ưu đãi: {formatCurrency(product.price)}</span>
+              <div className='orderProduct'>
+                <div className='inner-wrap' onClick={handlePay}>
+                  <div className='orderProduct--pay' >
+                    <h2>MUA NGAY</h2>
+                    <p>(Giao nhanh từ 2 giờ)</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
           </div>
           : <div>
 
