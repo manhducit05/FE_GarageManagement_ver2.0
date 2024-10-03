@@ -160,7 +160,7 @@ export default function SidebarClient({ toggleTheme }) {
         <Menu
           theme={theme}
           mode="horizontal"
-           className='menuClient'
+          className='menuClient'
           items={items} // Generate the menu items dynamically
           defaultSelectedKeys={[location.pathname]}
         />

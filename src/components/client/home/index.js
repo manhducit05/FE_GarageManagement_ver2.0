@@ -13,6 +13,7 @@ function HomeClient({ permissions, permission }) {
   const { slug } = useParams();
   const navigate = useNavigate();
 
+  document.title = "Gấu bông cao cấp - Shop bán gấu bông Đẹp - Giá rẻ";
   useEffect(() => {
     const fetchProducts = async () => {
       try {

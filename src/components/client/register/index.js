@@ -5,14 +5,7 @@ import "./register.css";
 
 const RegisterClient = () => {
   const API = process.env.REACT_APP_API_URL_CLIENT;
-  const [formData, setFormData] = useState({
-    fullName: '',
-    email: '',
-    phone: '',
-    username: '',
-    password: '',
-    confirmPassword: '',
-  });
+
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [showErrorAlert, setShowErrorAlert] = useState(false);
@@ -23,19 +16,24 @@ const RegisterClient = () => {
     navigate("/login");
   };
 
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  };
 
   const onSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
 
-    if (formData.password !== formData.confirmPassword) {
+    // Lấy dữ liệu từ form
+    const formData = new FormData(e.target);
+
+    // Chuyển FormData thành một đối tượng JavaScript
+    const formObject = Object.fromEntries(formData.entries());
+
+    // Tách mật khẩu và xác nhận mật khẩu
+    const { password, confirmPassword } = formObject;
+
+    // Kiểm tra mật khẩu và xác nhận mật khẩu có khớp hay không
+    if (password !== confirmPassword) {
       setError('Passwords do not match');
+      setShowErrorAlert(true);
       setLoading(false);
       return;
     }
@@ -46,25 +44,26 @@ const RegisterClient = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(formObject), // Gửi dữ liệu form dưới dạng JSON
       });
 
-      if (response.ok) {
+      const res = await response.json();
+
+      if (res.code === 200) {
         setShowSuccessAlert(true);
         setLoading(false);
-        // Optionally redirect or reset the form
-      }
-      const errorData = await response.json();
-      if (response.status === 400) {
+        setShowErrorAlert(false);
+      } else if (res.code === 400) {
         setError("Email already exists!");
-      } else if (response.status === 401) {
+        setShowSuccessAlert(false);
+        setShowErrorAlert(true);
+        setLoading(false);
+      } else if (res.code === 401) {
         setError("Username already exists!");
-      } else {
-        setError(errorData.message || 'Registration failed');
+        setShowSuccessAlert(false);
+        setShowErrorAlert(true);
+        setLoading(false);
       }
-      setShowErrorAlert(true);
-      setLoading(false);
-
     } catch (error) {
       console.error('Error:', error);
       setError('An unexpected error occurred');
@@ -72,6 +71,7 @@ const RegisterClient = () => {
       setLoading(false);
     }
   };
+
 
   return (
     <div className="register-box-client">
@@ -82,8 +82,6 @@ const RegisterClient = () => {
             placeholder='Họ tên'
             type="text"
             name='fullName'
-            value={formData.fullName}
-            onChange={handleChange}
             required
           />
         </div>
@@ -93,8 +91,6 @@ const RegisterClient = () => {
             placeholder='Email'
             type="email"
             name='email'
-            value={formData.email}
-            onChange={handleChange}
             required
           />
         </div>
@@ -104,8 +100,6 @@ const RegisterClient = () => {
             placeholder='Số điện thoại'
             type="text"
             name='phone'
-            value={formData.phone}
-            onChange={handleChange}
             required
           />
         </div>
@@ -115,8 +109,6 @@ const RegisterClient = () => {
             placeholder='Tên đăng nhập'
             type="text"
             name='username'
-            value={formData.username}
-            onChange={handleChange}
             required
           />
         </div>
@@ -126,8 +118,6 @@ const RegisterClient = () => {
             placeholder='Mật khẩu'
             type="password"
             name='password'
-            value={formData.password}
-            onChange={handleChange}
             required
           />
         </div>
@@ -137,18 +127,20 @@ const RegisterClient = () => {
             placeholder='Xác nhận mật khẩu'
             type="password"
             name='confirmPassword'
-            value={formData.confirmPassword}
-            onChange={handleChange}
             required
           />
           <Space direction="vertical" style={{ position: "absolute", width: '240px', left: "39%", top: "50px" }}>
+            {showSuccessAlert && (
+              <Badge key={"green"} color={"green"} text={<span style={{}}>Tạo tài khoản thành công!</span>} />
+            )}
+          </Space>
+          <Space direction="vertical" style={{ position: "absolute", width: '240px', left: "39%", top: "50px" }}>
             {showErrorAlert && (
-              <Badge key={"red"} color={"red"} text={<span style={{ color: "white" }}>{error}</span>} />
+              <Badge key={"red"} color={"red"} text={<span style={{ color: "red" }}>{error}</span>} />
             )}
           </Space>
         </div>
 
-        {error && <p style={{ color: 'red' }}>{error}</p>}
         <button className='btn-registerClient' style={{ marginTop: "35px" }} type="submit" disabled={loading}>
           Đăng ký
         </button>

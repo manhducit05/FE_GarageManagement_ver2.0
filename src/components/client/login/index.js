@@ -13,6 +13,7 @@ const LoginClient = () => {
   const [showSuccessAlert, setShowSuccessAlert] = useState(false);
   const [showErrorAlert, setShowErrorAlert] = useState(false);
 
+  document.title = "Đăng nhập";
   const handleLogin = async (e) => {
     e.preventDefault(); // Ngăn chặn reload lại trang
 

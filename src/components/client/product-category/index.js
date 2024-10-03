@@ -18,10 +18,19 @@ function ClientProductsInCategory({ permissions, permission }) {
       try {
         const res = await fetch(`${API}/products-category/${slug}`);
         const json = await res.json()
+        
+        document.title = json.pageTitle
+
         console.log("res: ", json)
-        if (json.data != []) {
-          setProducts(priceNewProducts(json.data))
+        if (json.code == 400) {
+          setProducts([])
           console.log("prd: ", products)
+        } else {
+          if (json.data != []) {
+            setProducts(priceNewProducts(json.data))
+            console.log("prd: ", products)
+
+          }
         }
       } catch (error) {
         setError(error.message);
@@ -34,8 +43,8 @@ function ClientProductsInCategory({ permissions, permission }) {
   }, [API, slug]);
 
 
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error}</div>;
+  if (loading) return <div className='products__main'>Loading...</div>;
+  if (error) return <div className='products__main'>Error: {error}</div>;
 
   const handleProductName = () => {
 
@@ -52,7 +61,7 @@ function ClientProductsInCategory({ permissions, permission }) {
   return (
     <>
       <div>
-        {products ?
+        {(products.length > 0) ?
           (
             <div className='products__main'>
               <div className='container'>
@@ -76,7 +85,12 @@ function ClientProductsInCategory({ permissions, permission }) {
             </div >
           )
           :
-          (<div> Không </div>)
+          (<div className='products__main'>
+            <div className='container'>
+              Không tồn tại sản phẩm nào
+            </div>
+          </div>
+          )
 
         }
       </div>
