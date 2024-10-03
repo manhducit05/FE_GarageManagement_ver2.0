@@ -47,6 +47,10 @@ function DetailProductClient() {
     navigate("/login");
   }
 
+  const handleOrderClick = () => {
+    // Thực hiện hành động khi nhấn nút "Đặt hàng nhanh"
+  };
+
   return (
     <>
       <div>
@@ -60,11 +64,18 @@ function DetailProductClient() {
               <h2 className='product__content--name'>{product.title}</h2>
               <span>Giá ưu đãi: {formatCurrency(product.price)}</span>
               <div className='orderProduct'>
-                <div className='inner-wrap' onClick={handlePay}>
-                  <div className='orderProduct--pay' >
-                    <h2>MUA NGAY</h2>
-                    <p>(Giao nhanh từ 2 giờ)</p>
-                  </div>
+                <div className='orderProduct--pay'>
+                  <Button type="primary" danger >MUA NGAY</Button>
+                </div>
+                <div className="order-form mt-4">
+                  <Input
+                    type="string"
+                    className="phone-input"
+                    required
+                  />
+                  <Button type="primary" className="order-button" onClick={handleOrderClick}>
+                    Đặt hàng nhanh
+                  </Button>
                 </div>
               </div>
             </div>
@@ -74,7 +85,7 @@ function DetailProductClient() {
 
           </div>
         }
-      </div>
+      </div >
     </>
   )
 }

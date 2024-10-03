@@ -57,10 +57,7 @@
   cursor: pointer;
 }
 
-.orderProduct--pay {
-  width: 400px;
-  height: 70px;
-  background: #cb1e21;
+.orderProduct--pay button {
   border-radius: 15px;
 }
 
@@ -73,4 +70,38 @@
   color: #fff;
   font-size: 16px;
   margin-top: -10px;
+}
+
+.order-button {
+  border-radius: 15px;
+  color: #fff;
+}
+
+.order-form {
+  display: flex;
+  align-items: stretch;
+  border: 2px solid #d2c3f1;
+  border-radius: 20px;
+  overflow: hidden;
+  width: fit-content;
+}
+
+.order-button {
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+}
+
+.phone-input {
+  width: 150px;
+  height: 28px;
+  border: none;
+  background-color: #eef2ff;
+  font-weight: bold;
+  color: #333;
+  font-size: 16px;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
 }
