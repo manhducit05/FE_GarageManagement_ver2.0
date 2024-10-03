@@ -17,8 +17,12 @@ function DetailProductClient() {
         const res = await fetch(`${API}/products/${slug}`);
         const json = await res.json()
 
-        setProduct(json.data)
-        document.title = product.title
+        console.log(json)
+
+        if (json.data) {
+          setProduct(json.data)
+          document.title = json.pageTitle
+        }
       } catch (error) {
         setError(error.message);
       } finally {
