@@ -22,6 +22,7 @@ import ClientProductsInCategory from './components/client/product-category';
 import HomeClient from './components/client/home';
 import LoginClient from './components/client/login';
 import RegisterClient from './components/client/register';
+import DetailProductClient from './components/client/products/detail';
 
 function App() {
   return (
@@ -84,6 +85,7 @@ function App() {
         <Route path="/" element={<Client />} >
           <Route index element={<HomeClient />} />
           <Route path="category/:slug" element={<ClientProductsInCategory />} />
+          <Route path="/:slug" element={<DetailProductClient />} />
         </Route>
         <Route path={`/error404`} element={<Error404 />} />
       </Routes>
