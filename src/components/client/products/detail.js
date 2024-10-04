@@ -6,6 +6,8 @@ import "./detail.css";
 
 function DetailProductClient() {
   const API = process.env.REACT_APP_API_URL_CLIENT;
+  const API_ADMIN = process.env.REACT_APP_API_URL_ADMIN;
+
   const { slug } = useParams();
   const [product, setProduct] = useState({});
   const navigate = useNavigate();
@@ -54,7 +56,7 @@ function DetailProductClient() {
     return "";
   };
 
-  const handleOrderClick = () => {
+  const handleOrderClick = async () => {
     if (!phoneNumber) {
       console.log("Vui lòng nhập số điện thoại!");
       return;
@@ -63,14 +65,33 @@ function DetailProductClient() {
     const orderData = {
       product: product.title,
       phoneNumber: phoneNumber,
+      type: "quickOrder"
     };
 
-    socket.emit("order", orderData);
-    console.log("Đặt hàng thành công!")
-    if (socket) {
+    try {
+      // Gửi yêu cầu POST tới server
+      const response = await fetch(`${API_ADMIN}/notifications/postQuickOrder`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(orderData),
+      });
 
-    } else {
-      console.log("Không thể kết nối tới server!");
+      const result = await response.json();
+
+      if (result.code === 200) {
+        message.success("Đặt hàng thành công!");
+
+        // Emit notification qua socket nếu cần
+        socket.emit("orderNotification", orderData);
+
+      } else {
+        message.error(result.message || "Đặt hàng thất bại!");
+      }
+    } catch (error) {
+      message.error("Lỗi khi gửi yêu cầu đặt hàng!");
+      console.log("Error:", error);
     }
   };
 
