@@ -44,23 +44,36 @@ export default function SidebarAdmin({ toggleTheme }) {
   };
 
   useEffect(() => {
-    const newSocket = io("http://localhost:5000");
-    setSocket(newSocket);
-
-    newSocket.on("getNotification", (notification) => {
-      setNotifications((prev) => [...prev, notification]);
-      setUnreadCount((prev) => prev + 1);
+    const socketInstance = io("http://localhost:8080", {
+      transports: ['websocket', 'polling'],
+      path: '/socket.io',
     });
 
-    return () => newSocket.close();
-  }, []);
+    socketInstance.on("connect", () => {
+      console.log("Connected to server:", socketInstance.id);
+    });
 
-  // Gửi ID user sau khi user đăng nhập
-  useEffect(() => {
-    if (socket && account._id) {
-      socket.emit("addUser", account._id);
-    }
-  }, [socket, account]);
+    const handleNotification = (data) => {
+      console.log("New order notification:", data);
+
+      setNotifications(prevNotifications => {
+        const isDuplicate = prevNotifications.some(notification => notification.id === data.id);
+        if (!isDuplicate) {
+          return [data, ...prevNotifications];
+        }
+        return prevNotifications;
+      });
+      setUnreadCount(prevCount => prevCount + 1);
+    };
+
+    socketInstance.on("orderNotification", handleNotification);
+
+    return () => {
+      socketInstance.off("orderNotification", handleNotification); // Hủy lắng nghe sự kiện khi component unmount
+      socketInstance.disconnect(); // Ngắt kết nối socket
+    };
+  }, []); // Chỉ chạy khi component mount
+
 
   useEffect(() => {
     const fetchAccount = async () => {
@@ -83,7 +96,6 @@ export default function SidebarAdmin({ toggleTheme }) {
         setLoading(false);
       }
     };
-
     fetchAccount();
   }, [API]);
 
@@ -215,7 +227,7 @@ export default function SidebarAdmin({ toggleTheme }) {
       {notifications.length > 0 ? (
         notifications.map((notification, index) => (
           <Menu.Item key={index}>
-            <span>{notification.message}</span>
+            <span dangerouslySetInnerHTML={{ __html: notification.message }} />
           </Menu.Item>
         ))
       ) : (
