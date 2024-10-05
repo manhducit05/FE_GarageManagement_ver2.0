@@ -46,8 +46,8 @@ function ClientProductsInCategory({ permissions, permission }) {
   if (loading) return <div className='products__main'>Loading...</div>;
   if (error) return <div className='products__main'>Error: {error}</div>;
 
-  const handleProductName = () => {
-
+  const handleProductName = (item) => {
+    navigate(`/${item.slug}`)
   }
 
   function formatCurrency(number) {
