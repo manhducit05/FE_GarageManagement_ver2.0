@@ -1,13 +1,11 @@
 .client-container {
-  position: fixed;
-  top: 0;
-  z-index: 9999;
+  width: 100vw;
+  height: 100vh;
 }
 
 .client-container.light {
   background-color: white;
   /* Màu nền cho chế độ sáng */
-  min-height: 100vh;
   color: black;
   /* Màu chữ cho chế độ sáng */
 }
@@ -23,10 +21,8 @@
 }
 
 .content-outlet-client {
+  position: relative;
+  top: 180px;
   padding: 0;
-  padding-top: 30px;
-  margin-left: -30px;
   width: 100%;
-  overflow-y: auto;
-  height: calc(100vh - 30px);
 }

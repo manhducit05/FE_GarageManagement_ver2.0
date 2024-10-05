@@ -4,6 +4,8 @@ import { Link, useNavigate, useLocation } from "react-router-dom";
 import Cookies from 'js-cookie';
 import "./sidebar.css";
 
+
+
 export default function SidebarClient({ toggleTheme }) {
   const API = process.env.REACT_APP_API_URL_CLIENT;
   const location = useLocation();
@@ -14,6 +16,7 @@ export default function SidebarClient({ toggleTheme }) {
   const [value, setValue] = useState("");
   const [theme, setTheme] = useState(storedTheme);
   const navigate = useNavigate();
+
 
   localStorage.setItem('mode', theme);
 
@@ -148,27 +151,34 @@ export default function SidebarClient({ toggleTheme }) {
 
 
   return (
-    <div className={`menu-container ${(theme === "dark") ? "dark" : "light"}`}>
-      <Switch
-        checked={theme === 'dark'}
-        onChange={changeTheme}
-        checkedChildren="Dark"
-        unCheckedChildren="Light"
-        className='btnDarkLightClient'
-      />
-      <div >
-        <Menu
-          theme={theme}
-          mode="horizontal"
-          className='menuClient'
-          items={items} // Generate the menu items dynamically
-          defaultSelectedKeys={[location.pathname]}
-        />
-      </div>
+    <>
+      <div className='header'>
+        <div className='header-top'>
+          <img className='logo' src='https://res-console.cloudinary.com/dw0niuzdf/media_explorer_thumbnails/604c912f9924cd8c9f0066ec5d034e29/detailed' />
+        </div>
+        <div className={`mt-1 menu-container ${(theme === "dark") ? "dark" : "light"}`}>
+          <Switch
+            checked={theme === 'dark'}
+            onChange={changeTheme}
+            checkedChildren="Dark"
+            unCheckedChildren="Light"
+            className='btnDarkLightClient'
+          />
+          <div >
+            <Menu
+              theme={theme}
+              mode="horizontal"
+              className='menuClient'
+              items={items} // Generate the menu items dynamically
+              defaultSelectedKeys={[location.pathname]}
+            />
+          </div>
 
-      <Button className='btn-loginClient' onClick={() => navigate("/login")}>
-        Đăng nhập
-      </Button>
-    </div>
+          <Button className='btn-loginClient' onClick={() => navigate("/login")}>
+            Đăng nhập
+          </Button>
+        </div>
+      </div>
+    </>
   );
 }

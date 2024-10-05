@@ -18,7 +18,7 @@ import io from 'socket.io-client';
 
 export default function SidebarAdmin({ toggleTheme }) {
   const location = useLocation();
-  const API = process.env.REACT_APP_API_URL_ADMIN;
+  const API_ADMIN = process.env.REACT_APP_API_URL_ADMIN;
   const [notifications, setNotifications] = useState([]);
   const [socket, setSocket] = useState(null);
   const [unreadCount, setUnreadCount] = useState(0);
@@ -53,8 +53,11 @@ export default function SidebarAdmin({ toggleTheme }) {
       console.log("Connected to server:", socketInstance.id);
     });
 
+    let count = 0;
+
     const handleNotification = (data) => {
-      console.log("New order notification:", data);
+      count++;
+      console.log(`OrderNotification received ${count} times:`, data);
 
       setNotifications(prevNotifications => {
         const isDuplicate = prevNotifications.some(notification => notification.id === data.id);
@@ -66,19 +69,33 @@ export default function SidebarAdmin({ toggleTheme }) {
       setUnreadCount(prevCount => prevCount + 1);
     };
 
+    console.log("Registering event listener");
     socketInstance.on("orderNotification", handleNotification);
 
     return () => {
-      socketInstance.off("orderNotification", handleNotification); // Hủy lắng nghe sự kiện khi component unmount
-      socketInstance.disconnect(); // Ngắt kết nối socket
+      socketInstance.disconnect();
     };
-  }, []); // Chỉ chạy khi component mount
+  }, []);
 
 
   useEffect(() => {
+    const fetchNotifications = async () => {
+      try {
+        const response = await fetch(`${API_ADMIN}/notifications`);
+        const json = await response.json();
+
+        setNotifications(json.data)
+        console.log("Noti: ", notifications)
+
+      } catch (error) {
+        console.error("Error fetching notifications:", error);
+      }
+    };
+    fetchNotifications();
+
     const fetchAccount = async () => {
       try {
-        const res = await axiosToken.get(`${API}/accounts/verify`);
+        const res = await axiosToken.get(`${API_ADMIN}/accounts/verify`);
         console.log(res)
 
         if (res.data.account.permissions != []) {
@@ -97,7 +114,7 @@ export default function SidebarAdmin({ toggleTheme }) {
       }
     };
     fetchAccount();
-  }, [API]);
+  }, [API_ADMIN]);
 
   const navigate = useNavigate([])
 
@@ -290,8 +307,6 @@ export default function SidebarAdmin({ toggleTheme }) {
           defaultSelectedKeys={["1"]}
           defaultOpenKeys={["menu-1"]}
         />
-
-
       </div>
 
     </div >

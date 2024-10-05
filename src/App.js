@@ -23,6 +23,7 @@ import HomeClient from './components/client/home';
 import LoginClient from './components/client/login';
 import RegisterClient from './components/client/register';
 import DetailProductClient from './components/client/products/detail';
+import AdminCreateProductCategory from './components/admin/products-category/create';
 
 function App() {
   return (
@@ -35,6 +36,11 @@ function App() {
             <Route path="products-category" element={
               <PermissionMiddleware permission="products-category_view">
                 <AdminProductsCategory />
+              </PermissionMiddleware>
+            } />
+            <Route path="products-category/create" element={
+              <PermissionMiddleware permission="products-category_create">
+                <AdminCreateProductCategory />
               </PermissionMiddleware>
             } />
             <Route path="products" element={

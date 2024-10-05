@@ -58,18 +58,18 @@ function DetailProductClient() {
 
   const handleOrderClick = async () => {
     if (!phoneNumber) {
-      console.log("Vui lòng nhập số điện thoại!");
       return;
     }
 
     const orderData = {
       product: product.title,
       phoneNumber: phoneNumber,
-      type: "quickOrder"
+      type: "quickOrder",
     };
 
+    socket.emit("order", orderData);
+
     try {
-      // Gửi yêu cầu POST tới server
       const response = await fetch(`${API_ADMIN}/notifications/postQuickOrder`, {
         method: "POST",
         headers: {
@@ -79,13 +79,10 @@ function DetailProductClient() {
       });
 
       const result = await response.json();
+      console.log('result: ', result);
 
       if (result.code === 200) {
         message.success("Đặt hàng thành công!");
-
-        // Emit notification qua socket nếu cần
-        socket.emit("orderNotification", orderData);
-
       } else {
         message.error(result.message || "Đặt hàng thất bại!");
       }

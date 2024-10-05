@@ -52,8 +52,8 @@ function AdminProductsCategory({ permissions }) {
     console.log('Delete record:', record);
   };
 
-  const handleAddProduct = () => {
-    navigate(`/admin/products/create`);
+  const handleAddCategory = () => {
+    navigate(`/admin/products-category/create`);
   };
 
   if (loading) return <div>Loading...</div>;
@@ -68,7 +68,7 @@ function AdminProductsCategory({ permissions }) {
           </div>
           <Row>
             {permissions?.includes('products_create') && (
-              <Button type='primary' onClick={handleAddProduct}>
+              <Button type='primary' onClick={handleAddCategory}>
                 Thêm danh mục
               </Button>
             )}
@@ -84,7 +84,7 @@ function AdminProductsCategory({ permissions }) {
           </div>
         </div>
       ) : (
-        <div>Không có sản phẩm nào để hiển thị</div>
+        <div>Không có danh mục nào để hiển thị</div>
       )}
     </div>
   );

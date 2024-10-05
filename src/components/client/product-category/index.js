@@ -18,7 +18,7 @@ function ClientProductsInCategory({ permissions, permission }) {
       try {
         const res = await fetch(`${API}/products-category/${slug}`);
         const json = await res.json()
-        
+
         document.title = json.pageTitle
 
         console.log("res: ", json)
@@ -75,8 +75,8 @@ function ClientProductsInCategory({ permissions, permission }) {
                       <img className='image__product--main' src={item.thumbnail} />
                       <span className='title'>{item.title}</span>
                       <div className='price'>
-                        <span className='priceDiscount'><strong>{formatCurrency(item.price)}</strong></span>
-                        <span className='priceOriginal'><strong>{formatCurrency(item.priceNew)}</strong></span>
+                        <span className='priceDiscount'><strong>{formatCurrency(item.priceNew)}</strong></span>
+                        <span className='priceOriginal'><strong>{formatCurrency(item.price)}</strong></span>
                       </div>
                     </Badge.Ribbon>
                   </div >
