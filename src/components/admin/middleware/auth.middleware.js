@@ -3,17 +3,13 @@ import { Navigate, Outlet } from 'react-router-dom';
 import Cookies from 'js-cookie'; // Để lưu và truy xuất token từ cookie
 
 const PrivateRoute = () => {
+  const API = process.env.REACT_APP_API_URL_ADMIN;
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [loading, setLoading] = useState(true); // Để xử lý khi chờ phản hồi API
 
   useEffect(() => {
     const checkToken = async () => {
       const token = Cookies.get('token'); // Lấy token từ cookie
-      if (!token) {
-        setIsAuthenticated(false);
-        setLoading(false);
-        return;
-      }
 
       try {
         const response = await fetch(`${API}/accounts/checkToken`, {
@@ -25,7 +21,7 @@ const PrivateRoute = () => {
         });
 
         const result = await response.json();
-        if (response.ok && result.valid) {
+        if (result.code == 200) {
           setIsAuthenticated(true);
         } else {
           setIsAuthenticated(false);
