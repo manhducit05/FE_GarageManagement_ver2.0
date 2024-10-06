@@ -60,20 +60,20 @@ function HomeClient({ permissions, permission }) {
                 item.title &&
                 <div className='products__main--item' onClick={() => handleProductName(item)}>
 
-                  <Badge.Ribbon className='badge-top-left ant-ribbon-placement-start'
+                  <Badge.Ribbon className='badge'
                     text={`Nổi bật`}
                     color="green"
                   />
-                  <Badge.Ribbon className='badge'
+                  <Badge.Ribbon className='badge badge2'
                     text={`Giảm ${item.discountPercentage}%`}
                     color="red"
                   >
 
-                    <img className='image__product--main' src={item.thumbnail} />
-                    <span className='title'>{item.title}</span>
-                    <div className='price'>
-                      <span className='priceDiscount'><strong>{formatCurrency(item.price)}</strong></span>
-                      <span className='priceOriginal'><strong>{formatCurrency(item.priceNew)}</strong></span>
+                    <img className='image__product--main-badge' src={item.thumbnail} />
+                    <span className='title-badge '>{item.title}</span>
+                    <div className='price-badge '>
+                      <span className='priceDiscount-badge '><strong>{(item.priceNew).toLocaleString('vi-VN')}</strong></span>
+                      <span className='priceOriginal-badge '><strong>{formatCurrency(item.price)}</strong></span>
                     </div>
                   </Badge.Ribbon>
                 </div >

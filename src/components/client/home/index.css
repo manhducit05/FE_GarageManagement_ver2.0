@@ -21,3 +21,41 @@
   border-top-left-radius: 19px;
   border-bottom-left-radius: 19px;
 }
+
+.badge2 {
+  margin-top: 27px;
+}
+
+.image__product--main-badge {
+  position: absolute;
+  left: 34px;
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  top: 43px;
+}
+
+.products__main--item .title-badge {
+  position: absolute;
+  font-size: 16px;
+  font-weight: 500;
+  left: 30px;
+  top: 255px;
+}
+
+.products__main--item .price-badge {
+  position: absolute;
+  top: 305px;
+  left: 30px;
+}
+
+.products__main--item .priceDiscount-badge {
+  color: red;
+}
+
+.products__main--item .priceOriginal-badge {
+  position: absolute;
+  left: 120px;
+  text-decoration: line-through;
+  color: #707070;
+}

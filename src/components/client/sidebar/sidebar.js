@@ -154,16 +154,16 @@ export default function SidebarClient({ toggleTheme }) {
     <>
       <div className='header'>
         <div className='header-top'>
-          <img className='logo' src='https://res-console.cloudinary.com/dw0niuzdf/media_explorer_thumbnails/604c912f9924cd8c9f0066ec5d034e29/detailed' />
+          <img className='logo' src='https://res-console.cloudinary.com/dw0niuzdf/media_explorer_thumbnails/73313be9e71bb346a674ba17412f536a/detailed' />
         </div>
         <div className={`mt-1 menu-container ${(theme === "dark") ? "dark" : "light"}`}>
-          <Switch
+          {/* <Switch
             checked={theme === 'dark'}
             onChange={changeTheme}
             checkedChildren="Dark"
             unCheckedChildren="Light"
             className='btnDarkLightClient'
-          />
+          /> */}
           <div >
             <Menu
               theme={theme}

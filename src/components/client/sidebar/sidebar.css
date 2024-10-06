@@ -3,20 +3,21 @@
   z-index: 9999;
   top: 0;
   background-color: #fff;
+  border-bottom: 1px #ddd solid;
 }
 
 .header-top {
   position: relative;
-  height: 85px;
+  height: 65px;
   width: 100vw;
 }
 
 .logo {
-  width: 80px;
-  height: 80px;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
   position: absolute;
-  left: 100px;
+  left: 120px;
   top: 5px;
 }
 
@@ -25,7 +26,7 @@
   position: relative;
   width: 100vw;
   height: 50px !important;
-  left: 70px;
+  left: -30px;
 }
 
 .menu-container .btnDarkLight {
@@ -35,6 +36,7 @@
 .menu-container .menuClient {
   width: 700px;
   height: 40px !important;
+  border: none;
 }
 
 .menu-container .ant-menu {
@@ -74,11 +76,25 @@
 
 /* Parent Menu Styles */
 .menu-container .ant-menu-submenu-title {
-  padding: 10px 30px;
+  padding: 10px 20px;
+}
+
+.menu-container .ant-menu .ant-menu-vertical {
+  position: absolute;
+  /* Để menu con có thể di chuyển lên trên */
+  top: -20px;
+  /* Thay đổi giá trị này để đưa menu con lên trên hơn */
+  left: 0;
+}
+
+.menu-container .ant-menu-submenu-title .ant-menu-title-content a {
+  color: #333 !important;
+  font-weight: 500;
+  font-size: 16px;
 }
 
 .menu-container .ant-menu-submenu-title:hover {
-  background-color: aquamarine !important;
+  background-color: #ddd !important;
 }
 
 .menu-container .textParent {
@@ -106,8 +122,8 @@
 /* Login Button Styles */
 .menu-container .btn-loginClient {
   position: absolute;
-  right: 130px;
-  top: 20px;
+  right: 30px;
+  top: 10px;
   color: white !important;
   font-weight: 500;
   background-color: orangered;

@@ -25,7 +25,7 @@ const LoginClient = () => {
 
     try {
       // Gửi yêu cầu đăng nhập
-      const response = await fetch(`${API}/accounts/login`, {
+      const response = await fetch(`${API}/users/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -45,6 +45,7 @@ const LoginClient = () => {
         if (token !== undefined && token !== null) {
           // Store the token in a cookie, set to expire in 1 day
           Cookies.set('token', token, { expires: 1 });
+          navigate("/")
         } else {
           // Display an error alert if the token is undefined or null
           setShowErrorAlert(true)
@@ -100,7 +101,7 @@ const LoginClient = () => {
 
               {showErrorAlert && (
                 <Badge key={"red"} color={"red"} text={
-                  <span style={{ color: "white" }}>Sai tên đăng nhập hoặc mật khẩu</span>
+                  <span style={{ color: "red" }}>Sai tên đăng nhập hoặc mật khẩu</span>
                 } />
               )}
             </Space>
