@@ -30,8 +30,8 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="admin/login" element={<LoginAdmin />} />
-        <Route path="admin" element={<Admin />} >
-          <Route element={<PrivateRoute />}>
+        <Route element={<PrivateRoute />}>
+          <Route path="admin" element={<Admin />} >
             <Route path="dashboard" element={<DashboardAdmin />} />
             <Route path="products-category" element={
               <PermissionMiddleware permission="products-category_view">

@@ -13,12 +13,38 @@ const LoginAdmin = () => {
   const navigate = useNavigate();
   const [showSuccessAlert, setShowSuccessAlert] = useState(false);
   const [showErrorAlert, setShowErrorAlert] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [loading, setLoading] = useState(true); // Để xử lý khi chờ phản hồi API
 
-  const tokenCheck = Cookies.get('token');
   useEffect(() => {
-    if (tokenCheck != undefined)
-      navigate('/admin/dashboard');
-  }, [tokenCheck]);
+    const checkToken = async () => {
+      const token = Cookies.get('token'); // Lấy token từ cookie
+
+      try {
+        const response = await fetch(`${API}/accounts/checkToken`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}` // Gửi token trong header
+          }
+        });
+
+        const result = await response.json();
+        if (result.code == 200) {
+          navigate("/admin/dashboard")
+        } else {
+          navigate("/admin/login")
+        }
+      } catch (error) {
+        setIsAuthenticated(false);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    checkToken();
+  }, []);
+
   const handleLogin = async (e) => {
     e.preventDefault(); // Ngăn chặn reload lại trang
 
