@@ -5,8 +5,8 @@ import { Alert, Space, Badge } from 'antd';
 import "./login.css"
 
 const LoginClient = () => {
-  const API = process.env.REACT_APP_API_URL_ADMIN;
-  const [email, setEmail] = useState('');
+  const API_CLIENT = process.env.REACT_APP_API_URL_CLIENT;
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
@@ -18,14 +18,14 @@ const LoginClient = () => {
     e.preventDefault(); // Ngăn chặn reload lại trang
 
     const loginData = {
-      email: email,
+      username: username,
       password: password
     };
 
 
     try {
       // Gửi yêu cầu đăng nhập
-      const response = await fetch(`${API}/users/login`, {
+      const response = await fetch(`${API_CLIENT}/users/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -79,8 +79,8 @@ const LoginClient = () => {
             <input
               placeholder='Tài khoản'
               type="text"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
               required
             />
           </div>
