@@ -154,7 +154,7 @@ export default function SidebarClient({ toggleTheme }) {
     <>
       <div className='header'>
         <div className='header-top'>
-          <img className='logo' src='https://res-console.cloudinary.com/dw0niuzdf/media_explorer_thumbnails/73313be9e71bb346a674ba17412f536a/detailed' />
+          <img className='logo' src='https://res.cloudinary.com/dw0niuzdf/image/upload/v1728139022/Sale-bear-images/admin/logo/l0u53ogrukfu33smgnlb.jpg' />
         </div>
         <div className={`mt-1 menu-container ${(theme === "dark") ? "dark" : "light"}`}>
           {/* <Switch
@@ -177,6 +177,25 @@ export default function SidebarClient({ toggleTheme }) {
           <Button className='btn-loginClient' onClick={() => navigate("/login")}>
             Đăng nhập
           </Button>
+        </div>
+      </div>
+
+      <div className='outlet-image'>
+        <div className='content'>
+          <img className='img-outlet' src='https://res.cloudinary.com/dw0niuzdf/image/upload/v1728299458/Sale-bear-images/image-outlet/a4kaw9p8zucwjabef6c9.png' />
+          <p className='text'>GIAO HÀNG TẬN NHÀ</p>
+        </div>
+        <div className='content'>
+          <img className='img-outlet' src='https://res.cloudinary.com/dw0niuzdf/image/upload/v1728299623/Sale-bear-images/image-outlet/taextwoa34urzp2fbdk8.png' />
+          <p className='text'>GÓI QUÀ SIÊU ĐẸP</p>
+        </div>
+        <div className='content'>
+          <img className='img-outlet' src='https://res.cloudinary.com/dw0niuzdf/image/upload/v1728300926/Sale-bear-images/image-outlet/te4ncr3gmsf30rxn728i.png' />
+          <p className='text'>CÁCH GIẶT GẤU BÔNG</p>
+        </div>
+        <div className='content'>
+          <img className='img-outlet-2' src='https://res.cloudinary.com/dw0niuzdf/image/upload/v1728301240/Sale-bear-images/image-outlet/a0bn1e0gj5pynpuvxzyh.png' />
+          <p className='text'>KHÁCH HÀNG THÂN THIẾT</p>
         </div>
       </div>
     </>

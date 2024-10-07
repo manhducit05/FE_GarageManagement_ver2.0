@@ -32,9 +32,10 @@ const RegisterClient = () => {
 
     // Kiểm tra mật khẩu và xác nhận mật khẩu có khớp hay không
     if (password !== confirmPassword) {
-      setError('Passwords do not match');
+      setError('Mật khẩu và xác nhận mật khẩu phải trùng nhau');
       setShowErrorAlert(true);
       setLoading(false);
+      setShowSuccessAlert(false)
       return;
     }
 
@@ -134,7 +135,7 @@ const RegisterClient = () => {
               <Badge key={"green"} color={"green"} text={<span style={{}}>Tạo tài khoản thành công!</span>} />
             )}
           </Space>
-          <Space direction="vertical" style={{ position: "absolute", width: '240px', left: "39%", top: "50px" }}>
+          <Space direction="vertical" style={{ position: "absolute", width: '350px', left: "38%", top: "50px" }}>
             {showErrorAlert && (
               <Badge key={"red"} color={"red"} text={<span style={{ color: "red" }}>{error}</span>} />
             )}

@@ -26,7 +26,7 @@
   position: relative;
   width: 100vw;
   height: 50px !important;
-  left: -30px;
+  left: 100px;
 }
 
 .menu-container .btnDarkLight {
@@ -40,10 +40,11 @@
 }
 
 .menu-container .ant-menu {
+
   height: auto;
   display: flex;
-  justify-content: space-around;
   align-items: center;
+
   z-index: 1;
   overflow: hidden;
   flex-wrap: nowrap;
@@ -122,7 +123,7 @@
 /* Login Button Styles */
 .menu-container .btn-loginClient {
   position: absolute;
-  right: 30px;
+  right: 200px;
   top: 10px;
   color: white !important;
   font-weight: 500;
@@ -134,4 +135,37 @@
 
 .menu-container .btn-loginClient:hover {
   background-color: rgb(238, 138, 102) !important;
+}
+
+.outlet-image {
+  position: relative;
+  display: flex;
+  top: 170px;
+  left: 50px;
+  margin-bottom: 60px;
+}
+
+.outlet-image .content {
+  margin-right: 120px;
+}
+
+.img-outlet {
+  width: 72px;
+  height: 72px;
+  margin-left: 30px;
+}
+
+.img-outlet-2 {
+  width: 72px;
+  height: 72px;
+  margin-left: 55px;
+}
+
+
+.outlet-image .text {
+  position: absolute;
+  top: 80px;
+  text-align: center;
+  font-size: 15px;
+  font-weight: 500;
 }

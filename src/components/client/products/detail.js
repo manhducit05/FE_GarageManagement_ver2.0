@@ -3,6 +3,7 @@ import { Button, Input, message } from 'antd';
 import { useNavigate, useParams } from 'react-router-dom';
 import io from 'socket.io-client';
 import "./detail.css";
+import priceNewProduct from '../helper/priceNew';
 
 function DetailProductClient() {
   const API = process.env.REACT_APP_API_URL_CLIENT;
@@ -104,7 +105,7 @@ function DetailProductClient() {
 
           <div className='product__content--price'>
             <h2 className='product__content--name'>{product.title}</h2>
-            <span>Giá ưu đãi: {formatCurrency(product.price)}</span>
+            <span>Giá ưu đãi: {formatCurrency(priceNewProduct(product))}</span>
             <div className='orderProduct'>
               <div className="order-form mt-4">
                 <Input

@@ -68,11 +68,10 @@ function HomeClient({ permissions, permission }) {
                     text={`Giảm ${item.discountPercentage}%`}
                     color="red"
                   >
-
                     <img className='image__product--main-badge' src={item.thumbnail} />
                     <span className='title-badge '>{item.title}</span>
                     <div className='price-badge '>
-                      <span className='priceDiscount-badge '><strong>{(item.priceNew).toLocaleString('vi-VN')}</strong></span>
+                      <span className='priceDiscount-badge '><strong>{formatCurrency(item.priceNew)}</strong></span>
                       <span className='priceOriginal-badge '><strong>{formatCurrency(item.price)}</strong></span>
                     </div>
                   </Badge.Ribbon>
