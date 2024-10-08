@@ -174,7 +174,7 @@ body {
   font-weight: 500;
 }
 
-@media (max-width: 480px) {
+@media (max-width: 576px) {
   .header-top {
     height: 40px;
   }
@@ -220,16 +220,32 @@ body {
     padding: 5px 15px;
     /* Giảm kích thước nút */
     border-radius: 5px;
-    /* Giảm góc bo cho nút */
+    right: -60px !important;
+  }
+
+  .center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    left: 0;
   }
 
   .outlet-image {
-    left: -80px;
+    width: 100%;
+    margin: 0 auto;
     position: relative;
     display: flex;
+    justify-content: space-between;
+    /* Cách đều các phần tử */
+    align-items: center;
+    /* Căn giữa các phần tử theo trục dọc */
     top: 170px;
     margin-bottom: 10px;
     margin-top: -50px;
+    padding: 0 20px;
+    /* Thêm khoảng cách ở hai mép */
+    flex-wrap: wrap;
+    /* Để các phần tử có thể xuống dòng nếu không đủ không gian */
   }
 
   .outlet-image .content {
