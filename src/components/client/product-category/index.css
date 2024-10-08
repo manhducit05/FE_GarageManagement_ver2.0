@@ -3,7 +3,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 35px;
-  left: 75px;
+  left: 5%;
 }
 
 .products__main .products__main--item .badge {
@@ -65,12 +65,19 @@
   color: #707070;
 }
 
+@media (max-width: 576px) {
+  .products__main {
+    position: relative;
+    left: 2%;
+  }
+}
+
 @media (max-width: 320px) {
   .products__main {
     display: flex;
     flex-wrap: wrap;
     position: relative;
-    left: 0;
+    left: 2%;
     gap: 10px;
   }
 

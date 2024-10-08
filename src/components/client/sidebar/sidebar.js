@@ -195,7 +195,7 @@ export default function SidebarClient({ toggleTheme }) {
             <p className='text'>CÁCH GIẶT GẤU BÔNG</p>
           </div>
           <div className='content'>
-            <img className='img-outlet-2' src='https://res.cloudinary.com/dw0niuzdf/image/upload/v1728301240/Sale-bear-images/image-outlet/a0bn1e0gj5pynpuvxzyh.png' />
+            <img className='img-outlet' src='https://res.cloudinary.com/dw0niuzdf/image/upload/v1728301240/Sale-bear-images/image-outlet/a0bn1e0gj5pynpuvxzyh.png' />
             <p className='text'>KHÁCH HÀNG THÂN THIẾT</p>
           </div>
         </div>

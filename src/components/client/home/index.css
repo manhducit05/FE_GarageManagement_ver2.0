@@ -4,9 +4,7 @@
   flex-wrap: wrap;
   /* Ensure that the items wrap to the next line */
   gap: 35px;
-  /* Set the gap between items */
-  left: 75px;
-  /* Adjust if needed */
+  left: 5%;
 }
 
 .products__main-feature .products__main--item {
@@ -120,14 +118,20 @@
   color: #707070;
 }
 
+@media (max-width: 576px) {
+  .products__main-feature {
+    position: relative;
+    left: 2%;
+  }
+}
 
 @media (max-width: 320px) {
   .products__main-feature {
     display: flex;
     flex-wrap: wrap;
     position: relative;
-    left: 0;
-    gap: 10px;
+    left: 1%;
+    gap: px;
   }
 
   .products__main-feature .products__main--item {

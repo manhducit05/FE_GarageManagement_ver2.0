@@ -142,39 +142,216 @@ body {
   background-color: rgb(238, 138, 102) !important;
 }
 
+.center {
+  align-items: center;
+}
+
 .outlet-image {
   position: relative;
   display: flex;
-  top: 170px;
-  margin-bottom: 60px;
+  justify-content: center;
+  margin-top: 160px;
 }
 
 .outlet-image .content {
-  margin-right: 120px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-right: 200px;
 }
 
 .img-outlet {
-  width: 72px;
-  height: 72px;
-  margin-left: 30px;
+  width: 120px;
+  height: 120px;
 }
-
-.img-outlet-2 {
-  width: 72px;
-  height: 72px;
-  margin-left: 55px;
-}
-
 
 .outlet-image .text {
   position: absolute;
-  top: 80px;
+  top: 140px;
   text-align: center;
   font-size: 15px;
   font-weight: 500;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+
+@media (max-width: 1200px) {
+  body {
+    overflow-x: hidden;
+  }
+
+  .header {
+    position: fixed;
+    z-index: 9999;
+    top: 0;
+    width: 100%;
+    background-color: #fff;
+    border-bottom: 1px #ddd solid;
+  }
+
+  .header-top {
+    position: relative;
+    height: 65px;
+    width: 100vw;
+  }
+
+  .logo {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    position: absolute;
+    left: 120px;
+    top: 5px;
+  }
+
+  /* Menu Container Styles */
+  .menu-container {
+    position: relative;
+    width: 100vw;
+    height: 50px !important;
+    left: 100px;
+  }
+
+  .menu-container .btnDarkLight {
+    margin-bottom: 16px;
+  }
+
+  .menu-container .menuClient {
+    width: 700px;
+    height: 40px !important;
+    border: none;
+  }
+
+  .menu-container .ant-menu {
+
+    height: auto;
+    display: flex;
+    align-items: center;
+
+    z-index: 1;
+    overflow: hidden;
+    flex-wrap: nowrap;
+  }
+
+  /* Menu Items Styles */
+  .menu-container .ant-menu-item {
+    font-size: 24px;
+    margin-right: 100px;
+    /* Add horizontal padding */
+  }
+
+  .menu-container .textMenu {
+    font-size: 16px;
+    color: #000;
+    padding: 10px;
+    white-space: nowrap;
+    transition: color 0.3s;
+  }
+
+  .menu-container .textMenu:hover {
+    color: #1890ff;
+    /* Màu hover */
+  }
+
+  .menu-container .textMenu.active {
+    color: #ff4d4f;
+    /* Màu khi active */
+  }
+
+  /* Parent Menu Styles */
+  .menu-container .ant-menu-submenu-title {
+    padding: 10px 20px;
+  }
+
+  .menu-container .ant-menu .ant-menu-vertical {
+    position: absolute;
+    /* Để menu con có thể di chuyển lên trên */
+    top: -20px;
+    /* Thay đổi giá trị này để đưa menu con lên trên hơn */
+    left: 0;
+  }
+
+  .menu-container .ant-menu-submenu-title .ant-menu-title-content a {
+    color: #333 !important;
+    font-weight: 500;
+    font-size: 16px;
+  }
+
+  .menu-container .ant-menu-submenu-title:hover {
+    background-color: #ddd !important;
+  }
+
+  .menu-container .textParent {
+    font-size: 16px;
+    font-weight: 500;
+  }
+
+  /* Dark/Light Theme Styles */
+  .menu-container.light .textMenu {
+    color: black;
+  }
+
+  .menu-container.dark .textMenu {
+    color: white;
+  }
+
+  /* Switch Button Styles */
+  .menu-container .btnDarkLightClient {
+    width: 65px;
+    position: absolute;
+    right: 270px;
+    top: 25px;
+  }
+
+  /* Login Button Styles */
+  .menu-container .btn-loginClient {
+    position: absolute;
+    right: 200px;
+    top: 10px;
+    color: white !important;
+    font-weight: 500;
+    background-color: orangered;
+    padding: 0 20px;
+    border-radius: 45px;
+    border: none;
+  }
+
+  .menu-container .btn-loginClient:hover {
+    background-color: rgb(238, 138, 102) !important;
+  }
+
+  .center {
+    align-items: center;
+  }
+
+  .outlet-image {}
+
+  .outlet-image .content {
+    margin-right: 10px;
+  }
+
+  .img-outlet {
+    width: 120px;
+    height: 120px;
+  }
+
+  .outlet-image .text {
+    position: absolute;
+    top: 80px;
+    text-align: center;
+    font-size: 15px;
+    font-weight: 500;
+  }
+
 }
 
 @media (max-width: 576px) {
+  .header {
+    width: 100%;
+  }
+
   .header-top {
     height: 40px;
   }
@@ -199,83 +376,61 @@ body {
 
   .menu-container .ant-menu-item {
     font-size: 14px;
-    /* Giảm kích thước chữ menu */
     margin-right: 10px;
-    /* Giảm khoảng cách giữa các menu item */
   }
 
   .menu-container .textMenu {
     font-size: 12px;
-    /* Font chữ nhỏ hơn cho menu items */
     padding: 5px;
-    /* Giảm padding */
   }
 
   .menu-container .btn-loginClient {
     right: 0 !important;
-    /* Căn chỉnh nút đăng nhập sang bên phải */
     top: 5px;
     font-size: 12px;
-    /* Giảm kích thước font chữ cho nút đăng nhập */
     padding: 5px 15px;
-    /* Giảm kích thước nút */
     border-radius: 5px;
-    right: -60px !important;
+    right: 5px !important;
   }
 
   .center {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    left: 0;
+    position: relative;
+    left: -5%;
   }
 
   .outlet-image {
-    width: 100%;
-    margin: 0 auto;
     position: relative;
     display: flex;
-    justify-content: space-between;
-    /* Cách đều các phần tử */
-    align-items: center;
-    /* Căn giữa các phần tử theo trục dọc */
+    justify-content: center;
     top: 170px;
     margin-bottom: 10px;
     margin-top: -50px;
-    padding: 0 20px;
-    /* Thêm khoảng cách ở hai mép */
-    flex-wrap: wrap;
-    /* Để các phần tử có thể xuống dòng nếu không đủ không gian */
   }
 
   .outlet-image .content {
-    margin-right: -70px;
-    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-right: 10px;
   }
 
-  .img-outlet,
-  .img-outlet-2 {
+  .img-outlet {
     width: 50px;
     height: 50px;
-    margin-left: 0;
   }
 
   .outlet-image .text {
     top: 60px;
-    /* Điều chỉnh vị trí văn bản */
     font-size: 12px;
-    /* Giảm kích thước font chữ */
-    text-align: center;
   }
 
   body {
     font-size: 14px;
-    /* Giảm kích thước font tổng thể cho màn hình nhỏ */
   }
 
   .outlet-image p {
     font-size: 10px;
     display: none;
-    /* Giảm kích thước đoạn văn */
   }
 }
