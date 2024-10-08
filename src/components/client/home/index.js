@@ -55,7 +55,7 @@ function HomeClient({ permissions, permission }) {
       <div>
         {products ?
           (
-            <div className='products__main'>
+            <div className='products__main-feature'>
               {products.map((item) => (
                 item.title &&
                 <div className='products__main--item' onClick={() => handleProductName(item)}>
@@ -69,10 +69,12 @@ function HomeClient({ permissions, permission }) {
                     color="red"
                   >
                     <img className='image__product--main-badge' src={item.thumbnail} />
-                    <span className='title-badge '>{item.title}</span>
-                    <div className='price-badge '>
-                      <span className='priceDiscount-badge '><strong>{formatCurrency(item.priceNew)}</strong></span>
-                      <span className='priceOriginal-badge '><strong>{formatCurrency(item.price)}</strong></span>
+                    <div className='titleVPrice'>
+                      <span className='title-badge '>{item.title}</span>
+                      <div className='price-badge '>
+                        <span className='priceDiscount-badge '><strong>{formatCurrency(item.priceNew)}</strong></span>
+                        <span className='priceOriginal-badge '><strong>{formatCurrency(item.price)}</strong></span>
+                      </div>
                     </div>
                   </Badge.Ribbon>
                 </div >

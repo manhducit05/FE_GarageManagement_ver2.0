@@ -1,7 +1,12 @@
+body {
+  overflow-x: hidden;
+}
+
 .header {
   position: fixed;
   z-index: 9999;
   top: 0;
+  width: 100%;
   background-color: #fff;
   border-bottom: 1px #ddd solid;
 }
@@ -141,7 +146,6 @@
   position: relative;
   display: flex;
   top: 170px;
-  left: 50px;
   margin-bottom: 60px;
 }
 
@@ -168,4 +172,94 @@
   text-align: center;
   font-size: 15px;
   font-weight: 500;
+}
+
+@media (max-width: 480px) {
+  .header-top {
+    height: 40px;
+  }
+
+  .logo {
+    width: 40px;
+    height: 40px;
+    left: 20px;
+    /* Giảm khoảng cách từ lề trái */
+  }
+
+  .menu-container {
+    height: 40px;
+    left: 0;
+    /* Căn chỉnh menu sát mép trái màn hình */
+  }
+
+  .menu-container .menuClient {
+    width: 100%;
+    /* Đảm bảo menu giãn đều */
+  }
+
+  .menu-container .ant-menu-item {
+    font-size: 14px;
+    /* Giảm kích thước chữ menu */
+    margin-right: 10px;
+    /* Giảm khoảng cách giữa các menu item */
+  }
+
+  .menu-container .textMenu {
+    font-size: 12px;
+    /* Font chữ nhỏ hơn cho menu items */
+    padding: 5px;
+    /* Giảm padding */
+  }
+
+  .menu-container .btn-loginClient {
+    right: 0 !important;
+    /* Căn chỉnh nút đăng nhập sang bên phải */
+    top: 5px;
+    font-size: 12px;
+    /* Giảm kích thước font chữ cho nút đăng nhập */
+    padding: 5px 15px;
+    /* Giảm kích thước nút */
+    border-radius: 5px;
+    /* Giảm góc bo cho nút */
+  }
+
+  .outlet-image {
+    left: -80px;
+    position: relative;
+    display: flex;
+    top: 170px;
+    margin-bottom: 10px;
+    margin-top: -50px;
+  }
+
+  .outlet-image .content {
+    margin-right: -70px;
+    margin-bottom: 15px;
+  }
+
+  .img-outlet,
+  .img-outlet-2 {
+    width: 50px;
+    height: 50px;
+    margin-left: 0;
+  }
+
+  .outlet-image .text {
+    top: 60px;
+    /* Điều chỉnh vị trí văn bản */
+    font-size: 12px;
+    /* Giảm kích thước font chữ */
+    text-align: center;
+  }
+
+  body {
+    font-size: 14px;
+    /* Giảm kích thước font tổng thể cho màn hình nhỏ */
+  }
+
+  .outlet-image p {
+    font-size: 10px;
+    display: none;
+    /* Giảm kích thước đoạn văn */
+  }
 }

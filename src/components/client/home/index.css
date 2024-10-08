@@ -1,4 +1,62 @@
-.products__main--item .badge {
+.products__main-feature {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  /* Ensure that the items wrap to the next line */
+  gap: 35px;
+  /* Set the gap between items */
+  left: 75px;
+  /* Adjust if needed */
+}
+
+.products__main-feature .products__main--item {
+  cursor: pointer;
+  width: 270px;
+  /* Set a fixed width for each product item */
+  height: 356px;
+  padding: 0;
+  box-shadow: 0 1px 2px 0 rgba(48, 50, 53, 0.1), 0 2px 6px 2px rgba(18, 20, 21, 0.15);
+  border-radius: 15px;
+  margin-bottom: 35px;
+  /* Add margin at the bottom to space out rows */
+}
+
+.products__main-feature .products__main--item .image__product--main {
+  position: absolute;
+  left: 20px;
+  width: 230px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 15px;
+  top: 30px;
+}
+
+.products__main-feature .products__main--item .title {
+  position: absolute;
+  font-size: 16px;
+  font-weight: 500;
+  left: 30px;
+  top: 245px;
+}
+
+.products__main-feature .products__main--item .price {
+  position: absolute;
+  top: 295px;
+  left: 30px;
+}
+
+.products__main-feature .products__main--item .priceDiscount {
+  color: red;
+}
+
+.products__main-feature .products__main--item .priceOriginal {
+  position: absolute;
+  left: 120px;
+  text-decoration: line-through;
+  color: #707070;
+}
+
+.products__main-feature .products__main--item .badge {
   position: absolute;
   top: 0;
   margin-left: auto;
@@ -9,7 +67,7 @@
   border-bottom-left-radius: 19px;
 }
 
-.badge-top-left {
+.products__main-feature .badge-top-left {
   position: absolute;
   z-index: 100000;
   /* left: 0; */
@@ -22,40 +80,86 @@
   border-bottom-left-radius: 19px;
 }
 
-.badge2 {
+.products__main-feature .badge2 {
   margin-top: 27px;
 }
 
-.image__product--main-badge {
+.products__main-feature .image__product--main-badge {
   position: absolute;
-  left: 34px;
-  width: 200px;
+  left: 20px;
+  width: 230px;
   height: 200px;
   object-fit: cover;
-  top: 43px;
+  top: 55px;
+  border-radius: 15px;
 }
 
-.products__main--item .title-badge {
-  position: absolute;
+.products__main-feature .titleVPrice {
+  position: relative;
+  top: 265px;
+  left: 15px;
+}
+
+.products__main-feature .titleVPrice .title-badge {
   font-size: 16px;
   font-weight: 500;
-  left: 30px;
-  top: 255px;
 }
 
-.products__main--item .price-badge {
-  position: absolute;
-  top: 305px;
-  left: 30px;
+.products__main-feature .titleVPrice .price-badge {
+  margin-top: 8px;
 }
 
-.products__main--item .priceDiscount-badge {
+.products__main-feature .titleVPrice .priceDiscount-badge {
   color: red;
 }
 
-.products__main--item .priceOriginal-badge {
+.products__main-feature .products__main--item .priceOriginal-badge {
   position: absolute;
-  left: 120px;
+  left: 160px;
   text-decoration: line-through;
   color: #707070;
+}
+
+
+@media (max-width: 320px) {
+  .products__main-feature {
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+    left: 0;
+    gap: 10px;
+  }
+
+  .products__main-feature .products__main--item {
+    width: 137px;
+    height: 237px;
+    margin: 0 auto 15px;
+  }
+
+  .products__main-feature .products__main--item .image__product--main {
+    width: 127px;
+    height: 110px;
+    left: 5px;
+  }
+
+  .products__main-feature .titleVPrice {
+    top: 130px;
+    left: 5px;
+    width: 130px;
+  }
+
+  .products__main-feature .titleVPrice .title-badge {
+    font-size: 12px;
+  }
+
+  .products__main-feature .titleVPrice .price-badge,
+  .products__main-feature .titleVPrice .priceDiscount-badge {
+    font-size: 12px;
+  }
+
+  .products__main-feature .products__main--item .priceOriginal-badge {
+    left: auto;
+    right: 5px;
+    font-size: 11px;
+  }
 }

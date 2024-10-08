@@ -64,24 +64,24 @@ function ClientProductsInCategory({ permissions, permission }) {
         {(products.length > 0) ?
           (
             <div className='products__main'>
-              <div className='container'>
-                {products.map((item) => (
-                  item.title &&
-                  <div className='products__main--item' onClick={() => handleProductName(item)}>
-                    <Badge.Ribbon className='badge'
-                      text={`Giảm ${item.discountPercentage}%`}
-                      color="red"
-                    >
-                      <img className='image__product--main' src={item.thumbnail} />
-                      <span className='title'>{item.title}</span>
-                      <div className='price'>
-                        <span className='priceDiscount'><strong>{formatCurrency(item.priceNew)}</strong></span>
-                        <span className='priceOriginal'><strong>{formatCurrency(item.price)}</strong></span>
+              {products.map((item) => (
+                item.title &&
+                <div className='products__main--item' onClick={() => handleProductName(item)}>
+                  <Badge.Ribbon className='badge'
+                    text={`Giảm ${item.discountPercentage}%`}
+                    color="red"
+                  >
+                    <img className='image__product--main' src={item.thumbnail} />
+                    <div className='titleVPrice'>
+                      <span className='title-badge '>{item.title}</span>
+                      <div className='price-badge '>
+                        <span className='priceDiscount-badge '><strong>{formatCurrency(item.priceNew)}</strong></span>
+                        <span className='priceOriginal-badge '><strong>{formatCurrency(item.price)}</strong></span>
                       </div>
-                    </Badge.Ribbon>
-                  </div >
-                ))}
-              </div >
+                    </div>
+                  </Badge.Ribbon>
+                </div >
+              ))}
             </div >
           )
           :
