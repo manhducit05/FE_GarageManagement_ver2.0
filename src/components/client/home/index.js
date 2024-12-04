@@ -1,42 +1,26 @@
 import React, { useEffect, useState } from 'react';
-import { Button, Row, Col, Input, Badge, Modal } from 'antd';
 import { useNavigate, useParams } from 'react-router-dom';
 import './index.css';
-import priceNewProducts from '../helper/product';
+import { Button } from "antd";
 
+import { Layout, Menu, Card, Row, Col } from "antd";
 function HomeClient({ permissions, permission }) {
   const API = process.env.REACT_APP_API_URL_CLIENT;
-  const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [selectionType, setSelectionType] = useState('checkbox');
   const { slug } = useParams();
   const navigate = useNavigate();
 
-  document.title = "Gấu bông cao cấp - Shop bán gấu bông Đẹp - Giá rẻ";
+  document.title = "Dịch vụ bảo dưỡng xe";
   useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const res = await fetch(`${API}/products/products-feature`);
-        const json = await res.json()
-        console.log("res: ", json)
-        if (json.productsFeature != []) {
-          setProducts(priceNewProducts(json.productsFeature))
-          console.log("prd: ", products)
-        }
-      } catch (error) {
-        setError(error.message);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchProducts();
-  }, [API, slug]);
 
 
-  if (loading) return <div className='products__main'>Loading...</div>;
-  if (error) return <div className='products__main'>Error: {error}</div>;
+
+  }, []);
+
+
+  // if (loading) return <div className='products__main'>Loading...</div>;
+  // if (error) return <div className='products__main'>Error: {error}</div>;
 
   const handleProductName = (item) => {
     navigate(`/${item.slug}`)
@@ -46,46 +30,130 @@ function HomeClient({ permissions, permission }) {
     const numberString = number.toString();
     const formattedNumber = numberString.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
     const formattedCurrency = formattedNumber + '₫';
-
     return formattedCurrency;
   }
 
   return (
     <>
-      <div>
-        {products ?
-          (
-            <div className='products__main-feature'>
-              {products.map((item) => (
-                item.title &&
-                <div className='products__main--item' onClick={() => handleProductName(item)}>
+      <div className="banner">
+        <div className='text'>
+          <h3>Trung Tâm Bảo Dưỡng Sửa Chữa Ô Tô Chuyên Nghiệp</h3>
+          <p>
+            Chuyên sửa chữa, bảo trì, nâng cấp các loại ô tô từ phổ thông đến
+            hạng sang của các hãng xe nổi tiếng trên thế giới.
+          </p>
+          <div className="button-group">
+            <Button type="primary" size="large">
+              Đặt Hẹn
+            </Button>
+            <Button size="large">Liên Hệ</Button>
+          </div>
+        </div>
+      </div>
 
-                  <Badge.Ribbon className='badge'
-                    text={`Nổi bật`}
-                    color="green"
-                  />
-                  <Badge.Ribbon className='badge badge2'
-                    text={`Giảm ${item.discountPercentage}%`}
-                    color="red"
-                  >
-                    <img className='image__product--main-badge' src={item.thumbnail} />
-                    <div className='titleVPrice'>
-                      <span className='title-badge '>{item.title}</span>
-                      <div className='price-badge '>
-                        <span className='priceDiscount-badge '><strong>{formatCurrency(item.priceNew)}</strong></span>
-                        <span className='priceOriginal-badge '><strong>{formatCurrency(item.price)}</strong></span>
-                      </div>
-                    </div>
-                  </Badge.Ribbon>
-                </div >
-              ))}
-            </div >
-          )
-          :
-          (<div> Không </div>)
+      {/* Dịch Vụ Mới */}
+      <div className="services">
+        <h2 className="section-title">Dịch Vụ Mới</h2>
+        <Row gutter={[16, 16]} justify="center">
+          <Col xs={24} sm={12} md={6}>
+            <Card
+              hoverable
+              cover={
+                <img
+                  alt="Rửa xe"
+                  src="https://mauweb.monamedia.net/cardinal/wp-content/uploads/2019/01/unnamed-600x498.jpg"
+                />
+              }
+            >
+              <Card.Meta title="Dịch vụ rửa xe hơi ô tô" />
+            </Card>
+          </Col>
+          <Col xs={24} sm={12} md={6}>
+            <Card
+              hoverable
+              cover={
+                <img
+                  alt="Đồng sơn"
+                  src="https://mauweb.monamedia.net/cardinal/wp-content/uploads/2019/01/IMG2-600x498.jpg"
+                />
+              }
+            >
+              <Card.Meta title="Dịch vụ đồng sơn" />
+            </Card>
+          </Col>
+          <Col xs={24} sm={12} md={6}>
+            <Card
+              hoverable
+              cover={
+                <img
+                  alt="Bảo dưỡng"
+                  src="https://mauweb.monamedia.net/cardinal/wp-content/uploads/2019/01/img1-600x498.jpg"
+                />
+              }
+            >
+              <Card.Meta title="Bảo dưỡng, sửa chữa xe ô tô" />
+            </Card>
+          </Col>
+          <Col xs={24} sm={12} md={6}>
+            <Card
+              hoverable
+              cover={
+                <img
+                  alt="Bảo hiểm"
+                  src="https://mauweb.monamedia.net/cardinal/wp-content/uploads/2019/01/img3-600x498.jpg"
+                />
+              }
+            >
+              <Card.Meta title="Bảo hiểm ô tô" />
+            </Card>
+          </Col>
+        </Row>
+      </div>
 
-        }
-      </div >
+      {/* Tiêu Chí Hoạt Động */}
+      <div className="criteria">
+        <h2 className="section-title">Tiêu Chí Hoạt Động</h2>
+        <Row gutter={[16, 16]} justify="center">
+          <Col xs={24} sm={12} md={4}>
+            <div className="criteria-item">
+              <div className="icon">🕒</div>
+              <p>Không để khách hàng đợi lâu</p>
+            </div>
+          </Col>
+          <Col xs={24} sm={12} md={4}>
+            <div className="criteria-item">
+              <div className="icon">⚙️</div>
+              <p>Ưu tiên sửa chữa, hạn chế thay thế</p>
+            </div>
+          </Col>
+          <Col xs={24} sm={12} md={4}>
+            <div className="criteria-item">
+              <div className="icon">💻</div>
+              <p>Đặt hẹn online</p>
+            </div>
+          </Col>
+          <Col xs={24} sm={12} md={4}>
+            <div className="criteria-item">
+              <div className="icon">💲</div>
+              <p>Cam kết đúng giá</p>
+            </div>
+          </Col>
+          <Col xs={24} sm={12} md={4}>
+            <div className="criteria-item">
+              <div className="icon">👍</div>
+              <p>Đội ngũ thợ hơn 10 năm kinh nghiệm</p>
+            </div>
+          </Col>
+          <Col xs={24} sm={12} md={4}>
+            <div className="criteria-item">
+              <div className="icon">🛡️</div>
+              <p>Bảo hành lâu dài</p>
+            </div>
+          </Col>
+        </Row>
+      </div>
+
+
     </>
   );
 }

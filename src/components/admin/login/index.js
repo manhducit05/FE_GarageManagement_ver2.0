@@ -16,34 +16,34 @@ const LoginAdmin = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [loading, setLoading] = useState(true); // Để xử lý khi chờ phản hồi API
 
-  useEffect(() => {
-    const checkToken = async () => {
-      const token = Cookies.get('token'); // Lấy token từ cookie
+  // useEffect(() => {
+  //   const checkToken = async () => {
+  //     const token = Cookies.get('token'); // Lấy token từ cookie
 
-      try {
-        const response = await fetch(`${API}/accounts/checkToken`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}` // Gửi token trong header
-          }
-        });
+  //     try {
+  //       const response = await fetch(`${API}/accounts/checkToken`, {
+  //         method: 'POST',
+  //         headers: {
+  //           'Content-Type': 'application/json',
+  //           'Authorization': `Bearer ${token}` // Gửi token trong header
+  //         }
+  //       });
 
-        const result = await response.json();
-        if (result.code == 200) {
-          navigate("/admin/dashboard")
-        } else {
-          navigate("/admin/login")
-        }
-      } catch (error) {
-        setIsAuthenticated(false);
-      } finally {
-        setLoading(false);
-      }
-    };
+  //       const result = await response.json();
+  //       if (result.code == 200) {
+  //         navigate("/admin/dashboard")
+  //       } else {
+  //         navigate("/admin/login")
+  //       }
+  //     } catch (error) {
+  //       setIsAuthenticated(false);
+  //     } finally {
+  //       setLoading(false);
+  //     }
+  //   };
 
-    checkToken();
-  }, []);
+  //   checkToken();
+  // }, []);
 
   const handleLogin = async (e) => {
     e.preventDefault(); // Ngăn chặn reload lại trang
@@ -100,8 +100,7 @@ const LoginAdmin = () => {
 
   return (
     <>
-
-      <div className="login-background">
+      {/* <div className="login-background"> */}
         <div className="login-box">
 
           <h3>Đăng nhập quản trị</h3>
@@ -141,7 +140,7 @@ const LoginAdmin = () => {
             <button className='btn-loginAdmin' style={{ marginTop: "35px" }} type="submit">Đăng nhập</button>
           </form>
         </div >
-      </div >
+      {/* </div > */}
     </>
   );
 };
