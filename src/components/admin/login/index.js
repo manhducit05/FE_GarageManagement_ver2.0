@@ -49,7 +49,7 @@ const LoginAdmin = () => {
     e.preventDefault(); // Ngăn chặn reload lại trang
 
     const loginData = {
-      email: email,
+      username: email,
       password: password
     };
 

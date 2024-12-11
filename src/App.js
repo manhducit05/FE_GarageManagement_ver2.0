@@ -11,7 +11,6 @@ import Client from './components/client';
 import HomeClient from './components/client/home';
 import LoginClient from './components/client/login';
 import RegisterClient from './components/client/register';
-import Introduce from './components/client/introduce';
 import NewsSection from './components/client/news/news';
 
 
@@ -22,6 +21,10 @@ import CustomerEdit from './components/admin/customers/edit';
 import Services from './components/admin/services';
 import ServiceDetail from './components/admin/services/detail';
 import ServiceEdit from './components/admin/services/edit';
+
+import Technician from './components/admin/technician';
+import TechnicianDetail from './components/admin/technician/details';
+import TechnicianEdit from './components/admin/technician/edit';
 function App() {
   return (
     <BrowserRouter>
@@ -39,6 +42,10 @@ function App() {
             <Route path="services/:id" element={<ServiceDetail />} />
             <Route path="services/edit/:id" element={<ServiceEdit />} />
 
+            <Route path="technicians" element={<Technician />} />
+            <Route path="technicians/:id" element={<TechnicianDetail />} />
+            <Route path="technicians/edit/:id" element={<TechnicianEdit />} />
+
           </Route >
         </Route >
 
@@ -46,7 +53,6 @@ function App() {
         <Route path="/register" element={<RegisterClient />} />
         <Route path="/" element={<Client />} >
           <Route index element={<HomeClient />} />
-          <Route path='/introduce' element={<Introduce />} />
           <Route path='/news' element={<NewsSection />}/>
         </Route>
         <Route path={`/error404`} element={<Error404 />} />

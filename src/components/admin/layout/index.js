@@ -19,7 +19,7 @@ export default function SidebarClient() {
           <Menu.Item key="1" onClick={() => navigate("/admin/dashboard")}>
             Dashboard
           </Menu.Item>
-          <Menu.Item key="2" onClick={() => navigate("#")}>
+          <Menu.Item key="2" onClick={() => navigate("/admin/technicians")}>
             Kỹ thuật viên
           </Menu.Item>
           <Menu.Item key="3" onClick={() => navigate("/admin/services")}>

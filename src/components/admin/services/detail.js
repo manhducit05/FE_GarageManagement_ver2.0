@@ -45,7 +45,7 @@ const ServiceDetail = () => {
       </Descriptions>
 
       <div style={{ marginTop: '20px' }}>
-        <Button type="primary" onClick={() => navigate(`/services/edit/${id}`)}>
+        <Button type="primary" onClick={() => navigate(`/admin/services/edit/${id}`)}>
           Edit
         </Button>
         <Button style={{ marginLeft: '10px' }} onClick={() => navigate(-1)}>

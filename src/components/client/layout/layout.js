@@ -1,42 +1,78 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate, useLocation, Outlet } from "react-router-dom";
-import Cookies from 'js-cookie';
 import "./layout.css";
-import { Layout, Menu, Button } from "antd";
 
-const { Header, Content, Footer } = Layout;
 export default function SidebarClient() {
-  const API = process.env.REACT_APP_API_URL_CLIENT;
-
   const navigate = useNavigate();
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  // Handle scroll event
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
-    <>
-        <Layout>
+    <div className='Layout'>
       {/* Header */}
-      <Header className="header">
+      <div className={`header d-flex ${isScrolled ? "scrolled" : ""}`}>
         <div className="logo">
-          <h1>Mona Media Cars</h1>
+          <img src='https://autowash.vn/wp-content/uploads/2019/03/autowash-02-e1587810991846.png' alt="Logo" />
         </div>
-        <Menu theme="dark" mode="horizontal" defaultSelectedKeys={["1"]}>
-          <Menu.Item key="1" onClick={()=>{navigate("/")}}>Trang Chủ</Menu.Item>
-          <Menu.Item key="2" onClick={()=>{navigate("/introduce")}}>Giới Thiệu</Menu.Item>
-          <Menu.Item key="3" onClick={()=>{navigate("/services")}}>Dịch Vụ</Menu.Item>
-          <Menu.Item key="4" onClick={()=>{navigate("/news")}}>Tin Tức</Menu.Item>
-          <Menu.Item key="5" onClick={()=>{navigate("/contact")}}>Liên Hệ</Menu.Item>
-        </Menu>
+        <div className='nav'>
+          <ul className="nav">
+            <li className="nav-item">
+              <div className="nav-link active" aria-current="page" onClick={()=>{navigate("/")}}>Trang chủ</div>
+            </li>
+            <li className="nav-item">
+              <div className="nav-link" onClick={()=>{navigate("/")}}>Dịch vụ</div>
+            </li>
+            <li className="nav-item">
+              <div className="nav-link" onClick={()=>{navigate("/")}}>Đặt Lịch Chăm Sóc Xe</div>
+            </li>
+
+            <li className="nav-item">
+              <div className="nav-link" aria-disabled="true" onClick={()=>{navigate("/news")}}>Tin Tức</div>
+            </li>
+            <li className="nav-item">
+              <div className="nav-link" aria-disabled="true" onClick={()=>{navigate("/")}}>Liên Hệ</div>
+            </li>
+          </ul>
+        </div>
+
         <div className="contact-info">
           <span>Thứ 2 - Thứ 6 (9h - 18h)</span>
-          <br/>
+          <br />
           <span>Gọi ngay: 076 922 0162</span>
         </div>
-      </Header>
+      </div>
+
       {/* Content */}
-          <Outlet/>
+      <Outlet />
+
       {/* Footer */}
-      <Footer style={{ textAlign: "center", backgroundColor:"black", color:"white" }}>
-        ©2024 Mona Media Cars. All rights reserved.
-      </Footer>
-    </Layout>
-    </>
+      <div className='Footer text-center'>
+        <div className='icon d-flex justify-content-center'>
+        <i class="fa-brands fa-facebook"></i>
+        <i class="fa-brands fa-twitter"></i>
+        <i class="fa-brands fa-square-threads"></i>
+        <i class="fa-brands fa-google-plus-g"></i>
+        <i class="fa-brands fa-threads"></i>
+        </div>
+        <div className='title'>
+          By AutoWash © 2022 Auto Wash - Hệ Thống Rửa Xe Và Chăm Sóc Xe Chuyên Nghiệp
+        </div>
+      </div>
+    </div>
   );
 }

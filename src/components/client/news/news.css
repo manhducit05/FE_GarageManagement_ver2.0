@@ -1,84 +1,100 @@
 /* Giao diện card chung */
+.box-news .bg {
+  background-image: url("../../../../public/img/bg-home.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  width: 100vw; /* Chiếm toàn bộ chiều rộng màn hình */
+  height: 500px; /* Chiếm toàn bộ chiều cao màn hình */
+
+}
+.bg .p1{
+  color: white;
+  font-size: 35px;
+  font-weight: 700;
+  text-align: center;
+   padding-top: 120px;
+ }
 .news-card {
-    background-color: #2b2b2b !important;
-    color: white;
-    border: none;
-    border-radius: 10px;
-    overflow: hidden;
-    position: relative;
-    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 100%;
-  }
-  
-  /* Hiệu ứng hover */
-  .news-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
-  }
-  
-  /* Ảnh không bị vỡ và cùng tỷ lệ */
-  .news-card img {
-    width: 100%;
-    height: 180px;
-    object-fit: cover;
-    object-position: center;
-    border-bottom: 3px solid #ff4d4f;
-  }
-  
-  /* Ngày tháng góc trái */
-  .news-date {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    background: red;
-    color: white;
-    padding: 5px;
-    border-radius: 50%;
-    width: 45px;
-    height: 45px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-    font-size: 14px;
-    z-index: 1;
-  }
-  
-  /* Tiêu đề tin tức */
-  .news-title {
-    color: white !important;
-    font-size: 18px;
-    font-weight: 600;
-    margin: 15px 0;
-    text-align: left;
-  }
-  
-  /* Mô tả nội dung */
-  .news-description {
-    color: #bbb;
-    font-size: 14px;
-    line-height: 1.6;
-    margin-bottom: 15px;
-    text-align: justify;
-    flex-grow: 1; /* Đẩy nội dung xuống để căn đều các card */
-  }
-  
-  /* Container tổng */
-  .news-container {
-    padding: 40px;
-    background-color: #1c1c1c;
-  }
-  
-  /* Tiêu đề phần TIN TỨC */
-  .section-title {
-    color: white;
-    text-align: center;
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 30px;
-  }
-  
+  background-color: #2b2b2b !important;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+/* Hiệu ứng hover */
+.news-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+}
+
+/* Ảnh không bị vỡ và cùng tỷ lệ */
+.news-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  object-position: center;
+  border-bottom: 3px solid #ff4d4f;
+}
+
+/* Ngày tháng góc trái */
+.news-date {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: red;
+  color: white;
+  padding: 5px;
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 14px;
+  z-index: 1;
+}
+
+/* Tiêu đề tin tức */
+.news-title {
+  color: white !important;
+  font-size: 18px;
+  font-weight: 600;
+  margin: 15px 0;
+  text-align: left;
+}
+
+/* Mô tả nội dung */
+.news-description {
+  color: #bbb;
+  font-size: 14px;
+  line-height: 1.6;
+  margin-bottom: 15px;
+  text-align: justify;
+  flex-grow: 1;
+  /* Đẩy nội dung xuống để căn đều các card */
+}
+
+/* Container tổng */
+.news-container {
+  padding: 40px;
+  background-color: #1c1c1c;
+}
+
+/* Tiêu đề phần TIN TỨC */
+.section-title {
+  color: white;
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 30px;
+}
