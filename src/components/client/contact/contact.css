@@ -13,3 +13,28 @@
     text-align: center;
      padding-top: 120px;
    }
+.box-contact{
+  padding: 20px 300px;
+}
+.box-contact i{
+  font-size: 50px;
+  color: #199CDB;
+  margin-right: 15px;
+}
+.box-contact .txt{
+  text-align: justify;
+  line-height: 40px;
+}
+.box-contact .title{
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+.box-contact .phone{
+  color: #199CDB;
+
+  
+}
+.box-contact .phone:hover{
+  text-decoration: underline;
+  cursor: pointer;
+}

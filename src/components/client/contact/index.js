@@ -17,11 +17,12 @@ const ContactSection = () => {
             <div className='d-flex'>
               <i class="fa-solid fa-phone"></i>
               <div className='txt'>
-                <b>
+                <div className='title'>
                   Gọi Ngay Hotline
-                </b>
+                </div>
                 <div className='phone'>
                   (+84) 0988579068
+                  <br />
                   (+84) 0939051094
                 </div>
               </div>
@@ -31,24 +32,33 @@ const ContactSection = () => {
             <div className='d-flex'>
               <i class="fa-regular fa-map"></i>
               <div className='txt'>
-                <b>Địa Chỉ</b>
-                Chi nhánh 1: 95 Lê Thị Chợ, phường Phú Thuận, Quận 7, TPHCM
+                <div className='title'>Địa Chỉ</div>
+                <br />
+                <b>Chi nhánh 1:</b> 95 Lê Thị Chợ, phường Phú Thuận, Quận 7, TPHCM
+                <br />
 
-                Chi nhánh 2: 87 Bờ Bao Tân Thắng, phường Sơn Kỳ, Quận Tân Phú, TPHCM
+                <b>Chi nhánh 2:</b> 87 Bờ Bao Tân Thắng, phường Sơn Kỳ, Quận Tân Phú, TPHCM
+                <br />
 
-                Chi nhánh 3: 77 Đỗ Xuân Hợp, phường Phước Long B, Quận 9, TPHCM
 
-                Chi nhánh 4: 84 Cù Lao, phường 2, Quận Phú Nhuận, TPHCM
+                <b>Chi nhánh 3:</b> 77 Đỗ Xuân Hợp, phường Phước Long B, Quận 9, TPHCM
+                <br />
+
+
+                <b>Chi nhánh 4:</b> 84 Cù Lao, phường 2, Quận Phú Nhuận, TPHCM
               </div>
             </div>
           </div>
           <div className='col-4'>
-            <i class="fa-solid fa-clock"></i>
-            <div className='txt'>
-              <b>
-                Thời Gian Làm Việc
-              </b>
-              Thứ Hai – Chủ Nhật: 7:00 – 18:00
+            <div className='d-flex'>
+              <i class="fa-solid fa-clock"></i>
+              <div className='txt'>
+                <div className='title'>
+                  Thời Gian Làm Việc
+                </div>
+                <br />
+                Thứ Hai – Chủ Nhật: 7:00 – 18:00
+              </div>
             </div>
           </div>
         </div>

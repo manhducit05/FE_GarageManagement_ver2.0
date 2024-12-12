@@ -129,7 +129,7 @@ const NewsSection = () => {
           <div className='p1'>TIN TỨC</div>
         </div>
       </div>
-      <div style={{ backgroundColor: '#1c1c1c', padding: '20px' }}>
+      <div >
         <Title level={3} style={{ color: 'white', textAlign: 'center' }}>
           TIN TỨC
         </Title>

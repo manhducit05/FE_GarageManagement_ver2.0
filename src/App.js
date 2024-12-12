@@ -14,7 +14,7 @@ import RegisterClient from './components/client/register';
 import NewsSection from './components/client/news/news';
 import AppointmentClient from './components/client/appointment';
 import ContactSection from './components/client/contact';
-
+import ServicesSection from './components/client/services';
 import Customer from './components/admin/customers';
 import CustomerDetail from './components/admin/customers/detail';
 import CustomerEdit from './components/admin/customers/edit';
@@ -26,6 +26,10 @@ import ServiceEdit from './components/admin/services/edit';
 import Technician from './components/admin/technician';
 import TechnicianDetail from './components/admin/technician/details';
 import TechnicianEdit from './components/admin/technician/edit';
+
+
+
+
 function App() {
   return (
     <BrowserRouter>
@@ -57,6 +61,7 @@ function App() {
           <Route path='/dat-lich-rua-xe' element={<AppointmentClient />} />
           <Route path='/news' element={<NewsSection />}/>
           <Route path='/contact' element={<ContactSection />}/>
+          <Route path='/services' element={<ServicesSection/>}/>
 
         </Route>
         <Route path={`/error404`} element={<Error404 />} />

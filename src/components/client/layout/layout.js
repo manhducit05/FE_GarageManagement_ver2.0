@@ -35,7 +35,7 @@ export default function SidebarClient() {
               <div className="nav-link active" aria-current="page" onClick={()=>{navigate("/")}}>Trang chủ</div>
             </li>
             <li className="nav-item">
-              <div className="nav-link" onClick={()=>{navigate("/")}}>Dịch vụ</div>
+              <div className="nav-link" onClick={()=>{navigate("/services")}}>Dịch vụ</div>
             </li>
             <li className="nav-item">
               <div className="nav-link" onClick={()=>{navigate("/dat-lich-rua-xe")}}>Đặt Lịch Chăm Sóc Xe</div>
