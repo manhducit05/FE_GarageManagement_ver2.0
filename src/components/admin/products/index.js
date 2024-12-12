@@ -87,7 +87,6 @@ function AdminProducts({ permissions, permission }) {
       okButtonProps: {
         style: {
           background: 'linear-gradient(135deg, #6253e1, #04befe)',
-          color: '#fff',               // Màu chữ trắng
         },
       },
       onOk() {

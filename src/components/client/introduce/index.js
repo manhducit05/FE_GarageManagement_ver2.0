@@ -50,28 +50,28 @@ const Introduce = () => {
                         <Statistic
                             title={<Text style={{ color: "#ccc" }}>Nhân viên kinh nghiệm</Text>}
                             value={112}
-                            valueStyle={{ color: "#fff" }}
+                            // valueStyle={{ color: "#fff" }}
                         />
                     </Col>
                     <Col xs={12} md={6}>
                         <Statistic
                             title={<Text style={{ color: "#ccc" }}>Sửa chữa được giải quyết</Text>}
                             value={8564}
-                            valueStyle={{ color: "#fff" }}
+                            // valueStyle={{ color: "#fff" }}
                         />
                     </Col>
                     <Col xs={12} md={6}>
                         <Statistic
                             title={<Text style={{ color: "#ccc" }}>Khách hàng hài lòng</Text>}
                             value={9630}
-                            valueStyle={{ color: "#fff" }}
+                            // valueStyle={{ color: "#fff" }}
                         />
                     </Col>
                     <Col xs={12} md={6}>
                         <Statistic
                             title={<Text style={{ color: "#ccc" }}>Khách hàng cao cấp</Text>}
                             value={1452}
-                            valueStyle={{ color: "#fff" }}
+                            // valueStyle={{ color: "#fff" }}
                         />
                     </Col>
                 </Row>

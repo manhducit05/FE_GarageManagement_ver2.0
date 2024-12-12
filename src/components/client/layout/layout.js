@@ -38,14 +38,14 @@ export default function SidebarClient() {
               <div className="nav-link" onClick={()=>{navigate("/")}}>Dịch vụ</div>
             </li>
             <li className="nav-item">
-              <div className="nav-link" onClick={()=>{navigate("/")}}>Đặt Lịch Chăm Sóc Xe</div>
+              <div className="nav-link" onClick={()=>{navigate("/dat-lich-rua-xe")}}>Đặt Lịch Chăm Sóc Xe</div>
             </li>
 
             <li className="nav-item">
               <div className="nav-link" aria-disabled="true" onClick={()=>{navigate("/news")}}>Tin Tức</div>
             </li>
             <li className="nav-item">
-              <div className="nav-link" aria-disabled="true" onClick={()=>{navigate("/")}}>Liên Hệ</div>
+              <div className="nav-link" aria-disabled="true" onClick={()=>{navigate("/contact")}}>Liên Hệ</div>
             </li>
           </ul>
         </div>

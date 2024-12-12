@@ -2,21 +2,7 @@
   width: 100vw;
 }
 
-.client-container.light {
-  background-color: white;
-  /* Màu nền cho chế độ sáng */
-  color: black;
-  /* Màu chữ cho chế độ sáng */
-}
-
-.client-container.dark {
-  background-color: #001529;
-  min-height: 100vh;
-  color: white;
-}
-
 .client-container.dark label {
-  color: white;
 }
 
 .content-outlet-client {

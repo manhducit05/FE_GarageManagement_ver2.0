@@ -12,7 +12,8 @@ import HomeClient from './components/client/home';
 import LoginClient from './components/client/login';
 import RegisterClient from './components/client/register';
 import NewsSection from './components/client/news/news';
-
+import AppointmentClient from './components/client/appointment';
+import ContactSection from './components/client/contact';
 
 import Customer from './components/admin/customers';
 import CustomerDetail from './components/admin/customers/detail';
@@ -53,7 +54,10 @@ function App() {
         <Route path="/register" element={<RegisterClient />} />
         <Route path="/" element={<Client />} >
           <Route index element={<HomeClient />} />
+          <Route path='/dat-lich-rua-xe' element={<AppointmentClient />} />
           <Route path='/news' element={<NewsSection />}/>
+          <Route path='/contact' element={<ContactSection />}/>
+
         </Route>
         <Route path={`/error404`} element={<Error404 />} />
       </Routes>

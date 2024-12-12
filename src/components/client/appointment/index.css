@@ -1,0 +1,28 @@
+body{
+    overflow-x: none;
+}
+
+img:hover {
+    transform: none; /* Loại bỏ hiệu ứng phóng to */
+}
+
+.ant-steps-item-title,
+.ant-steps-item-description,
+.ant-steps-item-process .ant-steps-item-icon {
+  /* color: #fff !important; */
+}
+
+.ant-steps-item-process .ant-steps-item-icon {
+  background-color: #ff4d4f !important; /* Tùy chỉnh màu nền nếu cần */
+}
+
+.all{
+    margin-right: 40px;
+    margin-left: 40px;
+}
+
+h2{
+}
+
+.ant-form-item-label > label {
+}

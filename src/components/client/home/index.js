@@ -21,9 +21,6 @@ function HomeClient({ permissions, permission }) {
   // if (loading) return <div className='products__main'>Loading...</div>;
   // if (error) return <div className='products__main'>Error: {error}</div>;
 
-
-
-
   return (
     <>
       <div className='box-1'>

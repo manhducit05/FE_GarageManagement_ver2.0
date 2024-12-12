@@ -9,7 +9,6 @@
 
 }
 .bg .p1{
-  color: white;
   font-size: 35px;
   font-weight: 700;
   text-align: center;
@@ -17,7 +16,6 @@
  }
 .news-card {
   background-color: #2b2b2b !important;
-  color: white;
   border: none;
   border-radius: 10px;
   overflow: hidden;
@@ -50,7 +48,6 @@
   top: 10px;
   left: 10px;
   background: red;
-  color: white;
   padding: 5px;
   border-radius: 50%;
   width: 45px;
@@ -66,7 +63,6 @@
 
 /* Tiêu đề tin tức */
 .news-title {
-  color: white !important;
   font-size: 18px;
   font-weight: 600;
   margin: 15px 0;
@@ -92,7 +88,6 @@
 
 /* Tiêu đề phần TIN TỨC */
 .section-title {
-  color: white;
   text-align: center;
   font-size: 24px;
   font-weight: bold;

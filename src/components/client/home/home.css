@@ -1,10 +1,9 @@
 
 body{
-  background-color: #0E0F0F;
+  background-color: #fff;
 }
 .box-1{
   font-family: 'Montserrat', sans-serif;
-  color: white;
   .bg {
     background-image: url("../../../../public/img/bg-home.jpg");
     background-repeat: no-repeat;
@@ -12,43 +11,45 @@ body{
     background-size: cover;
     width: 100vw; /* Chiếm toàn bộ chiều rộng màn hình */
     height: 800px; /* Chiếm toàn bộ chiều cao màn hình */
-  
   }
   .bg .p1{
+    color: #fff !important;
    font-size: 35px;
    font-weight: 700;
    text-align: center;
     padding-top: 120px;
   }
   .bg .p2{
+    color: #fff !important;
     font-size: 45px;
     font-weight: lighter;
     margin-top: 50px;
-    padding-left: 450px;
+    text-align: center;
   }
   .bg .p3{
+    color: #fff !important;
     font-size: 45px;
     font-weight: lighter;
-    padding-left: 500px;
-  
+    text-align: center;
   }
 }
 .box-2{
  padding-top: 100px;
-
+  color: #000 !important;
  }
 
  .box-2 .title{
+  color: #000 !important;
   font-size: 25px;
   font-weight: 550;
 }
 
 .box-2 .desc{
   font-size: 25px;
-
   color: #2CAFDA;
 }
 .box-2 .subtitle{
+  color: #000 !important;
   font-size: 22px;
   text-align: jus;
 }
@@ -62,13 +63,18 @@ body{
   margin-right: 10px;
 }
 .box-2 ul li{
+  color: #000 !important;
   text-align: justify;
   margin: 10px 0 ;
   font-size: 20px;
 }
-.box-3{
-  background-color: #0E0F0F;
+.box-3 h1{
+  color: #000 !important;
 }
+.box-3 p{
+  color: #2ca5da !important;
+}
+
 .box-3 img{
   width: 1000px;
   height: auto;
