@@ -1,3 +1,13 @@
+Frontend: ReactJS, Bootstrap, Ant Design (antd) for UI components, Font Awesome for icons, axios for API calls, react-router-dom for routing, js-cookie for handling cookies and authentication state, socket.io-client for real-time updates.
+
+Backend: NodeJS (Express), dotenv for environment configuration, MySQL for database.
+
+Others: Cloudinary for image uploads and storage.
+
+Functions:
+Customers can register and log in, schedule services (car wash, oil change, tire maintenance), view history, track booking status, and update personal info.
+Admins can manage customers, technicians, services, and garage data with full CRUD operations, update appointment statuses, or cancel bookings to ensure smooth scheduling operations.
+
 Some UI in my project:
 ![image](https://github.com/user-attachments/assets/45c56920-1f5a-4042-8c44-96676ac4d14c)
 ![image](https://github.com/user-attachments/assets/6e558615-dcd5-4003-a2c5-e41769e4b2f0)
