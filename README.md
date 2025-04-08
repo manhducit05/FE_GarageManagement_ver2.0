@@ -1,4 +1,5 @@
-![image](https://github.com/user-attachments/assets/1b216577-294f-4a83-b0e2-2db595cda6e6)Some UI in my project:
+Some UI in my project:
+![image](https://github.com/user-attachments/assets/1b216577-294f-4a83-b0e2-2db595cda6e6)
 ![image](https://github.com/user-attachments/assets/f8596345-70fb-4e3e-902d-61341e25a238)
 ![image](https://github.com/user-attachments/assets/de2a2108-80b2-4947-9b61-501489538781)
 ![image](https://github.com/user-attachments/assets/45c56920-1f5a-4042-8c44-96676ac4d14c)
